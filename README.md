@@ -21,7 +21,7 @@ public:
 
     vector<string> interests = {
         "Full-Stack Web", "Systems Programming", "Real-Time Systems",
-        "Low-Level C & Memory", "Competitive Platforms"
+        "Low-Level C &amp; Memory", "Competitive Platforms"
     };
 };
 ```
