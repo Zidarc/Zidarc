@@ -1,8 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d0008,100:ff2266&height=160&section=header&text=Zidarc&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=CS%20%40%20FAST%20NUCES%20%C2%B7%20Game%20Dev%20%C2%B7%20Builder&descAlignY=60&descColor=ffe0e8" />
-
-### Ali Hussain
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d0008,100:ff2266&height=160&section=header&text=Ali%20Hussain&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=CS%20%40%20FAST%20NUCES%20%C2%B7%20Game%20Dev%20%C2%B7%20Builder&descAlignY=60&descColor=ffe0e8" />
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&pause=1000&color=FF2266&center=true&vCenter=true&width=600&lines=Full-Stack+Builder;Open+to+Collaborations;Turning+ideas+into+products;Code.+Ship.+Repeat.;CS+%40+FAST+NUCES+Karachi)](https://git.io/typing-svg)
 
