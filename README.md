@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&amp;color=0:0d0008,100:ff2266&amp;height=160&amp;section=header&amp;text=Ali%20Hussain&amp;fontSize=60&amp;fontColor=ffffff&amp;animation=fadeIn&amp;fontAlignY=38&amp;desc=CS%20%40%20FAST%20NUCES%20%C2%B7%20Web%20%26%20Systems%20%C2%B7%20Builder&amp;descAlignY=60&amp;descColor=ffe0e8" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d0008,100:ff2266&height=160&section=header&text=Ali%20Hussain&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=CS%20%40%20FAST%20NUCES%20%C2%B7%20Web%20and%20Systems%20%C2%B7%20Builder&descAlignY=60&descColor=ffe0e8" />
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&amp;size=18&amp;pause=1000&amp;color=FF2266&amp;center=true&amp;vCenter=true&amp;width=600&amp;lines=Full-Stack+Builder;Open+to+Collaborations;Turning+ideas+into+products;Code.+Ship.+Repeat.;CS+%40+FAST+NUCES+Karachi)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&pause=1000&color=FF2266&center=true&vCenter=true&width=600&lines=Full-Stack+Builder;Open+to+Collaborations;Turning+ideas+into+products;Code.+Ship.+Repeat.;CS+%40+FAST+NUCES+Karachi)](https://git.io/typing-svg)
 
 </div>
 
@@ -36,11 +36,11 @@ public:
 
 [![Skills](https://skillicons.dev/icons?i=cpp,c,js,ts,python)](https://skillicons.dev)
 
-**Web &amp; Backend**
+**Web & Backend**
 
 [![Skills](https://skillicons.dev/icons?i=react,nodejs,express,vite,supabase,postgres)](https://skillicons.dev)
 
-**Tools &amp; Platforms**
+**Tools & Platforms**
 
 [![Skills](https://skillicons.dev/icons?i=git,github,vscode,linux,figma)](https://skillicons.dev)
 
