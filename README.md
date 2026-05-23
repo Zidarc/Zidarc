@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d0010,50:1a0020,100:0d0010&height=160&section=header&text=Zidarc&fontSize=60&fontColor=b044ff&animation=fadeIn&fontAlignY=38&desc=CS%20%40%20FAST%20NUCES%20%C2%B7%20Game%20Dev%20%C2%B7%20Builder&descAlignY=60&descColor=cc0033" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d0008,50:1a0010,100:0d0008&height=160&section=header&text=Zidarc&fontSize=60&fontColor=ff2266&animation=fadeIn&fontAlignY=38&desc=CS%20%40%20FAST%20NUCES%20%C2%B7%20Game%20Dev%20%C2%B7%20Builder&descAlignY=60&descColor=880022" />
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&pause=1000&color=B044FF&center=true&vCenter=true&width=500&lines=Building+CapTale+in+C%2B%2B+%2F+Raylib;Full-Stack+Web+Developer;Horror+Fiction+Writer;Tea+drinker+%26+pixel+pusher)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&pause=1000&color=FF2266&center=true&vCenter=true&width=500&lines=Building+CapTale+in+C%2B%2B+%2F+Raylib;Full-Stack+Web+Developer;Horror+Fiction+Writer;Tea+drinker+%26+pixel+pusher)](https://git.io/typing-svg)
 
 </div>
 
@@ -82,14 +82,14 @@ public:
 
 <div align="center">
 
-<img height="160" src="https://github-readme-stats.vercel.app/api?username=Zidarc&show_icons=true&hide_border=true&bg_color=0d0010&title_color=b044ff&icon_color=cc0033&text_color=dddddd&count_private=true" />
-<img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Zidarc&layout=compact&hide_border=true&bg_color=0d0010&title_color=b044ff&text_color=dddddd&langs_count=6" />
+<img height="160" src="https://github-readme-stats.vercel.app/api?username=Zidarc&show_icons=true&hide_border=true&bg_color=0d0008&title_color=ff2266&icon_color=ff2266&text_color=ffffff&count_private=true" />
+<img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Zidarc&layout=compact&hide_border=true&bg_color=0d0008&title_color=ff2266&text_color=ffffff&langs_count=6" />
 
 </div>
 
 <div align="center">
 
-<img src="https://streak-stats.demolab.com?user=Zidarc&hide_border=true&background=0d0010&ring=b044ff&fire=cc0033&currStreakLabel=b044ff&sideLabels=dddddd&dates=888888&currStreakNum=ffffff&sideNums=ffffff" />
+<img src="https://streak-stats.demolab.com?user=Zidarc&hide_border=true&background=0d0008&ring=ff2266&fire=880022&currStreakLabel=ff2266&sideLabels=ffffff&dates=888888&currStreakNum=ffffff&sideNums=ffffff" />
 
 </div>
 
@@ -109,7 +109,7 @@ public:
 
 <div align="center">
 
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=Zidarc&hide_border=true&bg_color=0d0010&color=b044ff&line=cc0033&point=ffffff" />
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=Zidarc&hide_border=true&bg_color=0d0008&color=ff2266&line=880022&point=ff2266" />
 
 </div>
 
@@ -117,7 +117,7 @@ public:
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d0010,50:1a0020,100:0d0010&height=100&section=footer" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1a0010,50:0d0008,100:0d0008&height=100&section=footer" />
 
 *"The best code is the code that ships."*
 
