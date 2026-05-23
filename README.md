@@ -11,7 +11,7 @@
 ## About Me
 
 ```cpp
-class Zidarc {
+class AliHussain {
 public:
     string name        = "Ali Hussain";
     string university  = "FAST NUCES, Karachi";
@@ -53,7 +53,7 @@ public:
 <table>
   <tr>
     <td width="50%">
-      <h3>🌀 Recursion Hell</h3>
+      <h3>🌀 Cyber Loop</h3>
       <p>Competitive puzzle platform with a <strong>Stranger Things aesthetic</strong>. Graph-based puzzle game, real-time leaderboard via Supabase Realtime, ember particle effects, and glassmorphism UI.</p>
       <p><code>Node.js</code> <code>TypeScript</code> <code>React</code> <code>Supabase</code> <code>SVG</code></p>
     </td>
@@ -70,7 +70,7 @@ public:
       <p><code>React</code> <code>Supabase</code> <code>WebSockets</code></p>
     </td>
     <td width="50%">
-      <h3>🎮 Pixel Town</h3>
+      <h3>🎮 CapTale</h3>
       <p>Top-down pixel art RPG built from scratch in <strong>C++ / Raylib</strong>. Custom NPC dialogue systems, mini-game state machine, and hand-crafted world assets.</p>
       <p><code>C++</code> <code>Raylib</code> <code>Pixel Art</code> <code>Game Dev</code></p>
     </td>
