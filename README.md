@@ -17,7 +17,7 @@ public:
     string university  = "FAST NUCES, Karachi";
     string degree      = "BS Computer Science";
     string currently   = "Real-time collaborative workspace";
-    string also_doing  = "Preparing for Final Exams";
+    string also_doing  = "Messing with Fedora KDE Plasma";
 
     vector<string> interests = {
         "Full-Stack Web", "Systems Programming", "Real-Time Systems",
