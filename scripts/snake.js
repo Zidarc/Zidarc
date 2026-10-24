@@ -1,6 +1,6 @@
 // Wraps Platane/snk output in the terminal window: pads its viewBox so the snake never leaves the grid area
 // visibly, recolours the empty cells to the theme (:root:root beats snk's own :root), and clips to the window.
-// Usage (from the snake workflow): node scripts/snake.js dist/snake-raw.svg dist/snake.svg
+// Usage (from the snake workflow): node scripts/snake.js dist/snake-raw.svg site/snake.svg
 const fs = require('fs');
 const L = require('./lib');
 const { C, X0 } = L;

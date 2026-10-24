@@ -23,10 +23,11 @@ jobs:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
             dist/snake-raw.svg?palette=github-dark&color_snake=#ff2266&color_dots=#24060f,#4d0f24,#880022,#c4143f,#ff2266
-      - run: node scripts/snake.js dist/snake-raw.svg dist/snake.svg && rm dist/snake-raw.svg
+      # snk runs in Docker as root, so dist/ isn't writable here: write the framed snake to its own folder.
+      - run: mkdir -p site && node scripts/snake.js dist/snake-raw.svg site/snake.svg
       - uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
-          build_dir: dist
+          build_dir: site
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
