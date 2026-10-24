@@ -1,14 +1,22 @@
 {
   "name": "Byte",
-  "fullness": 80,
-  "happiness": 80,
-  "updated": "2026-10-24T21:02:44.637Z",
-  "lastInteraction": null,
+  "fullness": 100,
+  "happiness": 85,
+  "updated": "2026-10-24T21:04:58.866Z",
+  "lastInteraction": "2026-10-24T21:04:58.866Z",
   "counts": {
-    "feed": 0,
+    "feed": 1,
     "play": 0,
     "pet": 0
   },
-  "friends": {},
-  "recent": []
+  "friends": {
+    "Zidarc": 1
+  },
+  "recent": [
+    {
+      "user": "Zidarc",
+      "action": "feed",
+      "at": "2026-10-24T21:04:58.866Z"
+    }
+  ]
 }
