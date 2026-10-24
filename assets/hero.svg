@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="515" viewBox="0 0 900 515" font-family="'JetBrains Mono','Fira Code','Cascadia Code',Consolas,'DejaVu Sans Mono',Menlo,monospace" font-size="15">
+<title>ali@zidarc: ~ — Konsole</title>
+<style>
+.show{opacity:0;animation:show .01s linear forwards}
+.fi{animation:fadein .2s ease-out both}
+.slide{animation:slide .35s ease-out both}
+.cur{animation:blink 1s step-end infinite}
+.ember{animation:rise linear infinite}
+@keyframes show{to{opacity:1}}
+@keyframes hide{to{opacity:0}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@keyframes slide{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+@keyframes blink{50%{opacity:0}}
+@keyframes rise{0%{opacity:0;transform:translate(0,0)}15%{opacity:.6}100%{opacity:0;transform:translate(18px,-475px)}}
+.blink{transform-box:fill-box;transform-origin:center;animation:shut 4.5s 3s infinite}
+.look{animation:look 7s 3.5s infinite steps(1,end)}
+.fa{animation:fa 1.4s steps(1,end) infinite}
+.fb{opacity:0;animation:fb 1.4s steps(1,end) infinite}
+@keyframes shut{0%,90%,100%{transform:scaleY(1)}93%,96%{transform:scaleY(.12)}}
+@keyframes look{0%{transform:translateX(0)}40%{transform:translateX(-11px)}70%{transform:translateX(0)}}
+@keyframes fa{0%{opacity:1}50%{opacity:0}}
+@keyframes fb{0%{opacity:0}50%{opacity:1}}
+.heart{animation:heart 2.4s ease-out infinite both}
+@keyframes heart{0%{opacity:0;transform:translateY(0)}20%{opacity:1}100%{opacity:0;transform:translateY(-18px)}}
+@keyframes ty1{to{transform:translateX(126px)}}
+@keyframes ty2{to{transform:translateX(126px)}}</style>
+<defs>
+  <clipPath id="win"><rect x="10" y="10" width="880" height="495" rx="12"/></clipPath>
+  <filter id="glow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="5"/></filter>
+  <radialGradient id="vign" cx="20%" cy="45%" r="70%"><stop offset="0" stop-color="#ff2266" stop-opacity=".09"/><stop offset="1" stop-color="#ff2266" stop-opacity="0"/></radialGradient>
+  <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#fff" opacity=".025"/></pattern>
+</defs>
+<rect x="10" y="10" width="880" height="495" rx="12" fill="none" stroke="#ff2266" stroke-width="3" opacity=".45" filter="url(#glow)"/>
+<g clip-path="url(#win)">
+  <rect x="10" y="10" width="880" height="495" fill="#0d0008"/>
+  <rect class="ember" x="288" y="495" width="2" height="2" fill="#ff6f91" style="animation-duration:10.1s;animation-delay:-8.7s"/>
+<rect class="ember" x="422" y="495" width="2" height="2" fill="#ff6f91" style="animation-duration:10.6s;animation-delay:-3.0s"/>
+<rect class="ember" x="141" y="495" width="2" height="2" fill="#ff6f91" style="animation-duration:12.0s;animation-delay:-7.1s"/>
+<rect class="ember" x="93" y="495" width="3" height="3" fill="#ff6f91" style="animation-duration:9.7s;animation-delay:-7.1s"/>
+<rect class="ember" x="432" y="495" width="3" height="3" fill="#ff6f91" style="animation-duration:10.9s;animation-delay:-3.3s"/>
+<rect class="ember" x="186" y="495" width="3" height="3" fill="#ff2266" style="animation-duration:7.1s;animation-delay:-5.0s"/>
+<rect class="ember" x="783" y="495" width="2" height="2" fill="#ff2266" style="animation-duration:9.7s;animation-delay:-0.9s"/>
+<rect class="ember" x="296" y="495" width="3" height="3" fill="#ff2266" style="animation-duration:13.7s;animation-delay:-0.3s"/>
+<rect class="ember" x="836" y="495" width="3" height="3" fill="#ff6f91" style="animation-duration:12.7s;animation-delay:-2.1s"/>
+<rect class="ember" x="649" y="495" width="3" height="3" fill="#ff2266" style="animation-duration:13.6s;animation-delay:-10.9s"/>
+<rect class="ember" x="549" y="495" width="2" height="2" fill="#ff6f91" style="animation-duration:8.8s;animation-delay:-8.4s"/>
+<rect class="ember" x="772" y="495" width="3" height="3" fill="#ff6f91" style="animation-duration:9.5s;animation-delay:-6.3s"/>
+<rect class="ember" x="604" y="495" width="3" height="3" fill="#ff2266" style="animation-duration:10.8s;animation-delay:-9.3s"/>
+<rect class="ember" x="878" y="495" width="2" height="2" fill="#ff6f91" style="animation-duration:13.5s;animation-delay:-10.9s"/>
+<rect class="ember" x="61" y="495" width="3" height="3" fill="#ff6f91" style="animation-duration:8.6s;animation-delay:-7.1s"/>
+<rect class="ember" x="494" y="495" width="2" height="2" fill="#ff6f91" style="animation-duration:9.5s;animation-delay:-4.5s"/>
+  <rect x="10" y="10" width="880" height="34" fill="#16050d"/>
+  <rect x="10" y="44" width="880" height="1" fill="#ff2266" opacity=".35"/>
+  <text x="450" y="32" text-anchor="middle" font-size="13" fill="#ffe0e8" opacity=".75">ali@zidarc: ~ — Konsole</text>
+  <text x="26" y="32" font-size="12" fill="#7a3a4c">▸_ zsh</text>
+  <g stroke="#ffe0e8" stroke-width="1.6" fill="none" opacity=".7"><line x1="808" y1="28" x2="820" y2="28"/><rect x="836" y="21" width="11" height="11"/></g>
+  <circle cx="869" cy="27" r="8" fill="#ff2266"/>
+  <g stroke="#0d0008" stroke-width="2"><line x1="865.5" y1="23.5" x2="872.5" y2="30.5"/><line x1="872.5" y1="23.5" x2="865.5" y2="30.5"/></g>
+  
+<text x="30" y="74" textLength="126" lengthAdjust="spacing" xml:space="preserve"><tspan fill="#ff2266" font-weight="700">ali@zidarc</tspan><tspan fill="#ff6f91"> ~ </tspan><tspan fill="#ffe0e8">$</tspan></text><text x="165" y="74" textLength="126" lengthAdjust="spacing" fill="#ffe0e8">neofetch --cat</text>
+<g style="animation:ty1 0.9s steps(14) 0.6s forwards, hide .01s linear 1.5s forwards"><rect x="174" y="59" width="144" height="21" fill="#0d0008"/><rect class="cur" x="165" y="61" width="9" height="17" fill="#ff2266"/></g>
+<g shape-rendering="crispEdges"><g class="fi" style="animation-delay:1.94s"><g class="fa"><rect x="232" y="249" width="11" height="11" fill="#ff2266"/>
+<rect x="221" y="260" width="11" height="11" fill="#ff2266"/><rect x="232" y="260" width="11" height="11" fill="#1f0712"/><rect x="243" y="260" width="11" height="11" fill="#ff2266"/>
+<rect x="221" y="271" width="11" height="11" fill="#ff2266"/><rect x="232" y="271" width="11" height="11" fill="#1f0712"/><rect x="243" y="271" width="11" height="11" fill="#ff2266"/>
+<rect x="210" y="282" width="11" height="11" fill="#ff2266"/><rect x="221" y="282" width="22" height="11" fill="#1f0712"/><rect x="243" y="282" width="11" height="11" fill="#ff2266"/>
+<rect x="199" y="293" width="11" height="11" fill="#ff2266"/><rect x="210" y="293" width="22" height="11" fill="#1f0712"/><rect x="232" y="293" width="11" height="11" fill="#ff2266"/>
+<rect x="188" y="304" width="11" height="11" fill="#ff2266"/><rect x="199" y="304" width="22" height="11" fill="#1f0712"/><rect x="221" y="304" width="11" height="11" fill="#ff2266"/>
+<rect x="188" y="315" width="33" height="11" fill="#ff2266"/></g><g class="fb">
+<rect x="243" y="260" width="22" height="11" fill="#ff2266"/>
+<rect x="232" y="271" width="11" height="11" fill="#ff2266"/><rect x="243" y="271" width="11" height="11" fill="#1f0712"/><rect x="254" y="271" width="11" height="11" fill="#ff2266"/>
+<rect x="221" y="282" width="11" height="11" fill="#ff2266"/><rect x="232" y="282" width="11" height="11" fill="#1f0712"/><rect x="243" y="282" width="11" height="11" fill="#ff2266"/>
+<rect x="199" y="293" width="22" height="11" fill="#ff2266"/><rect x="221" y="293" width="22" height="11" fill="#1f0712"/><rect x="243" y="293" width="11" height="11" fill="#ff2266"/>
+<rect x="188" y="304" width="11" height="11" fill="#ff2266"/><rect x="199" y="304" width="33" height="11" fill="#1f0712"/><rect x="232" y="304" width="11" height="11" fill="#ff2266"/>
+<rect x="188" y="315" width="44" height="11" fill="#ff2266"/></g></g>
+<g class="fi" style="animation-delay:1.50s"><rect x="67" y="128" width="11" height="11" fill="#ff2266"/><rect x="188" y="128" width="11" height="11" fill="#ff2266"/></g>
+<g class="fi" style="animation-delay:1.54s"><rect x="67" y="139" width="22" height="11" fill="#ff2266"/><rect x="177" y="139" width="22" height="11" fill="#ff2266"/></g>
+<g class="fi" style="animation-delay:1.58s"><rect x="67" y="150" width="11" height="11" fill="#ff2266"/><rect x="78" y="150" width="11" height="11" fill="#ff6f91"/><rect x="89" y="150" width="11" height="11" fill="#ff2266"/><rect x="166" y="150" width="11" height="11" fill="#ff2266"/><rect x="177" y="150" width="11" height="11" fill="#ff6f91"/><rect x="188" y="150" width="11" height="11" fill="#ff2266"/></g>
+<g class="fi" style="animation-delay:1.62s"><rect x="67" y="161" width="11" height="11" fill="#ff2266"/><rect x="78" y="161" width="22" height="11" fill="#ff6f91"/><rect x="100" y="161" width="66" height="11" fill="#ff2266"/><rect x="166" y="161" width="22" height="11" fill="#ff6f91"/><rect x="188" y="161" width="11" height="11" fill="#ff2266"/></g>
+<g class="fi" style="animation-delay:1.66s"><rect x="56" y="172" width="11" height="11" fill="#ff2266"/><rect x="67" y="172" width="132" height="11" fill="#1f0712"/><rect x="199" y="172" width="11" height="11" fill="#ff2266"/></g>
+<g class="fi" style="animation-delay:1.70s"><rect x="56" y="183" width="11" height="11" fill="#ff2266"/><rect x="67" y="183" width="132" height="11" fill="#1f0712"/><rect x="199" y="183" width="11" height="11" fill="#ff2266"/></g>
+<g class="fi" style="animation-delay:1.74s"><rect x="56" y="194" width="11" height="11" fill="#ff2266"/><rect x="67" y="194" width="22" height="11" fill="#1f0712"/><rect x="89" y="194" width="22" height="11" fill="#1f0712"/><rect x="111" y="194" width="44" height="11" fill="#1f0712"/><rect x="155" y="194" width="22" height="11" fill="#1f0712"/><rect x="177" y="194" width="22" height="11" fill="#1f0712"/><rect x="199" y="194" width="11" height="11" fill="#ff2266"/></g>
+<g class="fi" style="animation-delay:1.78s"><rect x="56" y="205" width="11" height="11" fill="#ff2266"/><rect x="67" y="205" width="22" height="11" fill="#1f0712"/><rect x="89" y="205" width="22" height="11" fill="#1f0712"/><rect x="111" y="205" width="44" height="11" fill="#1f0712"/><rect x="155" y="205" width="22" height="11" fill="#1f0712"/><rect x="177" y="205" width="22" height="11" fill="#1f0712"/><rect x="199" y="205" width="11" height="11" fill="#ff2266"/></g>
+<g class="fi" style="animation-delay:1.82s"><rect x="56" y="216" width="11" height="11" fill="#ff2266"/><rect x="67" y="216" width="55" height="11" fill="#1f0712"/><rect x="122" y="216" width="22" height="11" fill="#ff6f91"/><rect x="144" y="216" width="55" height="11" fill="#1f0712"/><rect x="199" y="216" width="11" height="11" fill="#ff2266"/></g>
+<g class="fi" style="animation-delay:1.86s"><rect x="56" y="227" width="11" height="11" fill="#ff2266"/><rect x="67" y="227" width="44" height="11" fill="#1f0712"/><rect x="111" y="227" width="11" height="11" fill="#ff2266"/><rect x="122" y="227" width="22" height="11" fill="#1f0712"/><rect x="144" y="227" width="11" height="11" fill="#ff2266"/><rect x="155" y="227" width="44" height="11" fill="#1f0712"/><rect x="199" y="227" width="11" height="11" fill="#ff2266"/></g>
+<g class="fi" style="animation-delay:1.90s"><rect x="67" y="238" width="11" height="11" fill="#ff2266"/><rect x="78" y="238" width="44" height="11" fill="#1f0712"/><rect x="122" y="238" width="22" height="11" fill="#ff2266"/><rect x="144" y="238" width="44" height="11" fill="#1f0712"/><rect x="188" y="238" width="11" height="11" fill="#ff2266"/></g>
+<g class="fi" style="animation-delay:1.94s"><rect x="78" y="249" width="22" height="11" fill="#ff2266"/><rect x="100" y="249" width="66" height="11" fill="#1f0712"/><rect x="166" y="249" width="22" height="11" fill="#ff2266"/></g>
+<g class="fi" style="animation-delay:1.98s"><rect x="78" y="260" width="11" height="11" fill="#ff2266"/><rect x="89" y="260" width="88" height="11" fill="#1f0712"/><rect x="177" y="260" width="11" height="11" fill="#ff2266"/></g>
+<g class="fi" style="animation-delay:2.02s"><rect x="67" y="271" width="11" height="11" fill="#ff2266"/><rect x="78" y="271" width="33" height="11" fill="#1f0712"/><rect x="111" y="271" width="44" height="11" fill="#3a0f20"/><rect x="155" y="271" width="33" height="11" fill="#1f0712"/><rect x="188" y="271" width="11" height="11" fill="#ff2266"/></g>
+<g class="fi" style="animation-delay:2.06s"><rect x="67" y="282" width="11" height="11" fill="#ff2266"/><rect x="78" y="282" width="33" height="11" fill="#1f0712"/><rect x="111" y="282" width="44" height="11" fill="#3a0f20"/><rect x="155" y="282" width="33" height="11" fill="#1f0712"/><rect x="188" y="282" width="11" height="11" fill="#ff2266"/></g>
+<g class="fi" style="animation-delay:2.10s"><rect x="67" y="293" width="11" height="11" fill="#ff2266"/><rect x="78" y="293" width="44" height="11" fill="#1f0712"/><rect x="122" y="293" width="22" height="11" fill="#3a0f20"/><rect x="144" y="293" width="44" height="11" fill="#1f0712"/><rect x="188" y="293" width="11" height="11" fill="#ff2266"/></g>
+<g class="fi" style="animation-delay:2.14s"><rect x="67" y="304" width="11" height="11" fill="#ff2266"/><rect x="78" y="304" width="22" height="11" fill="#1f0712"/><rect x="100" y="304" width="11" height="11" fill="#ff2266"/><rect x="111" y="304" width="44" height="11" fill="#1f0712"/><rect x="155" y="304" width="11" height="11" fill="#ff2266"/><rect x="166" y="304" width="22" height="11" fill="#1f0712"/><rect x="188" y="304" width="11" height="11" fill="#ff2266"/></g>
+<g class="fi" style="animation-delay:2.18s"><rect x="67" y="315" width="132" height="11" fill="#ff2266"/></g>
+<g class="fi" style="animation-delay:1.82s"><rect x="34" y="220" width="22" height="3" fill="#7a3a4c"/><rect x="210" y="220" width="22" height="3" fill="#7a3a4c"/><rect x="34" y="231" width="22" height="3" fill="#7a3a4c"/><rect x="210" y="231" width="22" height="3" fill="#7a3a4c"/></g><g class="fi" style="animation-delay:1.74s"><g class="blink"><rect x="89" y="194" width="22" height="22" fill="#ffcc33"/><rect x="155" y="194" width="22" height="22" fill="#ffcc33"/><g class="look"><rect x="100" y="194" width="11" height="22" fill="#0d0008"/><rect x="166" y="194" width="11" height="22" fill="#0d0008"/></g></g></g></g>
+<g class="heart" style="animation-delay:5.9s"><rect x="97" y="98" width="8" height="4" fill="#ff2266"/><rect x="109" y="98" width="8" height="4" fill="#ff2266"/>
+<rect x="93" y="102" width="28" height="4" fill="#ff2266"/>
+<rect x="93" y="106" width="28" height="4" fill="#ff2266"/>
+<rect x="97" y="110" width="20" height="4" fill="#ff2266"/>
+<rect x="101" y="114" width="12" height="4" fill="#ff2266"/>
+<rect x="105" y="118" width="4" height="4" fill="#ff2266"/></g>
+<g class="heart" style="animation-delay:6.7s"><rect x="125" y="98" width="8" height="4" fill="#ff2266"/><rect x="137" y="98" width="8" height="4" fill="#ff2266"/>
+<rect x="121" y="102" width="28" height="4" fill="#ff2266"/>
+<rect x="121" y="106" width="28" height="4" fill="#ff2266"/>
+<rect x="125" y="110" width="20" height="4" fill="#ff2266"/>
+<rect x="129" y="114" width="12" height="4" fill="#ff2266"/>
+<rect x="133" y="118" width="4" height="4" fill="#ff2266"/></g>
+<g class="heart" style="animation-delay:7.5s"><rect x="149" y="98" width="8" height="4" fill="#ff2266"/><rect x="161" y="98" width="8" height="4" fill="#ff2266"/>
+<rect x="145" y="102" width="28" height="4" fill="#ff2266"/>
+<rect x="145" y="106" width="28" height="4" fill="#ff2266"/>
+<rect x="149" y="110" width="20" height="4" fill="#ff2266"/>
+<rect x="153" y="114" width="12" height="4" fill="#ff2266"/>
+<rect x="157" y="118" width="4" height="4" fill="#ff2266"/></g>
+<g class="slide" style="animation-delay:1.70s"><text x="300" y="132" font-weight="700"><tspan fill="#ff2266">ali</tspan><tspan fill="#ffe0e8">@</tspan><tspan fill="#ff2266">zidarc</tspan></text></g>
+<g class="slide" style="animation-delay:1.84s"><text x="300" y="154" fill="#7a3a4c">────────────────────────</text></g>
+<g class="slide" style="animation-delay:1.98s"><text x="300" y="176" fill="#ff2266" font-weight="700">OS:</text><text x="399" y="176" fill="#ffe0e8">Fedora Linux · KDE Plasma</text></g>
+<g class="slide" style="animation-delay:2.12s"><text x="300" y="198" fill="#ff2266" font-weight="700">Host:</text><text x="399" y="198" fill="#ffe0e8">FAST NUCES, Karachi</text></g>
+<g class="slide" style="animation-delay:2.26s"><text x="300" y="220" fill="#ff2266" font-weight="700">Degree:</text><text x="399" y="220" fill="#ffe0e8">BS Computer Science</text></g>
+<g class="slide" style="animation-delay:2.40s"><text x="300" y="242" fill="#ff2266" font-weight="700">Editor:</text><text x="399" y="242" fill="#ffe0e8">VS Code</text></g>
+<g class="slide" style="animation-delay:2.54s"><text x="300" y="264" fill="#ff2266" font-weight="700">Langs:</text><text x="399" y="264" fill="#ffe0e8">C · C++ · TypeScript · JavaScript · Python</text></g>
+<g class="slide" style="animation-delay:2.68s"><text x="300" y="286" fill="#ff2266" font-weight="700">Stack:</text><text x="399" y="286" fill="#ffe0e8">React · Node · Express · Supabase · Postgres</text></g>
+<g class="slide" style="animation-delay:2.82s"><text x="300" y="308" fill="#ff2266" font-weight="700">Building:</text><text x="399" y="308" fill="#ffe0e8">real-time collaborative workspace</text></g>
+<g class="slide" style="animation-delay:2.96s"><text x="300" y="330" fill="#ff2266" font-weight="700">Fuel:</text><text x="399" y="330" fill="#ffe0e8">chai · lo-fi · late-night commits</text></g>
+<g class="slide" style="animation-delay:3.10s"><text x="300" y="352" fill="#ff2266" font-weight="700">Pet:</text><text x="399" y="352" fill="#ffe0e8">1 black cat (currently judging your code)</text></g>
+<rect class="fi" style="animation-delay:3.34s" x="300" y="368" width="26" height="16" fill="#2a0a14"/><rect class="fi" style="animation-delay:3.40s" x="328" y="368" width="26" height="16" fill="#4d0f24"/><rect class="fi" style="animation-delay:3.46s" x="356" y="368" width="26" height="16" fill="#880022"/><rect class="fi" style="animation-delay:3.52s" x="384" y="368" width="26" height="16" fill="#c4143f"/><rect class="fi" style="animation-delay:3.58s" x="412" y="368" width="26" height="16" fill="#ff2266"/><rect class="fi" style="animation-delay:3.64s" x="440" y="368" width="26" height="16" fill="#ff6f91"/><rect class="fi" style="animation-delay:3.70s" x="468" y="368" width="26" height="16" fill="#ffb3c6"/><rect class="fi" style="animation-delay:3.76s" x="496" y="368" width="26" height="16" fill="#ffe0e8"/>
+<g class="show" style="animation-delay:3.9s"><text x="30" y="420" textLength="126" lengthAdjust="spacing" xml:space="preserve"><tspan fill="#ff2266" font-weight="700">ali@zidarc</tspan><tspan fill="#ff6f91"> ~ </tspan><tspan fill="#ffe0e8">$</tspan></text><text x="165" y="420" textLength="126" lengthAdjust="spacing" fill="#ffe0e8">sudo pet --cat</text>
+<g style="animation:ty2 0.9s steps(14) 4.3s forwards, hide .01s linear 5.9s forwards"><rect x="174" y="405" width="144" height="21" fill="#0d0008"/><rect class="cur" x="165" y="407" width="9" height="17" fill="#ff2266"/></g></g>
+
+<g class="show" style="animation-delay:5.9s"><text x="30" y="444" textLength="180" lengthAdjust="spacing" xml:space="preserve"><tspan fill="#ff2266">♥</tspan><tspan fill="#ffe0e8"> purrrr~  happiness</tspan></text></g>
+<rect class="fi" style="animation-delay:6.00s" x="228" y="434" width="9" height="11" fill="#ff2266"/><rect class="fi" style="animation-delay:6.05s" x="240" y="434" width="9" height="11" fill="#ff2266"/><rect class="fi" style="animation-delay:6.10s" x="252" y="434" width="9" height="11" fill="#ff2266"/><rect class="fi" style="animation-delay:6.15s" x="264" y="434" width="9" height="11" fill="#ff2266"/><rect class="fi" style="animation-delay:6.20s" x="276" y="434" width="9" height="11" fill="#ff2266"/><rect class="fi" style="animation-delay:6.25s" x="288" y="434" width="9" height="11" fill="#ff2266"/><rect class="fi" style="animation-delay:6.30s" x="300" y="434" width="9" height="11" fill="#ff2266"/><rect class="fi" style="animation-delay:6.35s" x="312" y="434" width="9" height="11" fill="#ff2266"/><rect class="fi" style="animation-delay:6.40s" x="324" y="434" width="9" height="11" fill="#ff2266"/><rect class="fi" style="animation-delay:6.45s" x="336" y="434" width="9" height="11" fill="#ff2266"/>
+<g class="show" style="animation-delay:6.75s"><text x="356" y="444" fill="#ffe0e8" font-weight="700">100%</text></g>
+<g class="show" style="animation-delay:7s"><text x="30" y="468" fill="#7a3a4c">welcome to my profile. scroll down, the cat insists.</text></g>
+<g class="show" style="animation-delay:7.300000000000001s"><text x="30" y="492" textLength="126" lengthAdjust="spacing" xml:space="preserve"><tspan fill="#ff2266" font-weight="700">ali@zidarc</tspan><tspan fill="#ff6f91"> ~ </tspan><tspan fill="#ffe0e8">$</tspan></text><rect class="cur" x="165" y="479" width="9" height="17" fill="#ff2266"/></g>
+  <rect x="10" y="10" width="880" height="495" fill="url(#vign)"/>
+  <rect x="10" y="10" width="880" height="495" fill="url(#scan)"/>
+</g>
+<rect x="10.5" y="10.5" width="879" height="494" rx="12" fill="none" stroke="#ff2266" stroke-opacity=".7"/>
+</svg>

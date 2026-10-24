@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="48" viewBox="0 0 180 48" font-family="'JetBrains Mono','Fira Code',Consolas,monospace" font-size="16">
+<style>.p{animation:p 2.4s ease-in-out infinite}@keyframes p{50%{stroke-opacity:.15}}</style>
+<rect class="p" x="3" y="3" width="174" height="42" rx="9" fill="none" stroke="#ff2266" stroke-width="5" stroke-opacity=".5"/>
+<rect x="3" y="3" width="174" height="42" rx="9" fill="#0d0008" stroke="#ff2266" stroke-width="1.5"/>
+<text x="90" y="30" text-anchor="middle" font-weight="700"><tspan fill="#ff2266">&gt;_ </tspan><tspan fill="#ffe0e8">pet()</tspan></text>
+</svg>

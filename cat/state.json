@@ -1,0 +1,14 @@
+{
+  "name": "Byte",
+  "fullness": 80,
+  "happiness": 80,
+  "updated": "2026-10-24T20:40:47.384Z",
+  "lastInteraction": null,
+  "counts": {
+    "feed": 0,
+    "play": 0,
+    "pet": 0
+  },
+  "friends": {},
+  "recent": []
+}
