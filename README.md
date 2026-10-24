@@ -28,13 +28,7 @@
 
 <sub>Byte gets hungry and bored over time and sleeps at night (PKT). Her mood is real: she lives in <code>cat/state.json</code>.</sub>
 
-<!--CAT:START-->
-| when | who | did |
-|:--|:--|:--|
-| `2026-10-24 21:04 UTC` | [@Zidarc](https://github.com/Zidarc) | 🐟 feed |
-
-**Byte's best friends:** 🥇 [@Zidarc](https://github.com/Zidarc) ×1
-<!--CAT:END-->
+<img src="./assets/visitors.svg" alt="Byte's visitor log and best friends" width="100%" />
 
 </div>
 

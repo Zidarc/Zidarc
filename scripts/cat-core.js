@@ -101,20 +101,48 @@ function renderButton(fn) {
 `;
 }
 
-function readmeSection(st) {
-  const rows = st.recent.map(r => `| \`${L.fmtDate(r.at)}\` | [@${r.user}](https://github.com/${r.user}) | ${ACTIONS[r.action].emoji} ${r.action} |`);
-  const best = Object.entries(st.friends).sort((a, b) => b[1] - a[1]).slice(0, 5)
-    .map(([u, n], i) => `${['🥇', '🥈', '🥉', '🏅', '🏅'][i]} [@${u}](https://github.com/${u}) ×${n}`).join(' · ');
-  return rows.length
-    ? `| when | who | did |\n|:--|:--|:--|\n${rows.join('\n')}\n\n**Byte's best friends:** ${best}`
-    : '_No visitors yet. Be the first to say hi to Byte!_';
+// assets/visitors.svg — recent visits on the left, best-friends leaderboard on the right.
+const CHIP = { feed: ['FEED', C.gold], play: ['PLAY', C.pink], pet: ['PET', C.key] };
+function renderVisitors(st) {
+  const T = L.typer();
+  const TOP = 116, LH = 28, RX = 560;
+  const n = Math.max(st.recent.length, 1);
+  const user = (u, max) => '@' + (u.length > max ? u.slice(0, max - 1) + '…' : u);
+  const recent = st.recent.map((r, i) => {
+    const y = TOP + i * LH, [label, col] = CHIP[r.action];
+    return `<g class="slide" style="animation-delay:${(1 + i * 0.1).toFixed(2)}s">
+<text x="${L.X0}" y="${y}" fill="${C.dim}">${L.fmtDate(r.at).slice(5, 16)}</text>
+<text x="${L.X0 + 13 * CW}" y="${y}" fill="${C.text}">${esc(user(r.user, 18))}</text>
+<rect x="${L.X0 + 33 * CW}" y="${y - 14}" width="56" height="19" rx="3" fill="${C.track}" stroke="${col}" stroke-opacity=".7"/>
+<text x="${L.X0 + 33 * CW + 28}" y="${y}" font-size="12" font-weight="700" text-anchor="middle" fill="${col}">${label}</text></g>`;
+  }).join('\n');
+
+  const best = Object.entries(st.friends).sort((a, b) => b[1] - a[1]).slice(0, 5);
+  const top = best[0]?.[1] || 1;
+  const friends = best.map(([u, c], i) => {
+    const y = TOP + i * LH, col = i ? C.pink : C.gold;
+    return `<g class="slide" style="animation-delay:${(1.2 + i * 0.1).toFixed(2)}s">
+<text x="${RX}" y="${y}" fill="${col}" font-weight="700">#${i + 1}</text>
+<text x="${RX + 4 * CW}" y="${y}" fill="${C.text}">${esc(user(u, 14))}</text>
+<rect x="${RX + 20 * CW}" y="${y - 11}" width="80" height="12" fill="${C.track}"/>
+<rect x="${RX + 20 * CW}" y="${y - 11}" width="${((80 * c) / top).toFixed(1)}" height="12" fill="${col}"/>
+<text x="870" y="${y}" fill="${C.text}" text-anchor="end">×${c}</text></g>`;
+  }).join('\n');
+
+  const head = (x, s) => `<text x="${x}" y="${TOP - 26}" font-size="13" fill="${C.key}" font-weight="700">${s}</text>`;
+  const body = `
+${T.command(64, 'tail ~/byte/visitors.log', 0.2, 0.8, 1)}
+${L.show(0.9, head(L.X0, '── recent visits ──') + head(RX, '── best friends ──') + `<rect x="${RX - 22}" y="${TOP - 40}" width="1" height="${n * LH + 20}" fill="${C.dim}" opacity=".6"/>`)}
+${st.recent.length ? recent : L.show(1, `<text x="${L.X0}" y="${TOP}" fill="${C.dim}">no visitors yet. be the first!</text>`)}
+${friends || L.show(1.2, `<text x="${RX}" y="${TOP}" fill="${C.dim}">still waiting for a friend…</text>`)}`;
+  return L.chrome({ w: 900, h: TOP + (n - 1) * LH + 34, title: 'visitors.log — byte', body, css: T.css(), emberCount: 5, seed: 53, label: 'cat' });
 }
 
 function writeAll(st, now) {
   save(st);
   L.write('assets/cat.svg', renderCat(st, now));
   for (const fn of ['feed', 'play', 'pet']) L.write(`assets/btn-${fn}.svg`, renderButton(fn));
-  L.updateReadme('CAT', readmeSection(st));
+  L.write('assets/visitors.svg', renderVisitors(st));
 }
 
 module.exports = { ACTIONS, load, decay, apply, writeAll };

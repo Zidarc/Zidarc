@@ -187,18 +187,9 @@ function chrome({ w, h, title, body, css = '', emberCount = 10, seed = 11, label
 `;
 }
 
-// Replace the text between <!--KEY:START--> and <!--KEY:END--> in README.md.
-function updateReadme(key, content) {
-  const file = path.join(ROOT, 'README.md');
-  const md = fs.readFileSync(file, 'utf8');
-  const re = new RegExp(`(<!--${key}:START-->)[\\s\\S]*?(<!--${key}:END-->)`);
-  if (!re.test(md)) return console.warn(`README has no ${key} markers, skipped`);
-  fs.writeFileSync(file, md.replace(re, (_, a, b) => `${a}\n${content}\n${b}`));
-}
-
 const fmtDate = d => new Date(d).toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
 
 module.exports = {
   ROOT, HOST, CW, C, RAMP, X0, PROMPT_W, esc, write, wrap, prompt, show, cursor, typer,
-  pixels, catSprite, catCss, HEART, blockBar, chrome, updateReadme, fmtDate,
+  pixels, catSprite, catCss, HEART, blockBar, chrome, fmtDate,
 };
