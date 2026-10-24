@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="148" viewBox="0 0 900 148" font-family="'JetBrains Mono','Fira Code','Cascadia Code',Consolas,'DejaVu Sans Mono',Menlo,monospace" font-size="15">
+<title>activity.log — ali@zidarc</title>
+<style>
+.show{opacity:0;animation:show .01s linear forwards}
+.fi{animation:fadein .2s ease-out both}
+.slide{animation:slide .35s ease-out both}
+.cur{animation:blink 1s step-end infinite}
+.ember{animation:rise linear infinite}
+@keyframes show{to{opacity:1}}
+@keyframes hide{to{opacity:0}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@keyframes slide{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+@keyframes blink{50%{opacity:0}}
+@keyframes rise{0%{opacity:0;transform:translate(0,0)}15%{opacity:.6}100%{opacity:0;transform:translate(18px,-108px)}}@keyframes ty1{to{transform:translateX(315px)}}</style>
+<defs>
+  <clipPath id="win"><rect x="10" y="10" width="880" height="128" rx="12"/></clipPath>
+  <filter id="glow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="5"/></filter>
+  <radialGradient id="vign" cx="20%" cy="45%" r="70%"><stop offset="0" stop-color="#ff2266" stop-opacity=".09"/><stop offset="1" stop-color="#ff2266" stop-opacity="0"/></radialGradient>
+  <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#fff" opacity=".025"/></pattern>
+</defs>
+<rect x="10" y="10" width="880" height="128" rx="12" fill="none" stroke="#ff2266" stroke-width="3" opacity=".45" filter="url(#glow)"/>
+<g clip-path="url(#win)">
+  <rect x="10" y="10" width="880" height="128" fill="#0d0008"/>
+  <rect class="ember" x="747" y="128" width="2" height="2" fill="#ff2266" style="animation-duration:8.7s;animation-delay:-0.5s"/>
+<rect class="ember" x="485" y="128" width="3" height="3" fill="#ff2266" style="animation-duration:12.6s;animation-delay:-11.2s"/>
+<rect class="ember" x="129" y="128" width="3" height="3" fill="#ff2266" style="animation-duration:12.8s;animation-delay:-11.6s"/>
+<rect class="ember" x="133" y="128" width="2" height="2" fill="#ff2266" style="animation-duration:9.9s;animation-delay:-1.3s"/>
+<rect class="ember" x="31" y="128" width="2" height="2" fill="#ff2266" style="animation-duration:11.7s;animation-delay:-4.5s"/>
+<rect class="ember" x="120" y="128" width="3" height="3" fill="#ff6f91" style="animation-duration:10.9s;animation-delay:-10.1s"/>
+  <rect x="10" y="10" width="880" height="34" fill="#16050d"/>
+  <rect x="10" y="44" width="880" height="1" fill="#ff2266" opacity=".35"/>
+  <text x="450" y="32" text-anchor="middle" font-size="13" fill="#ffe0e8" opacity=".75">activity.log — ali@zidarc</text>
+  <text x="26" y="32" font-size="12" fill="#7a3a4c">▸_ zsh</text>
+  <g stroke="#ffe0e8" stroke-width="1.6" fill="none" opacity=".7"><line x1="808" y1="28" x2="820" y2="28"/><rect x="836" y="21" width="11" height="11"/></g>
+  <circle cx="869" cy="27" r="8" fill="#ff2266"/>
+  <g stroke="#0d0008" stroke-width="2"><line x1="865.5" y1="23.5" x2="872.5" y2="30.5"/><line x1="872.5" y1="23.5" x2="865.5" y2="30.5"/></g>
+  
+<text x="30" y="74" textLength="126" lengthAdjust="spacing" xml:space="preserve"><tspan fill="#ff2266" font-weight="700">ali@zidarc</tspan><tspan fill="#ff6f91"> ~ </tspan><tspan fill="#ffe0e8">$</tspan></text><text x="165" y="74" textLength="315" lengthAdjust="spacing" fill="#ffe0e8">git log --all --graph -n 6 ~/github</text>
+<g style="animation:ty1 1s steps(35) 0.2s forwards, hide .01s linear 1s forwards"><rect x="174" y="59" width="333" height="21" fill="#0d0008"/><rect class="cur" x="165" y="61" width="9" height="17" fill="#ff2266"/></g>
+<g class="show" style="animation-delay:1s"><text x="30" y="112" fill="#7a3a4c">quiet lately... probably deep in a refactor.</text></g>
+  <rect x="10" y="10" width="880" height="128" fill="url(#vign)"/>
+  <rect x="10" y="10" width="880" height="128" fill="url(#scan)"/>
+</g>
+<rect x="10.5" y="10.5" width="879" height="127" rx="12" fill="none" stroke="#ff2266" stroke-opacity=".7"/>
+</svg>

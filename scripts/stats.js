@@ -109,40 +109,66 @@ ${T.css()}`;
 }
 
 // ---------- activity feed ----------
-const link = repo => `[${repo}](https://github.com/${repo})`;
+// Each event becomes { date, kind, text }; kind picks the chip label/colour in the activity card.
 function describe(e, login) {
   const p = e.payload, repo = e.repo.name;
   const own = repo.toLowerCase() === `${login}/${login}`.toLowerCase();
   switch (e.type) {
     case 'PushEvent': {
       const n = p.size ?? p.commits?.length ?? p.distinct_size;
-      return own ? null : `⬆️ Pushed ${n ? `${n} commit${n > 1 ? 's' : ''}` : 'commits'} to ${link(repo)}`;
+      return own ? null : ['push', `${n ? `${n} commit${n > 1 ? 's' : ''}` : 'commits'} → ${repo}`];
     }
     case 'PullRequestEvent': {
-      const verb = p.action === 'closed' ? (p.pull_request?.merged ? 'Merged' : 'Closed') : p.action === 'opened' ? 'Opened' : null;
-      return verb && `🔀 ${verb} PR [#${p.number}](${p.pull_request.html_url}) in ${link(repo)}`;
+      const verb = p.action === 'closed' ? (p.pull_request?.merged ? 'merged' : 'closed') : p.action === 'opened' ? 'opened' : null;
+      return verb && ['pr', `${verb} #${p.number} in ${repo}`];
     }
-    case 'IssuesEvent': return own || p.action !== 'opened' ? null : `❗ Opened issue [#${p.issue.number}](${p.issue.html_url}) in ${link(repo)}`;
-    case 'CreateEvent': return p.ref_type === 'repository' ? `🆕 Created ${link(repo)}` : null;
-    case 'WatchEvent': return `⭐ Starred ${link(repo)}`;
-    case 'ForkEvent': return `🍴 Forked ${link(repo)}`;
-    case 'ReleaseEvent': return `🚀 Released [${esc(p.release.tag_name)}](${p.release.html_url}) in ${link(repo)}`;
-    case 'PublicEvent': return `🎉 Open-sourced ${link(repo)}`;
+    case 'IssuesEvent': return own || p.action !== 'opened' ? null : ['issue', `opened #${p.issue.number} in ${repo}`];
+    case 'CreateEvent': return p.ref_type === 'repository' ? ['new', `created ${repo}`] : null;
+    case 'WatchEvent': return ['star', `starred ${repo}`];
+    case 'ForkEvent': return ['fork', `forked ${repo}`];
+    case 'ReleaseEvent': return ['release', `${p.release.tag_name} in ${repo}`];
+    case 'PublicEvent': return ['public', `open-sourced ${repo}`];
     default: return null;
   }
 }
 
 async function fetchActivity(login, token) {
   const events = await api(token, `https://api.github.com/users/${login}/events/public?per_page=60`);
-  const lines = [];
+  const items = [];
   for (const e of events) {
     const d = describe(e, login);
-    if (d && lines[lines.length - 1]?.text !== d) lines.push({ text: d, date: e.created_at.slice(0, 10) });
-    if (lines.length === 6) break;
+    if (d && items[items.length - 1]?.text !== d[1]) items.push({ date: e.created_at.slice(0, 10), kind: d[0], text: d[1] });
+    if (items.length === 6) break;
   }
-  return lines.length
-    ? lines.map(l => `\`${l.date}\` ${l.text}  `).join('\n')
-    : '_Quiet lately... probably deep in a refactor._';
+  return items;
 }
 
-module.exports = { fetchStats, renderStats, fetchActivity };
+const KINDS = {
+  push: ['PUSH', C.key], pr: ['PR', C.gold], issue: ['ISSUE', C.pink], new: ['NEW', C.gold],
+  star: ['STAR', C.gold], fork: ['FORK', C.pink], release: ['RELEASE', C.key], public: ['PUBLIC', C.key],
+};
+
+// assets/activity.svg — `git log --graph`-style timeline of recent public events.
+function renderActivity(items) {
+  const T = L.typer();
+  const TOP = 112, LH = 34, GX = X0 + 8, MAX = 62;
+  const rows = items.map((it, i) => {
+    const y = TOP + i * LH, [label, col] = KINDS[it.kind];
+    const text = it.text.length > MAX ? it.text.slice(0, MAX - 1) + '…' : it.text;
+    return `<g class="slide" style="animation-delay:${(1 + i * 0.12).toFixed(2)}s">
+<rect x="${GX - 5}" y="${y - 10}" width="10" height="10" fill="${i ? C.bg : col}" stroke="${col}" stroke-width="2"/>
+<text x="${GX + 22}" y="${y}" fill="${C.dim}">${it.date}</text>
+<rect x="${GX + 130}" y="${y - 14}" width="78" height="19" rx="3" fill="${C.track}" stroke="${col}" stroke-opacity=".7"/>
+<text x="${GX + 169}" y="${y}" font-size="12" font-weight="700" text-anchor="middle" fill="${col}">${label}</text>
+<text x="${GX + 224}" y="${y}" fill="${C.text}">${esc(text)}</text></g>`;
+  }).join('\n');
+  const n = Math.max(items.length, 1);
+  const body = `
+${T.command(74, 'git log --all --graph -n 6 ~/github', 0.2, 1, 1)}
+${items.length
+    ? `${L.show(1, `<rect x="${GX - 1}" y="${TOP - 5}" width="2" height="${(n - 1) * LH}" fill="${C.dim}"/>`)}\n${rows}`
+    : L.show(1, `<text x="${X0}" y="${TOP}" fill="${C.dim}">quiet lately... probably deep in a refactor.</text>`)}`;
+  return L.chrome({ w: 900, h: TOP + (n - 1) * LH + 36, title: `activity.log — ali@${L.HOST}`, body, css: T.css(), emberCount: 6, seed: 17 });
+}
+
+module.exports = { fetchStats, renderStats, fetchActivity, renderActivity };

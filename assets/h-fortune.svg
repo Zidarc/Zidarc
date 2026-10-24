@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="56" viewBox="0 0 900 56" font-family="'JetBrains Mono','Fira Code','Cascadia Code',Consolas,monospace">
+<title>today's fortune</title>
+<style>.cur{animation:b 1s step-end infinite}@keyframes b{50%{opacity:0}}</style>
+<rect x="10" y="8" width="880" height="40" rx="8" fill="#0d0008" stroke="#ff2266" stroke-opacity=".55"/>
+<rect x="10" y="8" width="5" height="40" rx="2" fill="#ff2266"/>
+<text x="30" y="35" font-size="17" font-weight="700" fill="#ff2266">❯</text>
+<text x="54" y="35" font-size="17" font-weight="700" fill="#ffe0e8" textLength="209" lengthAdjust="spacing" xml:space="preserve">05  TODAY'S FORTUNE</text>
+<rect class="cur" x="269" y="22" width="9" height="16" fill="#ff2266" opacity=".9"/>
+<line x1="285" y1="30" x2="744" y2="30" stroke="#7a3a4c" stroke-dasharray="4 5"/>
+<text x="870" y="34" font-size="13" text-anchor="end" fill="#7a3a4c"># new one daily</text>
+</svg>

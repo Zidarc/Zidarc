@@ -6,21 +6,19 @@
 
 </div>
 
----
-
-## 📁 Projects
+<br />
 
 <div align="center">
+
+<img src="./assets/h-projects.svg" alt="Projects" width="100%" />
 
 <img src="./assets/projects.svg" alt="ls -l ~/projects: Recursion Hell, BMP Image Editor, Synergy, Pixel Town" width="100%" />
 
 </div>
 
----
-
-## 🐈‍⬛ Say hi to Byte
-
 <div align="center">
+
+<img src="./assets/h-byte.svg" alt="Say hi to Byte" width="100%" />
 
 <img src="./assets/cat.svg" alt="Byte the cat's live status" width="100%" />
 
@@ -36,46 +34,31 @@ _No visitors yet. Be the first to say hi to Byte!_
 
 </div>
 
----
-
-## 📊 Stats
-
 <div align="center">
+
+<img src="./assets/h-stats.svg" alt="Stats" width="100%" />
 
 <img src="./assets/stats.svg" alt="htop-style GitHub stats" width="100%" />
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Zidarc/Zidarc/output/snake-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Zidarc/Zidarc/output/snake-light.svg" />
-  <img alt="contribution snake" src="https://raw.githubusercontent.com/Zidarc/Zidarc/output/snake-dark.svg" width="100%" />
-</picture>
+<img src="https://raw.githubusercontent.com/Zidarc/Zidarc/output/snake.svg" alt="contribution snake eating the commit grid" width="100%" />
 
 </div>
 
----
+<div align="center">
 
-## ⚡ Recent Activity
+<img src="./assets/h-activity.svg" alt="Recent activity" width="100%" />
 
-<!--ACTIVITY:START-->
-`2026-10-24` ⭐ Starred [mukhtar-x/GrandDebatePortal](https://github.com/mukhtar-x/GrandDebatePortal)  
-`2026-10-22` ⬆️ Pushed commits to [GCC-FAST-NUCES-Karachi/GCC](https://github.com/GCC-FAST-NUCES-Karachi/GCC)  
-`2026-10-22` 🔀 Opened PR [#12](undefined) in [GCC-FAST-NUCES-Karachi/GCC](https://github.com/GCC-FAST-NUCES-Karachi/GCC)  
-`2026-10-22` 🔀 Opened PR [#11](undefined) in [GCC-FAST-NUCES-Karachi/GCC](https://github.com/GCC-FAST-NUCES-Karachi/GCC)  
-`2026-10-22` 🔀 Opened PR [#10](undefined) in [GCC-FAST-NUCES-Karachi/GCC](https://github.com/GCC-FAST-NUCES-Karachi/GCC)  
-`2026-10-22` ⬆️ Pushed commits to [GCC-FAST-NUCES-Karachi/GCC](https://github.com/GCC-FAST-NUCES-Karachi/GCC)  
-<!--ACTIVITY:END-->
+<a href="https://github.com/Zidarc?tab=overview"><img src="./assets/activity.svg" alt="recent public GitHub activity" width="100%" /></a>
 
----
-
-## 📜 Today's Fortune
+</div>
 
 <div align="center">
+
+<img src="./assets/h-fortune.svg" alt="Today's fortune" width="100%" />
 
 <img src="./assets/quote.svg" alt="fortune | catsay: quote of the day" width="100%" />
 
 </div>
-
----
 
 <div align="center">
 
