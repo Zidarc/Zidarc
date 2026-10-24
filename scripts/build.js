@@ -1,7 +1,8 @@
-// Scheduled refresh: hero, stats, activity, quote of the day, and the cat's mood.
+// Scheduled refresh: hero, projects, stats, activity, quote of the day, and the cat's mood.
 // Locally without a token it renders everything except the GitHub data (DEMO=1 fills in sample stats).
 const L = require('./lib');
 const renderHero = require('./hero');
+const renderProjects = require('./projects');
 const { fetchStats, renderStats, fetchActivity } = require('./stats');
 const { renderQuote } = require('./quote');
 const cat = require('./cat-core');
@@ -18,6 +19,7 @@ const DEMO = {
 (async () => {
   const now = new Date();
   L.write('assets/hero.svg', renderHero());
+  L.write('assets/projects.svg', renderProjects());
   L.write('assets/quote.svg', renderQuote(now));
 
   const st = cat.load();

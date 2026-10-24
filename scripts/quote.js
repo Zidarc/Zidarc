@@ -1,6 +1,6 @@
 // assets/quote.svg — `fortune | catsay`, a new dev/anime quote every day. Add your own to QUOTES.
 const L = require('./lib');
-const { C, CW, X0, esc } = L;
+const { C, CW, X0, esc, wrap } = L;
 
 const QUOTES = [
   ['Talk is cheap. Show me the code.', 'Linus Torvalds'],
@@ -27,16 +27,6 @@ const QUOTES = [
   ['If you win, you live. If you lose, you die. Fight!', 'Eren Yeager, Attack on Titan'],
   ['meow.', 'Byte, resident cat'],
 ];
-
-function wrap(text, width) {
-  const lines = [];
-  let line = '';
-  for (const word of text.split(' ')) {
-    if (line && (line + ' ' + word).length > width) { lines.push(line); line = word; }
-    else line = line ? line + ' ' + word : word;
-  }
-  return [...lines, line];
-}
 
 // cowsay-style speech bubble.
 function bubble(text, author) {

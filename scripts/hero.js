@@ -10,21 +10,24 @@ const INFO = [
   ['Editor', 'VS Code'],
   ['Langs', 'C · C++ · TypeScript · JavaScript · Python'],
   ['Stack', 'React · Node · Express · Supabase · Postgres'],
+  ['Tools', 'Git · Linux · Vite · Figma'],
+  ['Into', 'full-stack web · systems · real-time · low-level C'],
   ['Building', 'real-time collaborative workspace'],
   ['Fuel', 'chai · lo-fi · late-night commits'],
   ['Pet', '1 black cat (currently judging your code)'],
 ];
 
 function renderHero() {
-  const W = 900, H = 515;
   const T = L.typer();
   const P = 11, CAT_X = 56, CAT_Y = 128, CAT_T = 1.5, PET_T = 5.9, CMD2_T = 3.9;
-  const L1 = 74, L2 = 420, L3 = 444, L4 = 468, L5 = 492;
+  const IX = 300, IY = 132, LH = 22, INFO_T = 1.7;
+  // The second command sits below whichever is taller: the cat or the info column.
+  const L1 = 74, L2 = Math.max(420, IY + (INFO.length + 2) * LH + 46), L3 = L2 + 24, L4 = L3 + 24, L5 = L4 + 24;
+  const W = 900, H = L5 + 23;
 
   const hearts = [[-26, 0], [2, 0.8], [26, 1.6]].map(([dx, d]) =>
     `<g class="heart" style="animation-delay:${(PET_T + d).toFixed(1)}s">${L.pixels(L.HEART, CAT_X + 7 * P - 14 + dx, CAT_Y - 30, 4, { X: C.key })}</g>`).join('\n');
 
-  const IX = 300, IY = 132, LH = 22, INFO_T = 1.7;
   const infoLines = [
     `<text x="${IX}" y="${IY}" font-weight="700"><tspan fill="${C.key}">ali</tspan><tspan fill="${C.text}">@</tspan><tspan fill="${C.key}">${L.HOST}</tspan></text>`,
     `<text x="${IX}" y="${IY + LH}" fill="${C.dim}">${'─'.repeat(24)}</text>`,

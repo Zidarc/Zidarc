@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="472" viewBox="0 0 900 472" font-family="'JetBrains Mono','Fira Code','Cascadia Code',Consolas,'DejaVu Sans Mono',Menlo,monospace" font-size="15">
+<title>~/projects — ali@zidarc</title>
+<style>
+.show{opacity:0;animation:show .01s linear forwards}
+.fi{animation:fadein .2s ease-out both}
+.slide{animation:slide .35s ease-out both}
+.cur{animation:blink 1s step-end infinite}
+.ember{animation:rise linear infinite}
+@keyframes show{to{opacity:1}}
+@keyframes hide{to{opacity:0}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@keyframes slide{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+@keyframes blink{50%{opacity:0}}
+@keyframes rise{0%{opacity:0;transform:translate(0,0)}15%{opacity:.6}100%{opacity:0;transform:translate(18px,-432px)}}@keyframes ty1{to{transform:translateX(144px)}}</style>
+<defs>
+  <clipPath id="win"><rect x="10" y="10" width="880" height="452" rx="12"/></clipPath>
+  <filter id="glow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="5"/></filter>
+  <radialGradient id="vign" cx="20%" cy="45%" r="70%"><stop offset="0" stop-color="#ff2266" stop-opacity=".09"/><stop offset="1" stop-color="#ff2266" stop-opacity="0"/></radialGradient>
+  <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#fff" opacity=".025"/></pattern>
+</defs>
+<rect x="10" y="10" width="880" height="452" rx="12" fill="none" stroke="#ff2266" stroke-width="3" opacity=".45" filter="url(#glow)"/>
+<g clip-path="url(#win)">
+  <rect x="10" y="10" width="880" height="452" fill="#0d0008"/>
+  <rect class="ember" x="384" y="452" width="2" height="2" fill="#ff6f91" style="animation-duration:7.5s;animation-delay:-3.9s"/>
+<rect class="ember" x="59" y="452" width="3" height="3" fill="#ff6f91" style="animation-duration:10.2s;animation-delay:-10.0s"/>
+<rect class="ember" x="674" y="452" width="3" height="3" fill="#ff6f91" style="animation-duration:7.7s;animation-delay:-5.1s"/>
+<rect class="ember" x="225" y="452" width="2" height="2" fill="#ff2266" style="animation-duration:12.6s;animation-delay:-0.9s"/>
+<rect class="ember" x="242" y="452" width="3" height="3" fill="#ff2266" style="animation-duration:9.0s;animation-delay:-2.1s"/>
+<rect class="ember" x="253" y="452" width="2" height="2" fill="#ff2266" style="animation-duration:13.0s;animation-delay:-9.5s"/>
+<rect class="ember" x="137" y="452" width="2" height="2" fill="#ff6f91" style="animation-duration:11.4s;animation-delay:-9.3s"/>
+<rect class="ember" x="406" y="452" width="2" height="2" fill="#ff2266" style="animation-duration:11.3s;animation-delay:-3.7s"/>
+  <rect x="10" y="10" width="880" height="34" fill="#16050d"/>
+  <rect x="10" y="44" width="880" height="1" fill="#ff2266" opacity=".35"/>
+  <text x="450" y="32" text-anchor="middle" font-size="13" fill="#ffe0e8" opacity=".75">~/projects — ali@zidarc</text>
+  <text x="26" y="32" font-size="12" fill="#7a3a4c">▸_ zsh</text>
+  <g stroke="#ffe0e8" stroke-width="1.6" fill="none" opacity=".7"><line x1="808" y1="28" x2="820" y2="28"/><rect x="836" y="21" width="11" height="11"/></g>
+  <circle cx="869" cy="27" r="8" fill="#ff2266"/>
+  <g stroke="#0d0008" stroke-width="2"><line x1="865.5" y1="23.5" x2="872.5" y2="30.5"/><line x1="872.5" y1="23.5" x2="865.5" y2="30.5"/></g>
+  
+<text x="30" y="74" textLength="126" lengthAdjust="spacing" xml:space="preserve"><tspan fill="#ff2266" font-weight="700">ali@zidarc</tspan><tspan fill="#ff6f91"> ~ </tspan><tspan fill="#ffe0e8">$</tspan></text><text x="165" y="74" textLength="144" lengthAdjust="spacing" fill="#ffe0e8">ls -l ~/projects</text>
+<g style="animation:ty1 0.6s steps(16) 0.2s forwards, hide .01s linear 0.9s forwards"><rect x="174" y="59" width="162" height="21" fill="#0d0008"/><rect class="cur" x="165" y="61" width="9" height="17" fill="#ff2266"/></g>
+<g class="slide" style="animation-delay:1.00s"><text x="30" y="112" font-weight="700"><tspan fill="#7a3a4c">drwxr-xr-x </tspan><tspan fill="#ff2266">recursion-hell/</tspan></text><text x="48" y="138" fill="#ffe0e8">Competitive puzzle platform with a</text><text x="48" y="158" fill="#ffe0e8">Stranger Things aesthetic. Graph-based</text><text x="48" y="178" fill="#ffe0e8">puzzles, a live leaderboard on Supabase</text><text x="48" y="198" fill="#ffe0e8">Realtime, ember particles and</text><text x="48" y="218" fill="#ffe0e8">glassmorphism UI.</text><rect x="48" y="231" width="64.4" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".6"/><text x="55" y="245" font-size="12" fill="#ff6f91" textLength="50.4" lengthAdjust="spacing">Node.js</text><rect x="120.4" y="231" width="86" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".6"/><text x="127.4" y="245" font-size="12" fill="#ff6f91" textLength="72" lengthAdjust="spacing">TypeScript</text><rect x="214.4" y="231" width="50" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".6"/><text x="221.4" y="245" font-size="12" fill="#ff6f91" textLength="36" lengthAdjust="spacing">React</text><rect x="272.4" y="231" width="71.6" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".6"/><text x="279.4" y="245" font-size="12" fill="#ff6f91" textLength="57.6" lengthAdjust="spacing">Supabase</text></g>
+<g class="slide" style="animation-delay:1.25s"><text x="465" y="112" font-weight="700"><tspan fill="#7a3a4c">drwxr-xr-x </tspan><tspan fill="#ff2266">bmp-editor/</tspan></text><text x="483" y="138" fill="#ffe0e8">24-bit BMP image processor in C with a</text><text x="483" y="158" fill="#ffe0e8">Raylib GUI. Binary file I/O, manual memory</text><text x="483" y="178" fill="#ffe0e8">management and image processing, no image</text><text x="483" y="198" fill="#ffe0e8">libraries.</text><rect x="483" y="211" width="21.2" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".6"/><text x="490" y="225" font-size="12" fill="#ff6f91" textLength="7.2" lengthAdjust="spacing">C</text><rect x="512.2" y="211" width="57.2" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".6"/><text x="519.2" y="225" font-size="12" fill="#ff6f91" textLength="43.2" lengthAdjust="spacing">Raylib</text><rect x="577.4000000000001" y="211" width="86" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".6"/><text x="584.4000000000001" y="225" font-size="12" fill="#ff6f91" textLength="72" lengthAdjust="spacing">Binary I/O</text></g>
+<g class="slide" style="animation-delay:1.50s"><text x="30" y="282" font-weight="700"><tspan fill="#7a3a4c">drwxr-xr-x </tspan><tspan fill="#ff2266">synergy/</tspan></text><text x="48" y="308" fill="#ffe0e8">Real-time stock exchange simulator with</text><text x="48" y="328" fill="#ffe0e8">sub-second updates across 300+</text><text x="48" y="348" fill="#ffe0e8">transactions. Admin dashboard cut</text><text x="48" y="368" fill="#ffe0e8">oversight by 40%, schemas cut data errors</text><text x="48" y="388" fill="#ffe0e8">by 30%.</text><rect x="48" y="401" width="50" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".6"/><text x="55" y="415" font-size="12" fill="#ff6f91" textLength="36" lengthAdjust="spacing">React</text><rect x="106" y="401" width="71.6" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".6"/><text x="113" y="415" font-size="12" fill="#ff6f91" textLength="57.6" lengthAdjust="spacing">Supabase</text><rect x="185.6" y="401" width="86" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".6"/><text x="192.6" y="415" font-size="12" fill="#ff6f91" textLength="72" lengthAdjust="spacing">WebSockets</text></g>
+<g class="slide" style="animation-delay:1.75s"><text x="465" y="282" font-weight="700"><tspan fill="#7a3a4c">drwxr-xr-x </tspan><tspan fill="#ff2266">pixel-town/</tspan></text><text x="483" y="308" fill="#ffe0e8">Top-down pixel art RPG built from scratch</text><text x="483" y="328" fill="#ffe0e8">in C++ and Raylib. NPC dialogue system,</text><text x="483" y="348" fill="#ffe0e8">mini-game state machine and hand-made</text><text x="483" y="368" fill="#ffe0e8">world assets.</text><rect x="483" y="381" width="35.6" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".6"/><text x="490" y="395" font-size="12" fill="#ff6f91" textLength="21.6" lengthAdjust="spacing">C++</text><rect x="526.6" y="381" width="57.2" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".6"/><text x="533.6" y="395" font-size="12" fill="#ff6f91" textLength="43.2" lengthAdjust="spacing">Raylib</text><rect x="591.8000000000001" y="381" width="78.8" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".6"/><text x="598.8000000000001" y="395" font-size="12" fill="#ff6f91" textLength="64.8" lengthAdjust="spacing">Pixel Art</text></g>
+
+  <rect x="10" y="10" width="880" height="452" fill="url(#vign)"/>
+  <rect x="10" y="10" width="880" height="452" fill="url(#scan)"/>
+</g>
+<rect x="10.5" y="10.5" width="879" height="451" rx="12" fill="none" stroke="#ff2266" stroke-opacity=".7"/>
+</svg>

@@ -15,6 +15,17 @@ const RAMP = ['#2a0a14', '#4d0f24', '#880022', '#c4143f', '#ff2266', '#ff6f91', 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const write = (rel, s) => fs.writeFileSync(path.join(ROOT, rel), s);
 
+// Greedy word wrap to a column width.
+function wrap(text, width) {
+  const lines = [];
+  let line = '';
+  for (const word of text.split(' ')) {
+    if (line && (line + ' ' + word).length > width) { lines.push(line); line = word; }
+    else line = line ? line + ' ' + word : word;
+  }
+  return [...lines, line];
+}
+
 // ---------- terminal text ----------
 const X0 = 30;
 const promptText = `ali@${HOST}`;
@@ -188,6 +199,6 @@ function updateReadme(key, content) {
 const fmtDate = d => new Date(d).toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
 
 module.exports = {
-  ROOT, HOST, CW, C, RAMP, X0, PROMPT_W, esc, write, prompt, show, cursor, typer,
+  ROOT, HOST, CW, C, RAMP, X0, PROMPT_W, esc, write, wrap, prompt, show, cursor, typer,
   pixels, catSprite, catCss, HEART, blockBar, chrome, updateReadme, fmtDate,
 };
