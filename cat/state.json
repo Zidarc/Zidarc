@@ -1,18 +1,24 @@
 {
   "name": "Byte",
-  "fullness": 89,
-  "happiness": 78,
-  "updated": "2026-10-25T04:39:40.484Z",
-  "lastInteraction": "2026-10-24T21:04:58.866Z",
+  "fullness": 100,
+  "happiness": 79,
+  "updated": "2026-10-25T08:10:09.346Z",
+  "lastInteraction": "2026-10-25T08:10:09.346Z",
   "counts": {
-    "feed": 1,
+    "feed": 2,
     "play": 0,
     "pet": 0
   },
   "friends": {
-    "Zidarc": 1
+    "Zidarc": 1,
+    "Syed-Muhammad-Abbas-7": 1
   },
   "recent": [
+    {
+      "user": "Syed-Muhammad-Abbas-7",
+      "action": "feed",
+      "at": "2026-10-25T08:10:09.346Z"
+    },
     {
       "user": "Zidarc",
       "action": "feed",
