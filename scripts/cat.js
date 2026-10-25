@@ -10,7 +10,7 @@ const st = cat.load();
 cat.decay(st, now);
 const reply = cat.ACTIONS[action]
   ? cat.apply(st, action, user, now)
-  : 'Byte tilts her head. She only knows `feed`, `play` and `pet`. Try a button on the profile!';
+  : 'Huna tilts her head. She only knows `feed`, `play` and `pet`. Try a button on the profile!';
 cat.writeAll(st, now);
 fs.writeFileSync(process.env.REPLY_FILE || 'reply.md', reply);
 console.log(reply);

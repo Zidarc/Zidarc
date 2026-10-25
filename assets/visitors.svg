@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="150" viewBox="0 0 900 150" font-family="'JetBrains Mono','Fira Code','Cascadia Code',Consolas,'DejaVu Sans Mono',Menlo,monospace" font-size="15">
-<title>visitors.log — byte</title>
+<title>visitors.log — huna</title>
 <style>
 .show{opacity:0;animation:show .01s linear forwards}
 .fi{animation:fadein .2s ease-out both}
@@ -28,13 +28,13 @@
 <rect class="ember" x="206" y="130" width="2" height="2" fill="#ff6f91" style="animation-duration:9.8s;animation-delay:-8.3s"/>
   <rect x="10" y="10" width="880" height="34" fill="#16050d"/>
   <rect x="10" y="44" width="880" height="1" fill="#ff2266" opacity=".35"/>
-  <text x="450" y="32" text-anchor="middle" font-size="13" fill="#ffe0e8" opacity=".75">visitors.log — byte</text>
+  <text x="450" y="32" text-anchor="middle" font-size="13" fill="#ffe0e8" opacity=".75">visitors.log — huna</text>
   <text x="26" y="32" font-size="12" fill="#7a3a4c">▸_ cat</text>
   <g stroke="#ffe0e8" stroke-width="1.6" fill="none" opacity=".7"><line x1="808" y1="28" x2="820" y2="28"/><rect x="836" y="21" width="11" height="11"/></g>
   <circle cx="869" cy="27" r="8" fill="#ff2266"/>
   <g stroke="#0d0008" stroke-width="2"><line x1="865.5" y1="23.5" x2="872.5" y2="30.5"/><line x1="872.5" y1="23.5" x2="865.5" y2="30.5"/></g>
   
-<text x="30" y="64" textLength="126" lengthAdjust="spacing" xml:space="preserve"><tspan fill="#ff2266" font-weight="700">ali@zidarc</tspan><tspan fill="#ff6f91"> ~ </tspan><tspan fill="#ffe0e8">$</tspan></text><text x="165" y="64" textLength="216" lengthAdjust="spacing" fill="#ffe0e8">tail ~/byte/visitors.log</text>
+<text x="30" y="64" textLength="126" lengthAdjust="spacing" xml:space="preserve"><tspan fill="#ff2266" font-weight="700">ali@zidarc</tspan><tspan fill="#ff6f91"> ~ </tspan><tspan fill="#ffe0e8">$</tspan></text><text x="165" y="64" textLength="216" lengthAdjust="spacing" fill="#ffe0e8">tail ~/huna/visitors.log</text>
 <g style="animation:ty1 0.8s steps(24) 0.2s forwards, hide .01s linear 1s forwards"><rect x="174" y="49" width="234" height="21" fill="#0d0008"/><rect class="cur" x="165" y="51" width="9" height="17" fill="#ff2266"/></g>
 <g class="show" style="animation-delay:0.9s"><text x="30" y="90" font-size="13" fill="#ff2266" font-weight="700">── recent visits ──</text><text x="560" y="90" font-size="13" fill="#ff2266" font-weight="700">── best friends ──</text><rect x="538" y="76" width="1" height="48" fill="#7a3a4c" opacity=".6"/></g>
 <g class="slide" style="animation-delay:1.00s">

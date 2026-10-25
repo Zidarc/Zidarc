@@ -25,7 +25,7 @@ const QUOTES = [
   ['Push through the pain. Giving up hurts more.', 'Vegeta, Dragon Ball Z'],
   ['People\'s dreams... never end!', 'Marshall D. Teach, One Piece'],
   ['If you win, you live. If you lose, you die. Fight!', 'Eren Yeager, Attack on Titan'],
-  ['meow.', 'Byte, resident cat'],
+  ['meow.', 'Huna, resident cat'],
 ];
 
 // cowsay-style speech bubble.

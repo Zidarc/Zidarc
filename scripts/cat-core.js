@@ -1,4 +1,4 @@
-// Byte the cat: state in cat/state.json, rendered to assets/cat.svg and the README CAT section.
+// Huna the cat: state in cat/state.json, rendered to assets/cat.svg and the README CAT section.
 const fs = require('fs');
 const path = require('path');
 const L = require('./lib');
@@ -33,9 +33,9 @@ function apply(st, action, user, now) {
   st.recent = [{ user, action, at: now.toISOString() }, ...st.recent].slice(0, 6);
   st.lastInteraction = now.toISOString();
   const lines = {
-    feed: `${a.emoji} *nom nom nom* — thank you @${user}! Byte's belly is now **${st.fullness}%** full. (=^･ω･^=)`,
-    play: `${a.emoji} Byte chased the yarn ball all over the terminal. Happiness: **${st.happiness}%**. ฅ^•ﻌ•^ฅ`,
-    pet: `${a.emoji} *purrrr~* Byte leans into your hand, @${user}. Happiness: **${st.happiness}%**.`,
+    feed: `${a.emoji} *nom nom nom* — thank you @${user}! Huna's belly is now **${st.fullness}%** full. (=^･ω･^=)`,
+    play: `${a.emoji} Huna chased the yarn ball all over the terminal. Happiness: **${st.happiness}%**. ฅ^•ﻌ•^ฅ`,
+    pet: `${a.emoji} *purrrr~* Huna leans into your hand, @${user}. Happiness: **${st.happiness}%**.`,
   };
   return `${lines[action]}\n\nYou're on the profile now. This issue closes itself — thanks for visiting! ♥`;
 }
@@ -70,7 +70,7 @@ function renderCat(st, now) {
   const key = (y, k) => `<text x="${IX}" y="${y}" fill="${C.key}" font-weight="700">${k}</text>`;
 
   const body = `
-${T.command(74, 'cat ~/byte.status', 0.2, 0.8, 1)}
+${T.command(74, 'cat ~/huna.status', 0.2, 0.8, 1)}
 <g class="fi" style="animation-delay:1s">${L.catSprite({ x: 70, y: 104, P, mood: mood(st, now) })}</g>
 <g class="fi bob" style="animation-delay:1.3s">
   <rect x="200" y="96" width="${bubbleW}" height="26" rx="8" fill="${C.bar}" stroke="${m.color}"/>
@@ -82,7 +82,7 @@ ${row(152, 1.2, key(152, 'fullness') + L.blockBar(VX, 152, st.fullness, 1.4) + `
 ${row(178, 1.3, key(178, 'happiness') + L.blockBar(VX, 178, st.happiness, 1.5) + `<text x="${VX + 290}" y="178" fill="${C.text}">${st.happiness}%</text>`)}
 ${row(210, 1.4, `<text x="${IX}" y="210" fill="${C.text}">fed ${st.counts.feed || 0}× · played ${st.counts.play || 0}× · petted ${st.counts.pet || 0}× · ${friends} friend${friends === 1 ? '' : 's'}</text>`)}
 ${row(234, 1.5, `<text x="${IX}" y="234" fill="${C.dim}">${last ? `last: @${esc(last.user)} ${ACTIONS[last.action].past} her · ${L.fmtDate(last.at)}` : 'no visitors yet. be the first!'}</text>`)}
-${row(262, 1.6, `<text x="${IX}" y="262" fill="${C.pink}">↓ press a button · it opens an issue · Byte reacts in ~30s</text>`)}`;
+${row(262, 1.6, `<text x="${IX}" y="262" fill="${C.pink}">↓ press a button · it opens an issue · Huna reacts in ~30s</text>`)}`;
 
   const css = L.catCss(P, 2) + `
 .bob{animation:fadein .2s 1.3s ease-out both, bob 2.4s 1.5s ease-in-out infinite}
@@ -131,11 +131,11 @@ function renderVisitors(st) {
 
   const head = (x, s) => `<text x="${x}" y="${TOP - 26}" font-size="13" fill="${C.key}" font-weight="700">${s}</text>`;
   const body = `
-${T.command(64, 'tail ~/byte/visitors.log', 0.2, 0.8, 1)}
+${T.command(64, 'tail ~/huna/visitors.log', 0.2, 0.8, 1)}
 ${L.show(0.9, head(L.X0, '── recent visits ──') + head(RX, '── best friends ──') + `<rect x="${RX - 22}" y="${TOP - 40}" width="1" height="${n * LH + 20}" fill="${C.dim}" opacity=".6"/>`)}
 ${st.recent.length ? recent : L.show(1, `<text x="${L.X0}" y="${TOP}" fill="${C.dim}">no visitors yet. be the first!</text>`)}
 ${friends || L.show(1.2, `<text x="${RX}" y="${TOP}" fill="${C.dim}">still waiting for a friend…</text>`)}`;
-  return L.chrome({ w: 900, h: TOP + (n - 1) * LH + 34, title: 'visitors.log — byte', body, css: T.css(), emberCount: 5, seed: 53, label: 'cat' });
+  return L.chrome({ w: 900, h: TOP + (n - 1) * LH + 34, title: 'visitors.log — huna', body, css: T.css(), emberCount: 5, seed: 53, label: 'cat' });
 }
 
 function writeAll(st, now) {

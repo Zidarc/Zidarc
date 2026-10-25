@@ -1,4 +1,4 @@
-# Refreshes stats, activity feed, quote of the day and Byte's mood every 6 hours.
+# Refreshes stats, activity feed, quote of the day and Huna's mood every 6 hours.
 name: refresh profile
 on:
   schedule:

@@ -18,17 +18,17 @@
 
 <div align="center">
 
-<img src="./assets/h-byte.svg" alt="Say hi to Byte" width="100%" />
+<img src="./assets/h-huna.svg" alt="Say hi to Huna" width="100%" />
 
-<img src="./assets/cat.svg" alt="Byte the cat's live status" width="100%" />
+<img src="./assets/cat.svg" alt="Huna the cat's live status" width="100%" />
 
-<a href="https://github.com/Zidarc/Zidarc/issues/new?title=cat%7Cfeed&body=Just%20press%20%22Create%22%20and%20Byte%20gets%20a%20fish%20%F0%9F%90%9F"><img src="./assets/btn-feed.svg" alt="feed()" height="48" /></a>
-<a href="https://github.com/Zidarc/Zidarc/issues/new?title=cat%7Cplay&body=Just%20press%20%22Create%22%20and%20Byte%20gets%20a%20yarn%20ball%20%F0%9F%A7%B6"><img src="./assets/btn-play.svg" alt="play()" height="48" /></a>
-<a href="https://github.com/Zidarc/Zidarc/issues/new?title=cat%7Cpet&body=Just%20press%20%22Create%22%20and%20Byte%20gets%20pets%20%F0%9F%90%BE"><img src="./assets/btn-pet.svg" alt="pet()" height="48" /></a>
+<a href="https://github.com/Zidarc/Zidarc/issues/new?title=cat%7Cfeed&body=Just%20press%20%22Create%22%20and%20Huna%20gets%20a%20fish%20%F0%9F%90%9F"><img src="./assets/btn-feed.svg" alt="feed()" height="48" /></a>
+<a href="https://github.com/Zidarc/Zidarc/issues/new?title=cat%7Cplay&body=Just%20press%20%22Create%22%20and%20Huna%20gets%20a%20yarn%20ball%20%F0%9F%A7%B6"><img src="./assets/btn-play.svg" alt="play()" height="48" /></a>
+<a href="https://github.com/Zidarc/Zidarc/issues/new?title=cat%7Cpet&body=Just%20press%20%22Create%22%20and%20Huna%20gets%20pets%20%F0%9F%90%BE"><img src="./assets/btn-pet.svg" alt="pet()" height="48" /></a>
 
-<sub>Byte gets hungry and bored over time and sleeps at night (PKT). Her mood is real: she lives in <code>cat/state.json</code>.</sub>
+<sub>Huna gets hungry and bored over time and sleeps at night (PKT). Her mood is real: she lives in <code>cat/state.json</code>.</sub>
 
-<img src="./assets/visitors.svg" alt="Byte's visitor log and best friends" width="100%" />
+<img src="./assets/visitors.svg" alt="Huna's visitor log and best friends" width="100%" />
 
 </div>
 
