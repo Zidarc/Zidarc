@@ -1,20 +1,25 @@
 {
   "name": "Huna",
-  "fullness": 100,
+  "fullness": 96,
   "happiness": 100,
-  "updated": "2026-10-25T12:44:56.812Z",
-  "lastInteraction": "2026-10-25T12:38:54.307Z",
+  "updated": "2026-10-25T15:41:30.575Z",
+  "lastInteraction": "2026-10-25T15:41:30.575Z",
   "counts": {
     "feed": 5,
     "play": 3,
-    "pet": 3
+    "pet": 4
   },
   "friends": {
     "Zidarc": 1,
     "Syed-Muhammad-Abbas-7": 5,
-    "HunaBuilds": 5
+    "HunaBuilds": 6
   },
   "recent": [
+    {
+      "user": "HunaBuilds",
+      "action": "pet",
+      "at": "2026-10-25T15:41:30.575Z"
+    },
     {
       "user": "HunaBuilds",
       "action": "pet",
@@ -39,11 +44,6 @@
       "user": "HunaBuilds",
       "action": "feed",
       "at": "2026-10-25T12:34:38.200Z"
-    },
-    {
-      "user": "Syed-Muhammad-Abbas-7",
-      "action": "play",
-      "at": "2026-10-25T08:12:56.957Z"
     }
   ]
 }
