@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="234" viewBox="0 0 900 234" font-family="'JetBrains Mono','Fira Code','Cascadia Code',Consolas,'DejaVu Sans Mono',Menlo,monospace" font-size="15">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="262" viewBox="0 0 900 262" font-family="'JetBrains Mono','Fira Code','Cascadia Code',Consolas,'DejaVu Sans Mono',Menlo,monospace" font-size="15">
 <title>visitors.log — byte</title>
 <style>
 .show{opacity:0;animation:show .01s linear forwards}
@@ -11,21 +11,21 @@
 @keyframes fadein{from{opacity:0}to{opacity:1}}
 @keyframes slide{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
 @keyframes blink{50%{opacity:0}}
-@keyframes rise{0%{opacity:0;transform:translate(0,0)}15%{opacity:.6}100%{opacity:0;transform:translate(18px,-194px)}}@keyframes ty1{to{transform:translateX(216px)}}</style>
+@keyframes rise{0%{opacity:0;transform:translate(0,0)}15%{opacity:.6}100%{opacity:0;transform:translate(18px,-222px)}}@keyframes ty1{to{transform:translateX(216px)}}</style>
 <defs>
-  <clipPath id="win"><rect x="10" y="10" width="880" height="214" rx="12"/></clipPath>
+  <clipPath id="win"><rect x="10" y="10" width="880" height="242" rx="12"/></clipPath>
   <filter id="glow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="5"/></filter>
   <radialGradient id="vign" cx="20%" cy="45%" r="70%"><stop offset="0" stop-color="#ff2266" stop-opacity=".09"/><stop offset="1" stop-color="#ff2266" stop-opacity="0"/></radialGradient>
   <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#fff" opacity=".025"/></pattern>
 </defs>
-<rect x="10" y="10" width="880" height="214" rx="12" fill="none" stroke="#ff2266" stroke-width="3" opacity=".45" filter="url(#glow)"/>
+<rect x="10" y="10" width="880" height="242" rx="12" fill="none" stroke="#ff2266" stroke-width="3" opacity=".45" filter="url(#glow)"/>
 <g clip-path="url(#win)">
-  <rect x="10" y="10" width="880" height="214" fill="#0d0008"/>
-  <rect class="ember" x="60" y="214" width="2" height="2" fill="#ff6f91" style="animation-duration:13.8s;animation-delay:-3.3s"/>
-<rect class="ember" x="863" y="214" width="3" height="3" fill="#ff6f91" style="animation-duration:10.5s;animation-delay:-5.6s"/>
-<rect class="ember" x="55" y="214" width="2" height="2" fill="#ff2266" style="animation-duration:10.7s;animation-delay:-8.9s"/>
-<rect class="ember" x="371" y="214" width="2" height="2" fill="#ff6f91" style="animation-duration:11.0s;animation-delay:-6.0s"/>
-<rect class="ember" x="206" y="214" width="2" height="2" fill="#ff6f91" style="animation-duration:9.8s;animation-delay:-8.3s"/>
+  <rect x="10" y="10" width="880" height="242" fill="#0d0008"/>
+  <rect class="ember" x="60" y="242" width="2" height="2" fill="#ff6f91" style="animation-duration:13.8s;animation-delay:-3.3s"/>
+<rect class="ember" x="863" y="242" width="3" height="3" fill="#ff6f91" style="animation-duration:10.5s;animation-delay:-5.6s"/>
+<rect class="ember" x="55" y="242" width="2" height="2" fill="#ff2266" style="animation-duration:10.7s;animation-delay:-8.9s"/>
+<rect class="ember" x="371" y="242" width="2" height="2" fill="#ff6f91" style="animation-duration:11.0s;animation-delay:-6.0s"/>
+<rect class="ember" x="206" y="242" width="2" height="2" fill="#ff6f91" style="animation-duration:9.8s;animation-delay:-8.3s"/>
   <rect x="10" y="10" width="880" height="34" fill="#16050d"/>
   <rect x="10" y="44" width="880" height="1" fill="#ff2266" opacity=".35"/>
   <text x="450" y="32" text-anchor="middle" font-size="13" fill="#ffe0e8" opacity=".75">visitors.log — byte</text>
@@ -36,41 +36,46 @@
   
 <text x="30" y="64" textLength="126" lengthAdjust="spacing" xml:space="preserve"><tspan fill="#ff2266" font-weight="700">ali@zidarc</tspan><tspan fill="#ff6f91"> ~ </tspan><tspan fill="#ffe0e8">$</tspan></text><text x="165" y="64" textLength="216" lengthAdjust="spacing" fill="#ffe0e8">tail ~/byte/visitors.log</text>
 <g style="animation:ty1 0.8s steps(24) 0.2s forwards, hide .01s linear 1s forwards"><rect x="174" y="49" width="234" height="21" fill="#0d0008"/><rect class="cur" x="165" y="51" width="9" height="17" fill="#ff2266"/></g>
-<g class="show" style="animation-delay:0.9s"><text x="30" y="90" font-size="13" fill="#ff2266" font-weight="700">── recent visits ──</text><text x="560" y="90" font-size="13" fill="#ff2266" font-weight="700">── best friends ──</text><rect x="538" y="76" width="1" height="132" fill="#7a3a4c" opacity=".6"/></g>
+<g class="show" style="animation-delay:0.9s"><text x="30" y="90" font-size="13" fill="#ff2266" font-weight="700">── recent visits ──</text><text x="560" y="90" font-size="13" fill="#ff2266" font-weight="700">── best friends ──</text><rect x="538" y="76" width="1" height="160" fill="#7a3a4c" opacity=".6"/></g>
 <g class="slide" style="animation-delay:1.00s">
 <text x="30" y="116" fill="#7a3a4c">10-25 08:12</text>
 <text x="147" y="116" fill="#ffe0e8">@Syed-Muhammad-Abb…</text>
-<rect x="327" y="102" width="56" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".7"/>
-<text x="355" y="116" font-size="12" font-weight="700" text-anchor="middle" fill="#ff2266">PET</text></g>
+<rect x="327" y="102" width="56" height="19" rx="3" fill="#24060f" stroke="#ffcc33" stroke-opacity=".7"/>
+<text x="355" y="116" font-size="12" font-weight="700" text-anchor="middle" fill="#ffcc33">FEED</text></g>
 <g class="slide" style="animation-delay:1.10s">
-<text x="30" y="144" fill="#7a3a4c">10-25 08:11</text>
+<text x="30" y="144" fill="#7a3a4c">10-25 08:12</text>
 <text x="147" y="144" fill="#ffe0e8">@Syed-Muhammad-Abb…</text>
 <rect x="327" y="130" width="56" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".7"/>
 <text x="355" y="144" font-size="12" font-weight="700" text-anchor="middle" fill="#ff2266">PET</text></g>
 <g class="slide" style="animation-delay:1.20s">
-<text x="30" y="172" fill="#7a3a4c">10-25 08:10</text>
+<text x="30" y="172" fill="#7a3a4c">10-25 08:11</text>
 <text x="147" y="172" fill="#ffe0e8">@Syed-Muhammad-Abb…</text>
-<rect x="327" y="158" width="56" height="19" rx="3" fill="#24060f" stroke="#ffcc33" stroke-opacity=".7"/>
-<text x="355" y="172" font-size="12" font-weight="700" text-anchor="middle" fill="#ffcc33">FEED</text></g>
+<rect x="327" y="158" width="56" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".7"/>
+<text x="355" y="172" font-size="12" font-weight="700" text-anchor="middle" fill="#ff2266">PET</text></g>
 <g class="slide" style="animation-delay:1.30s">
-<text x="30" y="200" fill="#7a3a4c">10-24 21:04</text>
-<text x="147" y="200" fill="#ffe0e8">@Zidarc</text>
+<text x="30" y="200" fill="#7a3a4c">10-25 08:10</text>
+<text x="147" y="200" fill="#ffe0e8">@Syed-Muhammad-Abb…</text>
 <rect x="327" y="186" width="56" height="19" rx="3" fill="#24060f" stroke="#ffcc33" stroke-opacity=".7"/>
 <text x="355" y="200" font-size="12" font-weight="700" text-anchor="middle" fill="#ffcc33">FEED</text></g>
+<g class="slide" style="animation-delay:1.40s">
+<text x="30" y="228" fill="#7a3a4c">10-24 21:04</text>
+<text x="147" y="228" fill="#ffe0e8">@Zidarc</text>
+<rect x="327" y="214" width="56" height="19" rx="3" fill="#24060f" stroke="#ffcc33" stroke-opacity=".7"/>
+<text x="355" y="228" font-size="12" font-weight="700" text-anchor="middle" fill="#ffcc33">FEED</text></g>
 <g class="slide" style="animation-delay:1.20s">
 <text x="560" y="116" fill="#ffcc33" font-weight="700">#1</text>
 <text x="596" y="116" fill="#ffe0e8">@Syed-Muhammad…</text>
 <rect x="740" y="105" width="80" height="12" fill="#24060f"/>
 <rect x="740" y="105" width="80.0" height="12" fill="#ffcc33"/>
-<text x="870" y="116" fill="#ffe0e8" text-anchor="end">×3</text></g>
+<text x="870" y="116" fill="#ffe0e8" text-anchor="end">×4</text></g>
 <g class="slide" style="animation-delay:1.30s">
 <text x="560" y="144" fill="#ff6f91" font-weight="700">#2</text>
 <text x="596" y="144" fill="#ffe0e8">@Zidarc</text>
 <rect x="740" y="133" width="80" height="12" fill="#24060f"/>
-<rect x="740" y="133" width="26.7" height="12" fill="#ff6f91"/>
+<rect x="740" y="133" width="20.0" height="12" fill="#ff6f91"/>
 <text x="870" y="144" fill="#ffe0e8" text-anchor="end">×1</text></g>
-  <rect x="10" y="10" width="880" height="214" fill="url(#vign)"/>
-  <rect x="10" y="10" width="880" height="214" fill="url(#scan)"/>
+  <rect x="10" y="10" width="880" height="242" fill="url(#vign)"/>
+  <rect x="10" y="10" width="880" height="242" fill="url(#scan)"/>
 </g>
-<rect x="10.5" y="10.5" width="879" height="213" rx="12" fill="none" stroke="#ff2266" stroke-opacity=".7"/>
+<rect x="10.5" y="10.5" width="879" height="241" rx="12" fill="none" stroke="#ff2266" stroke-opacity=".7"/>
 </svg>
