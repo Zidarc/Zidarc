@@ -1,20 +1,25 @@
 {
   "name": "Byte",
-  "fullness": 100,
+  "fullness": 95,
   "happiness": 100,
-  "updated": "2026-10-25T12:34:38.200Z",
-  "lastInteraction": "2026-10-25T12:34:38.200Z",
+  "updated": "2026-10-25T12:34:51.804Z",
+  "lastInteraction": "2026-10-25T12:34:51.804Z",
   "counts": {
     "feed": 4,
-    "play": 1,
+    "play": 2,
     "pet": 2
   },
   "friends": {
     "Zidarc": 1,
     "Syed-Muhammad-Abbas-7": 5,
-    "HunaBuilds": 1
+    "HunaBuilds": 2
   },
   "recent": [
+    {
+      "user": "HunaBuilds",
+      "action": "play",
+      "at": "2026-10-25T12:34:51.804Z"
+    },
     {
       "user": "HunaBuilds",
       "action": "feed",
@@ -39,11 +44,6 @@
       "user": "Syed-Muhammad-Abbas-7",
       "action": "pet",
       "at": "2026-10-25T08:11:09.470Z"
-    },
-    {
-      "user": "Syed-Muhammad-Abbas-7",
-      "action": "feed",
-      "at": "2026-10-25T08:10:09.346Z"
     }
   ]
 }
