@@ -39,41 +39,41 @@
 <g style="animation:ty1 1s steps(35) 0.2s forwards, hide .01s linear 1s forwards"><rect x="174" y="59" width="333" height="21" fill="#0d0008"/><rect class="cur" x="165" y="61" width="9" height="17" fill="#ff2266"/></g>
 <g class="show" style="animation-delay:1s"><rect x="37" y="107" width="2" height="170" fill="#7a3a4c"/></g>
 <g class="slide" style="animation-delay:1.00s">
-<rect x="33" y="102" width="10" height="10" fill="#ffcc33" stroke="#ffcc33" stroke-width="2"/>
+<rect x="33" y="102" width="10" height="10" fill="#ff2266" stroke="#ff2266" stroke-width="2"/>
 <text x="60" y="112" fill="#7a3a4c">2026-10-27</text>
-<rect x="168" y="98" width="78" height="19" rx="3" fill="#24060f" stroke="#ffcc33" stroke-opacity=".7"/>
-<text x="207" y="112" font-size="12" font-weight="700" text-anchor="middle" fill="#ffcc33">STAR</text>
-<text x="262" y="112" fill="#ffe0e8">starred AhmedMustafa-0817/Data-Structures</text></g>
+<rect x="168" y="98" width="78" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".7"/>
+<text x="207" y="112" font-size="12" font-weight="700" text-anchor="middle" fill="#ff2266">PUSH</text>
+<text x="262" y="112" fill="#ffe0e8">commits → Zidarc/Portfolio</text></g>
 <g class="slide" style="animation-delay:1.12s">
-<rect x="33" y="136" width="10" height="10" fill="#0d0008" stroke="#ff2266" stroke-width="2"/>
-<text x="60" y="146" fill="#7a3a4c">2026-10-25</text>
-<rect x="168" y="132" width="78" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".7"/>
-<text x="207" y="146" font-size="12" font-weight="700" text-anchor="middle" fill="#ff2266">PUSH</text>
-<text x="262" y="146" fill="#ffe0e8">commits → mukhtar-x/GrandDebatePortal</text></g>
+<rect x="33" y="136" width="10" height="10" fill="#0d0008" stroke="#ffcc33" stroke-width="2"/>
+<text x="60" y="146" fill="#7a3a4c">2026-10-27</text>
+<rect x="168" y="132" width="78" height="19" rx="3" fill="#24060f" stroke="#ffcc33" stroke-opacity=".7"/>
+<text x="207" y="146" font-size="12" font-weight="700" text-anchor="middle" fill="#ffcc33">STAR</text>
+<text x="262" y="146" fill="#ffe0e8">starred AhmedMustafa-0817/Data-Structures</text></g>
 <g class="slide" style="animation-delay:1.24s">
 <rect x="33" y="170" width="10" height="10" fill="#0d0008" stroke="#ff2266" stroke-width="2"/>
-<text x="60" y="180" fill="#7a3a4c">2026-09-14</text>
+<text x="60" y="180" fill="#7a3a4c">2026-10-25</text>
 <rect x="168" y="166" width="78" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".7"/>
-<text x="207" y="180" font-size="12" font-weight="700" text-anchor="middle" fill="#ff2266">PUBLIC</text>
-<text x="262" y="180" fill="#ffe0e8">open-sourced Zidarc/ICPC</text></g>
+<text x="207" y="180" font-size="12" font-weight="700" text-anchor="middle" fill="#ff2266">PUSH</text>
+<text x="262" y="180" fill="#ffe0e8">commits → mukhtar-x/GrandDebatePortal</text></g>
 <g class="slide" style="animation-delay:1.36s">
-<rect x="33" y="204" width="10" height="10" fill="#0d0008" stroke="#ffcc33" stroke-width="2"/>
-<text x="60" y="214" fill="#7a3a4c">2026-10-24</text>
-<rect x="168" y="200" width="78" height="19" rx="3" fill="#24060f" stroke="#ffcc33" stroke-opacity=".7"/>
-<text x="207" y="214" font-size="12" font-weight="700" text-anchor="middle" fill="#ffcc33">STAR</text>
-<text x="262" y="214" fill="#ffe0e8">starred mukhtar-x/GrandDebatePortal</text></g>
+<rect x="33" y="204" width="10" height="10" fill="#0d0008" stroke="#ff2266" stroke-width="2"/>
+<text x="60" y="214" fill="#7a3a4c">2026-09-14</text>
+<rect x="168" y="200" width="78" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".7"/>
+<text x="207" y="214" font-size="12" font-weight="700" text-anchor="middle" fill="#ff2266">PUBLIC</text>
+<text x="262" y="214" fill="#ffe0e8">open-sourced Zidarc/ICPC</text></g>
 <g class="slide" style="animation-delay:1.48s">
-<rect x="33" y="238" width="10" height="10" fill="#0d0008" stroke="#ff2266" stroke-width="2"/>
-<text x="60" y="248" fill="#7a3a4c">2026-10-22</text>
-<rect x="168" y="234" width="78" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".7"/>
-<text x="207" y="248" font-size="12" font-weight="700" text-anchor="middle" fill="#ff2266">PUSH</text>
-<text x="262" y="248" fill="#ffe0e8">commits → GCC-FAST-NUCES-Karachi/GCC</text></g>
+<rect x="33" y="238" width="10" height="10" fill="#0d0008" stroke="#ffcc33" stroke-width="2"/>
+<text x="60" y="248" fill="#7a3a4c">2026-10-24</text>
+<rect x="168" y="234" width="78" height="19" rx="3" fill="#24060f" stroke="#ffcc33" stroke-opacity=".7"/>
+<text x="207" y="248" font-size="12" font-weight="700" text-anchor="middle" fill="#ffcc33">STAR</text>
+<text x="262" y="248" fill="#ffe0e8">starred mukhtar-x/GrandDebatePortal</text></g>
 <g class="slide" style="animation-delay:1.60s">
-<rect x="33" y="272" width="10" height="10" fill="#0d0008" stroke="#ffcc33" stroke-width="2"/>
+<rect x="33" y="272" width="10" height="10" fill="#0d0008" stroke="#ff2266" stroke-width="2"/>
 <text x="60" y="282" fill="#7a3a4c">2026-10-22</text>
-<rect x="168" y="268" width="78" height="19" rx="3" fill="#24060f" stroke="#ffcc33" stroke-opacity=".7"/>
-<text x="207" y="282" font-size="12" font-weight="700" text-anchor="middle" fill="#ffcc33">PR</text>
-<text x="262" y="282" fill="#ffe0e8">opened #12 in GCC-FAST-NUCES-Karachi/GCC</text></g>
+<rect x="168" y="268" width="78" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".7"/>
+<text x="207" y="282" font-size="12" font-weight="700" text-anchor="middle" fill="#ff2266">PUSH</text>
+<text x="262" y="282" fill="#ffe0e8">commits → GCC-FAST-NUCES-Karachi/GCC</text></g>
   <rect x="10" y="10" width="880" height="298" fill="url(#vign)"/>
   <rect x="10" y="10" width="880" height="298" fill="url(#scan)"/>
 </g>
