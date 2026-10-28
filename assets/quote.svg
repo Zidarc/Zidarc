@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="314" viewBox="0 0 900 314" font-family="'JetBrains Mono','Fira Code','Cascadia Code',Consolas,'DejaVu Sans Mono',Menlo,monospace" font-size="15">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="294" viewBox="0 0 900 294" font-family="'JetBrains Mono','Fira Code','Cascadia Code',Consolas,'DejaVu Sans Mono',Menlo,monospace" font-size="15">
 <title>fortune — today's wisdom</title>
 <style>
 .show{opacity:0;animation:show .01s linear forwards}
@@ -11,27 +11,27 @@
 @keyframes fadein{from{opacity:0}to{opacity:1}}
 @keyframes slide{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
 @keyframes blink{50%{opacity:0}}
-@keyframes rise{0%{opacity:0;transform:translate(0,0)}15%{opacity:.6}100%{opacity:0;transform:translate(18px,-274px)}}
+@keyframes rise{0%{opacity:0;transform:translate(0,0)}15%{opacity:.6}100%{opacity:0;transform:translate(18px,-254px)}}
 .ea{animation:ea 4s 2s steps(1,end) infinite}
 .eb{opacity:0;animation:eb 4s 2s steps(1,end) infinite}
 @keyframes ea{0%{opacity:1}92%{opacity:0}97%{opacity:1}}
 @keyframes eb{0%{opacity:0}92%{opacity:1}97%{opacity:0}}
 @keyframes ty1{to{transform:translateX(225px)}}</style>
 <defs>
-  <clipPath id="win"><rect x="10" y="10" width="880" height="294" rx="12"/></clipPath>
+  <clipPath id="win"><rect x="10" y="10" width="880" height="274" rx="12"/></clipPath>
   <filter id="glow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="5"/></filter>
   <radialGradient id="vign" cx="20%" cy="45%" r="70%"><stop offset="0" stop-color="#ff2266" stop-opacity=".09"/><stop offset="1" stop-color="#ff2266" stop-opacity="0"/></radialGradient>
   <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#fff" opacity=".025"/></pattern>
 </defs>
-<rect x="10" y="10" width="880" height="294" rx="12" fill="none" stroke="#ff2266" stroke-width="3" opacity=".45" filter="url(#glow)"/>
+<rect x="10" y="10" width="880" height="274" rx="12" fill="none" stroke="#ff2266" stroke-width="3" opacity=".45" filter="url(#glow)"/>
 <g clip-path="url(#win)">
-  <rect x="10" y="10" width="880" height="294" fill="#0d0008"/>
-  <rect class="ember" x="346" y="294" width="2" height="2" fill="#ff2266" style="animation-duration:7.2s;animation-delay:-1.8s"/>
-<rect class="ember" x="548" y="294" width="2" height="2" fill="#ff2266" style="animation-duration:7.6s;animation-delay:-3.8s"/>
-<rect class="ember" x="116" y="294" width="3" height="3" fill="#ff2266" style="animation-duration:13.6s;animation-delay:-3.1s"/>
-<rect class="ember" x="172" y="294" width="2" height="2" fill="#ff2266" style="animation-duration:10.1s;animation-delay:-5.4s"/>
-<rect class="ember" x="490" y="294" width="3" height="3" fill="#ff6f91" style="animation-duration:12.6s;animation-delay:-5.8s"/>
-<rect class="ember" x="55" y="294" width="2" height="2" fill="#ff2266" style="animation-duration:7.8s;animation-delay:-1.0s"/>
+  <rect x="10" y="10" width="880" height="274" fill="#0d0008"/>
+  <rect class="ember" x="346" y="274" width="2" height="2" fill="#ff2266" style="animation-duration:7.2s;animation-delay:-1.8s"/>
+<rect class="ember" x="548" y="274" width="2" height="2" fill="#ff2266" style="animation-duration:7.6s;animation-delay:-3.8s"/>
+<rect class="ember" x="116" y="274" width="3" height="3" fill="#ff2266" style="animation-duration:13.6s;animation-delay:-3.1s"/>
+<rect class="ember" x="172" y="274" width="2" height="2" fill="#ff2266" style="animation-duration:10.1s;animation-delay:-5.4s"/>
+<rect class="ember" x="490" y="274" width="3" height="3" fill="#ff6f91" style="animation-duration:12.6s;animation-delay:-5.8s"/>
+<rect class="ember" x="55" y="274" width="2" height="2" fill="#ff2266" style="animation-duration:7.8s;animation-delay:-1.0s"/>
   <rect x="10" y="10" width="880" height="34" fill="#16050d"/>
   <rect x="10" y="44" width="880" height="1" fill="#ff2266" opacity=".35"/>
   <text x="450" y="32" text-anchor="middle" font-size="13" fill="#ffe0e8" opacity=".75">fortune — today's wisdom</text>
@@ -42,17 +42,16 @@
   
 <text x="30" y="74" textLength="126" lengthAdjust="spacing" xml:space="preserve"><tspan fill="#ff2266" font-weight="700">ali@zidarc</tspan><tspan fill="#ff6f91"> ~ </tspan><tspan fill="#ffe0e8">$</tspan></text><text x="165" y="74" textLength="225" lengthAdjust="spacing" fill="#ffe0e8">fortune ~/quotes | catsay</text>
 <g style="animation:ty1 1s steps(25) 0.2s forwards, hide .01s linear 1s forwards"><rect x="174" y="59" width="243" height="21" fill="#0d0008"/><rect class="cur" x="165" y="61" width="9" height="17" fill="#ff2266"/></g>
-<g class="slide" style="animation-delay:1.00s"><text x="30" y="104" fill="#ffe0e8" xml:space="preserve" textLength="504" lengthAdjust="spacing"> _______________________________________________________</text></g>
-<g class="slide" style="animation-delay:1.05s"><text x="30" y="124" fill="#ffe0e8" xml:space="preserve" textLength="513" lengthAdjust="spacing">/ Programs must be written for people to read, and only \</text></g>
-<g class="slide" style="animation-delay:1.10s"><text x="30" y="144" fill="#ffe0e8" xml:space="preserve" textLength="513" lengthAdjust="spacing">| incidentally for machines to execute.                 |</text></g>
-<g class="slide" style="animation-delay:1.15s"><text x="30" y="164" fill="#ffe0e8" xml:space="preserve" textLength="513" lengthAdjust="spacing">|                                                       |</text></g>
-<g class="slide" style="animation-delay:1.20s"><text x="30" y="184" fill="#ff6f91" xml:space="preserve" textLength="513" lengthAdjust="spacing">\     -- Harold Abelson                                 /</text></g>
-<g class="slide" style="animation-delay:1.25s"><text x="30" y="204" fill="#ffe0e8" xml:space="preserve" textLength="504" lengthAdjust="spacing"> -------------------------------------------------------</text></g>
-<g class="slide" style="animation-delay:1.30s"><text x="30" y="224" fill="#ff2266" xml:space="preserve" textLength="153" lengthAdjust="spacing">        \   /\_/\</text></g>
-<g class="slide" style="animation-delay:1.35s"><g class="ea"><text x="30" y="244" fill="#ff2266" xml:space="preserve" textLength="162" lengthAdjust="spacing">         \ ( o.o )</text></g><g class="eb"><text x="30" y="244" fill="#ff2266" xml:space="preserve" textLength="162" lengthAdjust="spacing">         \ ( -.- )</text></g></g>
-<g class="slide" style="animation-delay:1.40s"><text x="30" y="264" fill="#ff2266" xml:space="preserve" textLength="180" lengthAdjust="spacing">            &gt; ^ &lt;   </text></g>
-  <rect x="10" y="10" width="880" height="294" fill="url(#vign)"/>
-  <rect x="10" y="10" width="880" height="294" fill="url(#scan)"/>
+<g class="slide" style="animation-delay:1.00s"><text x="30" y="104" fill="#ffe0e8" xml:space="preserve" textLength="279" lengthAdjust="spacing"> ______________________________</text></g>
+<g class="slide" style="animation-delay:1.05s"><text x="30" y="124" fill="#ffe0e8" xml:space="preserve" textLength="288" lengthAdjust="spacing">/ It works on my machine.      \</text></g>
+<g class="slide" style="animation-delay:1.10s"><text x="30" y="144" fill="#ffe0e8" xml:space="preserve" textLength="288" lengthAdjust="spacing">|                              |</text></g>
+<g class="slide" style="animation-delay:1.15s"><text x="30" y="164" fill="#ff6f91" xml:space="preserve" textLength="288" lengthAdjust="spacing">\     -- every developer, ever /</text></g>
+<g class="slide" style="animation-delay:1.20s"><text x="30" y="184" fill="#ffe0e8" xml:space="preserve" textLength="279" lengthAdjust="spacing"> ------------------------------</text></g>
+<g class="slide" style="animation-delay:1.25s"><text x="30" y="204" fill="#ff2266" xml:space="preserve" textLength="153" lengthAdjust="spacing">        \   /\_/\</text></g>
+<g class="slide" style="animation-delay:1.30s"><g class="ea"><text x="30" y="224" fill="#ff2266" xml:space="preserve" textLength="162" lengthAdjust="spacing">         \ ( o.o )</text></g><g class="eb"><text x="30" y="224" fill="#ff2266" xml:space="preserve" textLength="162" lengthAdjust="spacing">         \ ( -.- )</text></g></g>
+<g class="slide" style="animation-delay:1.35s"><text x="30" y="244" fill="#ff2266" xml:space="preserve" textLength="180" lengthAdjust="spacing">            &gt; ^ &lt;   </text></g>
+  <rect x="10" y="10" width="880" height="274" fill="url(#vign)"/>
+  <rect x="10" y="10" width="880" height="274" fill="url(#scan)"/>
 </g>
-<rect x="10.5" y="10.5" width="879" height="293" rx="12" fill="none" stroke="#ff2266" stroke-opacity=".7"/>
+<rect x="10.5" y="10.5" width="879" height="273" rx="12" fill="none" stroke="#ff2266" stroke-opacity=".7"/>
 </svg>
