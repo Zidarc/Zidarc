@@ -38,32 +38,32 @@
 <g style="animation:ty1 0.8s steps(24) 0.2s forwards, hide .01s linear 1s forwards"><rect x="174" y="49" width="234" height="21" fill="#0d0008"/><rect class="cur" x="165" y="51" width="9" height="17" fill="#ff2266"/></g>
 <g class="show" style="animation-delay:0.9s"><text x="30" y="90" font-size="13" fill="#ff2266" font-weight="700">── recent visits ──</text><text x="560" y="90" font-size="13" fill="#ff2266" font-weight="700">── best friends ──</text><rect x="538" y="76" width="1" height="188" fill="#7a3a4c" opacity=".6"/></g>
 <g class="slide" style="animation-delay:1.00s">
-<text x="30" y="116" fill="#7a3a4c">10-29 17:46</text>
+<text x="30" y="116" fill="#7a3a4c">10-29 17:47</text>
 <text x="147" y="116" fill="#ffe0e8">@Zidarc</text>
 <rect x="327" y="102" width="56" height="19" rx="3" fill="#24060f" stroke="#ffcc33" stroke-opacity=".7"/>
 <text x="355" y="116" font-size="12" font-weight="700" text-anchor="middle" fill="#ffcc33">FEED</text></g>
 <g class="slide" style="animation-delay:1.10s">
-<text x="30" y="144" fill="#7a3a4c">10-28 05:18</text>
-<text x="147" y="144" fill="#ffe0e8">@HunaBuilds</text>
-<rect x="327" y="130" width="56" height="19" rx="3" fill="#24060f" stroke="#ff6f91" stroke-opacity=".7"/>
-<text x="355" y="144" font-size="12" font-weight="700" text-anchor="middle" fill="#ff6f91">PLAY</text></g>
+<text x="30" y="144" fill="#7a3a4c">10-29 17:46</text>
+<text x="147" y="144" fill="#ffe0e8">@Zidarc</text>
+<rect x="327" y="130" width="56" height="19" rx="3" fill="#24060f" stroke="#ffcc33" stroke-opacity=".7"/>
+<text x="355" y="144" font-size="12" font-weight="700" text-anchor="middle" fill="#ffcc33">FEED</text></g>
 <g class="slide" style="animation-delay:1.20s">
 <text x="30" y="172" fill="#7a3a4c">10-28 05:18</text>
 <text x="147" y="172" fill="#ffe0e8">@HunaBuilds</text>
-<rect x="327" y="158" width="56" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".7"/>
-<text x="355" y="172" font-size="12" font-weight="700" text-anchor="middle" fill="#ff2266">PET</text></g>
+<rect x="327" y="158" width="56" height="19" rx="3" fill="#24060f" stroke="#ff6f91" stroke-opacity=".7"/>
+<text x="355" y="172" font-size="12" font-weight="700" text-anchor="middle" fill="#ff6f91">PLAY</text></g>
 <g class="slide" style="animation-delay:1.30s">
-<text x="30" y="200" fill="#7a3a4c">10-27 21:06</text>
-<text x="147" y="200" fill="#ffe0e8">@Zidarc</text>
-<rect x="327" y="186" width="56" height="19" rx="3" fill="#24060f" stroke="#ff6f91" stroke-opacity=".7"/>
-<text x="355" y="200" font-size="12" font-weight="700" text-anchor="middle" fill="#ff6f91">PLAY</text></g>
+<text x="30" y="200" fill="#7a3a4c">10-28 05:18</text>
+<text x="147" y="200" fill="#ffe0e8">@HunaBuilds</text>
+<rect x="327" y="186" width="56" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".7"/>
+<text x="355" y="200" font-size="12" font-weight="700" text-anchor="middle" fill="#ff2266">PET</text></g>
 <g class="slide" style="animation-delay:1.40s">
-<text x="30" y="228" fill="#7a3a4c">10-27 20:34</text>
+<text x="30" y="228" fill="#7a3a4c">10-27 21:06</text>
 <text x="147" y="228" fill="#ffe0e8">@Zidarc</text>
-<rect x="327" y="214" width="56" height="19" rx="3" fill="#24060f" stroke="#ffcc33" stroke-opacity=".7"/>
-<text x="355" y="228" font-size="12" font-weight="700" text-anchor="middle" fill="#ffcc33">FEED</text></g>
+<rect x="327" y="214" width="56" height="19" rx="3" fill="#24060f" stroke="#ff6f91" stroke-opacity=".7"/>
+<text x="355" y="228" font-size="12" font-weight="700" text-anchor="middle" fill="#ff6f91">PLAY</text></g>
 <g class="slide" style="animation-delay:1.50s">
-<text x="30" y="256" fill="#7a3a4c">10-27 20:33</text>
+<text x="30" y="256" fill="#7a3a4c">10-27 20:34</text>
 <text x="147" y="256" fill="#ffe0e8">@Zidarc</text>
 <rect x="327" y="242" width="56" height="19" rx="3" fill="#24060f" stroke="#ffcc33" stroke-opacity=".7"/>
 <text x="355" y="256" font-size="12" font-weight="700" text-anchor="middle" fill="#ffcc33">FEED</text></g>
@@ -77,8 +77,8 @@
 <text x="560" y="144" fill="#ff6f91" font-weight="700">#2</text>
 <text x="596" y="144" fill="#ffe0e8">@Zidarc</text>
 <rect x="740" y="133" width="80" height="12" fill="#24060f"/>
-<rect x="740" y="133" width="62.2" height="12" fill="#ff6f91"/>
-<text x="870" y="144" fill="#ffe0e8" text-anchor="end">×7</text></g>
+<rect x="740" y="133" width="71.1" height="12" fill="#ff6f91"/>
+<text x="870" y="144" fill="#ffe0e8" text-anchor="end">×8</text></g>
 <g class="slide" style="animation-delay:1.40s">
 <text x="560" y="172" fill="#ff6f91" font-weight="700">#3</text>
 <text x="596" y="172" fill="#ffe0e8">@Syed-Muhammad…</text>
