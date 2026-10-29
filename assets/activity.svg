@@ -40,7 +40,7 @@
 <g class="show" style="animation-delay:1s"><rect x="37" y="107" width="2" height="170" fill="#7a3a4c"/></g>
 <g class="slide" style="animation-delay:1.00s">
 <rect x="33" y="102" width="10" height="10" fill="#ff2266" stroke="#ff2266" stroke-width="2"/>
-<text x="60" y="112" fill="#7a3a4c">2026-10-27</text>
+<text x="60" y="112" fill="#7a3a4c">2026-10-28</text>
 <rect x="168" y="98" width="78" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".7"/>
 <text x="207" y="112" font-size="12" font-weight="700" text-anchor="middle" fill="#ff2266">PUSH</text>
 <text x="262" y="112" fill="#ffe0e8">commits → Zidarc/Portfolio</text></g>
