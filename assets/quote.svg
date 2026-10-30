@@ -42,11 +42,11 @@
   
 <text x="30" y="74" textLength="126" lengthAdjust="spacing" xml:space="preserve"><tspan fill="#ff2266" font-weight="700">ali@zidarc</tspan><tspan fill="#ff6f91"> ~ </tspan><tspan fill="#ffe0e8">$</tspan></text><text x="165" y="74" textLength="225" lengthAdjust="spacing" fill="#ffe0e8">fortune ~/quotes | catsay</text>
 <g style="animation:ty1 1s steps(25) 0.2s forwards, hide .01s linear 1s forwards"><rect x="174" y="59" width="243" height="21" fill="#0d0008"/><rect class="cur" x="165" y="61" width="9" height="17" fill="#ff2266"/></g>
-<g class="slide" style="animation-delay:1.00s"><text x="30" y="104" fill="#ffe0e8" xml:space="preserve" textLength="450" lengthAdjust="spacing"> _________________________________________________</text></g>
-<g class="slide" style="animation-delay:1.05s"><text x="30" y="124" fill="#ffe0e8" xml:space="preserve" textLength="459" lengthAdjust="spacing">/ Weeks of coding can save you hours of planning. \</text></g>
-<g class="slide" style="animation-delay:1.10s"><text x="30" y="144" fill="#ffe0e8" xml:space="preserve" textLength="459" lengthAdjust="spacing">|                                                 |</text></g>
-<g class="slide" style="animation-delay:1.15s"><text x="30" y="164" fill="#ff6f91" xml:space="preserve" textLength="459" lengthAdjust="spacing">\     -- ancient proverb                          /</text></g>
-<g class="slide" style="animation-delay:1.20s"><text x="30" y="184" fill="#ffe0e8" xml:space="preserve" textLength="450" lengthAdjust="spacing"> -------------------------------------------------</text></g>
+<g class="slide" style="animation-delay:1.00s"><text x="30" y="104" fill="#ffe0e8" xml:space="preserve" textLength="315" lengthAdjust="spacing"> __________________________________</text></g>
+<g class="slide" style="animation-delay:1.05s"><text x="30" y="124" fill="#ffe0e8" xml:space="preserve" textLength="324" lengthAdjust="spacing">/ There is no place like 127.0.0.1 \</text></g>
+<g class="slide" style="animation-delay:1.10s"><text x="30" y="144" fill="#ffe0e8" xml:space="preserve" textLength="324" lengthAdjust="spacing">|                                  |</text></g>
+<g class="slide" style="animation-delay:1.15s"><text x="30" y="164" fill="#ff6f91" xml:space="preserve" textLength="324" lengthAdjust="spacing">\     -- sysadmin wisdom           /</text></g>
+<g class="slide" style="animation-delay:1.20s"><text x="30" y="184" fill="#ffe0e8" xml:space="preserve" textLength="315" lengthAdjust="spacing"> ----------------------------------</text></g>
 <g class="slide" style="animation-delay:1.25s"><text x="30" y="204" fill="#ff2266" xml:space="preserve" textLength="153" lengthAdjust="spacing">        \   /\_/\</text></g>
 <g class="slide" style="animation-delay:1.30s"><g class="ea"><text x="30" y="224" fill="#ff2266" xml:space="preserve" textLength="162" lengthAdjust="spacing">         \ ( o.o )</text></g><g class="eb"><text x="30" y="224" fill="#ff2266" xml:space="preserve" textLength="162" lengthAdjust="spacing">         \ ( -.- )</text></g></g>
 <g class="slide" style="animation-delay:1.35s"><text x="30" y="244" fill="#ff2266" xml:space="preserve" textLength="180" lengthAdjust="spacing">            &gt; ^ &lt;   </text></g>
