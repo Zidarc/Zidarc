@@ -6,10 +6,11 @@ const M = require('./cat-model');
 const S = require('./scenes');
 
 const CELL = 3;
-const WALK_T = 0.8; // seconds per stride cycle
+const WALK_T = 1.1; // seconds per stride cycle (an unhurried stroll)
 const SPEED = M.STRIDE / (M.DUTY * WALK_T); // cells per second, so planted paws don't slide
 const STEP = 0.12; // seconds per in-between frame
-const FADE = 1.6; // scene crossfade, always while she's walking
+const FADE = 1.8; // scene crossfade, always while she's walking
+const PER_WALK = 4; // scenes visited per loop
 
 const WEIGHTS = {
   normal: { sit: 3, lie: 2, yawn: 0.7 },
@@ -47,35 +48,35 @@ function choreograph(r, mood, kinds) {
       sitDown();
       const end = t + d;
       let front = r() < 0.5;
-      while (t < end - 0.01) { hold(front ? 'sitFront' : 'sit', Math.min(end - t, rand(1.5, 3.5)), sitTail); front = !front; }
+      while (t < end - 0.01) { hold(front ? 'sitFront' : 'sit', Math.min(end - t, rand(2.5, 5)), sitTail); front = !front; }
     };
     const actions = {
-      sit: () => sitIdle(rand(3, 6)),
-      yawn: () => { sitIdle(rand(1, 2)); hold('yawn', 1.3, sitTail); sitIdle(rand(1, 2)); },
+      sit: () => sitIdle(rand(6, 11)),
+      yawn: () => { sitIdle(rand(2.5, 4)); hold('yawn', 1.4, sitTail); sitIdle(rand(3, 5)); },
       lie: () => {
-        sitIdle(rand(1, 2));
+        sitIdle(rand(2, 3.5));
         const down = ledge ? ['sl1', 'sl2', 'sl3'] : ['sf1', 'sf2', 'sf3'];
         seq(down);
-        const end = t + rand(5, mood === 'sleepy' || mood === 'bored' ? 11 : 8);
+        const end = t + rand(9, mood === 'sleepy' || mood === 'bored' ? 18 : 14);
         let k = 0;
         while (t < end - 0.01) {
           const el = ledge ? (k % 2 ? 'ledgeFront' : 'ledge') : (k % 2 ? 'loafSnooze' : 'loaf');
-          hold(el, Math.min(end - t, rand(2, 4)), ledge ? 'tailL' : 'tailF');
+          hold(el, Math.min(end - t, rand(3, 6)), ledge ? 'tailL' : 'tailF');
           k++;
         }
         seq(down.slice().reverse());
       },
     };
-    walk(i ? rand(3, 5) : rand(1.5, 3));
-    const n = 1 + (r() < 0.5 ? 1 : 0);
+    walk(i ? rand(3, 4.5) : rand(2, 3));
+    const n = 2;
     for (let k = 0; k < n; k++) {
       let a = pickAction();
       if (k === n - 1 && !scenes.some(s => s.lay) && a !== 'lie' && r() < 0.6) a = 'lie';
       if (a === 'lie') sc.lay = true;
       actions[a]();
-      if (k < n - 1) walk(rand(2.5, 4));
+      if (k < n - 1) walk(rand(2, 3.5));
     }
-    walk(rand(3.5, 5));
+    walk(rand(3.5, 4.5));
     sc.end = t;
   });
   return { L: t, vis, scenes };
@@ -162,9 +163,10 @@ function cycle(cls, frames, period, weights) {
 // x, y: top-left of the viewport in the card. Returns { svg, css }.
 function renderStage({ x: VX, y: VY, seed, mood, bubble }) {
   const r = S.rng(seed);
-  const names = Object.keys(S.SCENES);
-  for (let i = names.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [names[i], names[j]] = [names[j], names[i]]; }
-  const kinds = names.map(n => (n === 'meadow' ? 'ground' : 'ledge'));
+  const all = Object.keys(S.SCENES);
+  for (let i = all.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [all[i], all[j]] = [all[j], all[i]]; }
+  const names = all.slice(0, PER_WALK);
+  const kinds = names.map(n => S.KIND[n]);
   const plan = choreograph(r, mood, kinds);
   const { L } = plan;
   const W = S.VW * CELL, H = S.VH * CELL;
@@ -177,6 +179,7 @@ function renderStage({ x: VX, y: VY, seed, mood, bubble }) {
     const cam = cameraPoints(sc, L, i === 0);
     const built = S.SCENES[name](r, cam.len);
     css += built.css || '';
+    defs += built.defs || '';
     const ops = i === 0
       ? [[0, 1], [sc.end, 1], [sc.end + 1e-3, 0], [L - FADE - 1e-3, 0], [L - FADE, 1], [L, 1]]
       : i === names.length - 1
@@ -184,6 +187,7 @@ function renderStage({ x: VX, y: VY, seed, mood, bubble }) {
         : [[0, 0], [sc.start, 0], [sc.start + FADE, 1], [sc.end, 1], [sc.end + 1e-3, 0], [L, 0]];
     css += track(`sc${i}`, ops, L, v => `opacity:${v}`);
     const layer = ([f, svg], k) => {
+      if (f === null) return `<g transform="scale(${CELL})">${svg}</g>`;
       css += track(`c${i}_${k}`, cam.pts, L, x => `transform:translateX(${(-x * f * CELL).toFixed(1)}px)`);
       return `<g class="c${i}_${k}"><g transform="scale(${CELL})">${svg}</g></g>`;
     };
@@ -241,7 +245,7 @@ ${cat}
 ${scenesSvg.map(s => s.front).join('\n')}
 ${extra}
 </g><rect x=".5" y=".5" width="${W - 1}" height="${H - 1}" rx="6" fill="none" stroke="#ff2266" stroke-opacity=".45"/></g>`;
-  return { svg, css, L };
+  return { svg, css, L, scenes: names };
 }
 
 module.exports = { renderStage };

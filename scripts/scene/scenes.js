@@ -1,5 +1,5 @@
 // Night-time pixel backdrops for Huna's walk: a shared sky, then scenes she walks through one after another
-// (rooftop ledge, balcony railing, window ledge, meadow). Each scene is split into parallax layers.
+// (rooftop, balcony railing, meadow, lake, cherry blossoms, snow, seaside wall). Each scene is split into parallax layers.
 // Everything is drawn in 3px cells. The surface she walks on is always row GY so she never jumps between scenes.
 const VW = 280, VH = 80, GY = 56;
 
@@ -186,23 +186,207 @@ function balcony(r, len) {
   return { kind: 'ledge', layers: [[0.1, far], [0.35, mid], [1, cv.svg() + `<g class="fl">${lights.svg()}</g>`]], fg: [], css: '.fl{animation:tw 1.7s ease-in-out infinite}' };
 }
 
-function windowLedge(r, len) {
-  const far = skyline(W(len, 0.1), 40, { r, minH: 8, maxH: 26, minW: 6, maxW: 13, cols: ['#121728', '#151b2e', '#0f1322'], lit: 0.2, haze: 0.15 });
-  const w = W(len, 1), cv = canvas();
-  const wall = '#262230', top = 12;
-  cv.rect(0, top, w, VH - top, wall);
-  cv.rect(0, top - 2, w, 2, '#3a3546'); cv.rect(0, top, w, 1, '#14121a');
-  for (let i = 0; i < w * 1.5; i++) cv.px(ri(r, 0, w), ri(r, top + 1, VH - 1), '#2e2a3a|0.8');
-  for (let x = ri(r, 4, 16); x < w; x += ri(r, 46, 62)) {
-    litWindow(cv, x, top + 10, 22, GY - top - 12, r);
-    cv.rect(x - 2, top + 8, 26, 1, '#3a3546');
-    cv.rect(x - 4, GY + 1, 30, 14, '#ffb35c|0.05');
+// ---------- shared animated bits ----------
+// Fireflies that drift and blink (fixed to the viewport).
+function fireflies(r, n, y0, y1) {
+  return Array.from({ length: n }, (_, i) =>
+    `<rect class="ff" x="${ri(r, 10, VW - 10)}" y="${ri(r, y0, y1)}" width="1" height="1" fill="#e8ff8a" style="animation-delay:-${(i * 0.9).toFixed(1)}s;animation-duration:${(4 + r() * 4).toFixed(1)}s"/>`).join('');
+}
+const FF_CSS = '.ff{animation:ff 6s ease-in-out infinite}@keyframes ff{0%,100%{opacity:0;transform:translate(0,0)}30%{opacity:1}50%{opacity:.2;transform:translate(5px,-4px)}70%{opacity:1;transform:translate(9px,1px)}}';
+// Two groups that take turns dimming: water shimmer and moon glitter.
+const GL_CSS = '.gl1{animation:gl 1.8s steps(1,end) infinite}.gl2{animation:gl 1.8s steps(1,end) -.9s infinite}@keyframes gl{50%{opacity:.2}}';
+const LG_CSS = '.lg{animation:lg 2.6s ease-in-out infinite}@keyframes lg{50%{opacity:.55}}';
+
+// Snow or petals falling on a loop: one tile drawn twice, stacked, sliding down (and sideways).
+function fall(id, r, n, cols, dur, dx) {
+  const cv = canvas();
+  for (let i = 0; i < n; i++) cv.px(ri(r, 0, VW + Math.abs(dx)), ri(r, 0, VH - 1), pick(r, cols));
+  return {
+    defs: `<g id="${id}">${cv.svg()}</g>`,
+    svg: `<g transform="scale(3)"><g class="${id}"><use href="#${id}"/><use href="#${id}" y="-${VH}"/></g></g>`,
+    css: `.${id}{animation:${id} ${dur}s linear infinite}@keyframes ${id}{to{transform:translate(${dx}px,${VH}px)}}`,
+  };
+}
+
+// The moon's reflection on water, right under the moon.
+function glitter(r, y0, y1) {
+  const a = canvas(), b = canvas();
+  for (let y = y0; y < y1; y++) {
+    const cv = y % 2 ? a : b, w = 2 + Math.round((y - y0) * 0.5) + ri(r, 0, 2);
+    cv.rect(Math.round(226 - w / 2) + ri(r, -1, 1), y, w, 1, '#dfe8ff|0.45');
   }
-  for (let x = ri(r, 10, 40); x < w; x += ri(r, 50, 70)) litWindow(cv, x, GY + 14, 16, 10, r);
-  cv.rect(0, GY, w, 1, '#6a6478'); cv.rect(0, GY + 1, w, 2, '#4a4558'); cv.rect(0, GY + 3, w, 1, '#16141c');
-  cv.rect(0, GY + 4, w, 1, '#000000|0.4');
-  for (let x = ri(r, 60, 100); x < w; x += ri(r, 120, 180)) { cv.rect(x, GY + 4, 2, VH - GY - 4, '#3a3546'); cv.rect(x, GY + 4, 1, VH - GY - 4, '#4a4558'); }
-  return { kind: 'ledge', layers: [[0.1, far], [1, cv.svg()]], fg: [] };
+  return `<g class="gl1">${a.svg()}</g><g class="gl2">${b.svg()}</g>`;
+}
+
+function grassTop(cv, r, w, cols, tip) {
+  for (let x = 0; x < w; x++) if (r() < 0.75) {
+    const h = ri(r, 1, 2);
+    cv.rect(x, GY - h, 1, h, pick(r, cols));
+    if (tip && r() < 0.3) cv.px(x, GY - h, tip);
+  }
+}
+
+function pine(cv, x, base, th, col, snow) {
+  for (let k = 0; k < th; k++) {
+    const hw = Math.floor((k + 1) / 2.2), y = base - 2 - th + k;
+    cv.rect(x - hw, y, hw * 2 + 1, 1, col);
+    if (snow && k % 3 === 0) cv.rect(x - hw, y, hw + 1, 1, snow);
+  }
+  cv.rect(x, base - 2, 1, 2, '#1a120e');
+}
+
+// ---------- more scenes ----------
+function lake(r, len) {
+  const far = ridge(W(len, 0.04), 36, { r, minH: 8, maxH: 20, col: '#121a30' });
+  const trees = ridge(W(len, 0.12), 39, { r, minH: 1, maxH: 4, col: '#0a1222', scale: 0.6, trees: 40, treeCol: '#070e1c' });
+  const ww = W(len, 0.5), water = canvas(), s1 = canvas(), s2 = canvas();
+  water.rect(0, 38, ww, VH - 38, '#0a1430'); water.rect(0, 38, ww, 2, '#060c1c'); water.rect(0, 40, ww, 3, '#0b1736');
+  for (let i = 0; i < ww * 0.6; i++) (r() < 0.5 ? s1 : s2).rect(ri(r, 0, ww), ri(r, 41, GY + 6), ri(r, 2, 5), 1, '#3a5590|0.55');
+  for (let x = ri(r, 0, 30); x < ww; x += ri(r, 25, 60)) {
+    const y = ri(r, 44, GY - 1);
+    water.rect(x, y, 5, 1, '#163a26'); water.rect(x + 1, y - 1, 3, 1, '#1d4a30');
+    if (r() < 0.5) { water.px(x + 2, y - 2, '#e7a5c0'); water.px(x + 1, y - 2, '#c97a9e'); }
+  }
+  const w = W(len, 1), cv = canvas(), fg = canvas();
+  const grass = ['#16251a', '#1b2d1f', '#22382a', '#0f1a12'];
+  cv.rect(0, GY, w, VH - GY, '#111a14');
+  grassTop(cv, r, w, grass, '#3a5560');
+  for (let i = 0; i < w * 2; i++) cv.px(ri(r, 0, w), ri(r, GY, VH - 1), pick(r, grass));
+  for (let i = 0; i < 14; i++) { const x = ri(r, 0, w), y = ri(r, GY + 3, VH - 3); cv.rect(x, y, 3, 2, '#2a2e38'); cv.rect(x, y, 3, 1, '#3e4352'); }
+  // Cattails and reeds in the foreground.
+  for (let x = ri(r, 10, 60); x < w; x += ri(r, 45, 100)) for (let k = 0; k < 4; k++) {
+    const sx = x + k * 2 + ri(r, 0, 1), h = ri(r, 9, 16), base = GY + ri(r, 4, 8);
+    fg.rect(sx, base - h, 1, h, pick(r, ['#132018', '#17261c', '#0f1a13']));
+    if (r() < 0.6) fg.rect(sx, base - h + 1, 1, 3, '#3a281a');
+  }
+  return {
+    kind: 'ground', css: GL_CSS + FF_CSS,
+    layers: [[0.04, far], [0.12, trees], [0.5, water.svg() + `<g class="gl1">${s1.svg()}</g><g class="gl2">${s2.svg()}</g>`], [null, glitter(r, 40, GY)], [1, cv.svg()]],
+    fg: [[1, fg.svg()]], fixedFg: `<g transform="scale(3)">${fireflies(r, 10, 36, GY + 4)}</g>`,
+  };
+}
+
+function sakura(r, len) {
+  const far = ridge(W(len, 0.05), 48, { r, minH: 6, maxH: 20, col: '#1a1430' });
+  const tree = (cv, x, base, h, [dark, mid, light, trunk]) => {
+    cv.rect(x, base - h, 2, h, trunk);
+    cv.rect(x - 4, base - h + 4, 4, 1, trunk); cv.rect(x + 2, base - h + 2, 5, 1, trunk);
+    const puffs = Array.from({ length: 7 }, () => [x + ri(r, -8, 9), base - h - ri(r, -2, 5), ri(r, 3, 5)]);
+    for (const [px, py, pr] of puffs) cv.disc(px, py + 1, pr, dark);
+    for (const [px, py, pr] of puffs) cv.disc(px, py, pr - 1, mid);
+    for (const [px, py, pr] of puffs) if (pr > 3) cv.disc(px - 1, py - 1, pr - 3, light);
+  };
+  const mid = canvas(), mw = W(len, 0.25);
+  mid.rect(0, 52, mw, VH - 52, '#120e1a');
+  for (let x = ri(r, 0, 20); x < mw; x += ri(r, 26, 44)) tree(mid, x, 53, ri(r, 9, 14), ['#5a2742', '#7d3a5c', '#a04e76', '#140c12']);
+  const near = canvas(), nw = W(len, 0.6);
+  for (let x = ri(r, 20, 60); x < nw; x += ri(r, 80, 130)) tree(near, x, GY + 1, ri(r, 20, 28), ['#7a3456', '#a94d74', '#d97ba3', '#1c1018']);
+  const w = W(len, 1), cv = canvas(), glow = canvas();
+  cv.rect(0, GY, w, VH - GY, '#1b1822'); cv.rect(0, GY, w, 1, '#2e2a38');
+  grassTop(cv, r, w, ['#141d18', '#18241c', '#101712']);
+  for (let x = ri(r, 0, 10); x < w; x += ri(r, 12, 18)) { cv.rect(x, GY + 2, 8, 2, '#302c3a'); cv.rect(x, GY + 2, 8, 1, '#3e3a4a'); }
+  for (let i = 0; i < w * 0.8; i++) cv.px(ri(r, 0, w), ri(r, GY, VH - 1), pick(r, ['#c97a9e', '#9e4f74', '#e9a3c0']));
+  // Stone lanterns, glowing.
+  for (let x = ri(r, 40, 90); x < w; x += ri(r, 110, 160)) {
+    glow.disc(x + 3, GY - 9, 8, '#ffcf73|0.12');
+    cv.rect(x, GY - 3, 7, 3, '#3a3644'); cv.rect(x + 3, GY - 7, 1, 4, '#3a3644');
+    cv.rect(x + 1, GY - 11, 5, 4, '#2c2834'); cv.rect(x + 2, GY - 10, 3, 2, '#ffcf73');
+    cv.rect(x - 1, GY - 12, 9, 1, '#4a4656'); cv.rect(x + 2, GY - 13, 3, 1, '#4a4656');
+  }
+  const p1 = fall('petA', r, 70, ['#e9a3c0', '#c97a9e', '#f6c1d6'], 16, -40);
+  const p2 = fall('petB', r, 25, ['#f6c1d6', '#ffd6e6'], 9, -60);
+  return {
+    kind: 'ground', defs: p1.defs + p2.defs, css: p1.css + p2.css + LG_CSS,
+    layers: [[0.05, far], [0.25, mid.svg()], [0.6, near.svg()], [1, `<g class="lg">${glow.svg()}</g>` + cv.svg()]],
+    fg: [], fixedFg: p1.svg + p2.svg,
+  };
+}
+
+function snowfield(r, len) {
+  // Northern lights swaying across the sky.
+  const au = canvas(), au2 = canvas(), ph = [r() * 6, r() * 6, r() * 6];
+  for (let x = 0; x < VW; x++) {
+    const y = 8 + 5 * Math.sin(x / 23 + ph[0]) + 3 * Math.sin(x / 9 + ph[1]), h = 7 + 5 * Math.sin(x / 17 + ph[2]);
+    au.rect(x, y, 1, h, '#5cffb0|0.12');
+    if (x % 3 === 0) au.rect(x, y - 3, 1, h + 6, '#5cffb0|0.06');
+    au2.rect(x, y + h - 2, 1, 4, '#7dd3ff|0.1');
+  }
+  const far = canvas(), fw = W(len, 0.04), fph = [r() * 6, r() * 6];
+  for (let x = 0; x < fw; x++) {
+    const top = Math.round(48 - (14 + 9 * Math.sin(x / 21 + fph[0]) + 4 * Math.sin(x / 7 + fph[1])));
+    far.rect(x, top, 1, VH - top, '#1a2240'); far.rect(x, top, 1, 3, x % 2 ? '#7d8db8' : '#6a7aa6');
+  }
+  const mid = canvas(), mw = W(len, 0.2);
+  mid.rect(0, 52, mw, VH - 52, '#46557e');
+  for (let x = ri(r, 0, 8); x < mw; x += ri(r, 6, 14)) pine(mid, x, 53, ri(r, 7, 13), '#0d1724', '#8a9ac4');
+  const cab = canvas(), cw = W(len, 0.4);
+  cab.rect(0, 54, cw, VH - 54, '#56658e'); cab.rect(0, 54, cw, 1, '#8090b8');
+  let smoke = '';
+  for (let x = ri(r, 60, 140); x < cw; x += ri(r, 160, 240)) {
+    cab.rect(x, 44, 18, 10, '#2a1c18');
+    for (let y = 46; y < 54; y += 2) cab.rect(x, y, 18, 1, '#22160f');
+    for (let k = 0; k < 5; k++) cab.rect(x - 2 + k, 39 + k, 22 - 2 * k, 1, k < 2 ? '#c4d0ec' : '#a8b8d8');
+    cab.rect(x + 13, 36, 2, 5, '#3a2a24');
+    cab.disc(x + 5, 48, 4, '#ffcf73|0.15'); cab.rect(x + 3, 47, 4, 3, '#ffcf73'); cab.rect(x + 5, 47, 1, 3, '#7a4a20');
+    cab.rect(x + 10, 48, 3, 6, '#160e0a');
+    smoke += [0, 1.3, 2.6].map(d => `<rect class="sm" x="${x + 13}" y="34" width="2" height="2" fill="#9aa4c0" style="animation-delay:-${d}s"/>`).join('');
+  }
+  const w = W(len, 1), cv = canvas(), sp = canvas();
+  cv.rect(0, GY, w, VH - GY, '#62719a'); cv.rect(0, GY, w, 1, '#a9b8da'); cv.rect(0, GY + 1, w, 1, '#8696c0');
+  for (let i = 0; i < w * 1.5; i++) cv.px(ri(r, 0, w), ri(r, GY + 2, VH - 1), pick(r, ['#5a6890', '#6a79a2']));
+  for (let i = 0; i < w * 0.4; i++) sp.px(ri(r, 0, w), ri(r, GY, VH - 1), '#eef3ff');
+  const s1 = fall('snA', r, 110, ['#ffffff|0.7', '#dfe8ff|0.6'], 12, -14);
+  const s2 = fall('snB', r, 40, ['#ffffff'], 7, -24);
+  return {
+    kind: 'ground', defs: s1.defs + s2.defs,
+    css: s1.css + s2.css + '.au{animation:au 9s ease-in-out infinite alternate}.au2{animation:au 7s ease-in-out -3s infinite alternate}@keyframes au{from{opacity:.45;transform:translateX(-6px)}to{opacity:1;transform:translateX(6px)}}'
+      + '.sm{animation:sm 3.9s ease-out infinite}@keyframes sm{0%{opacity:.7;transform:none}100%{opacity:0;transform:translate(5px,-14px)}}',
+    layers: [[null, `<g class="au">${au.svg()}</g><g class="au2">${au2.svg()}</g>`], [0.04, far.svg()], [0.2, mid.svg()], [0.4, cab.svg() + smoke], [1, cv.svg() + `<g class="tw">${sp.svg()}</g>`]],
+    fg: [], fixedFg: s1.svg + s2.svg,
+  };
+}
+
+function seaside(r, len) {
+  const head = canvas(), hw = W(len, 0.05);
+  for (let x = 0; x < hw; x++) { const h = Math.max(0, Math.round(7 * Math.sin(x / 30 + 1) + 2)); if (h) head.rect(x, 41 - h, 1, h, '#0c1224'); }
+  // Lighthouse on the headland, sweeping its beam left and right.
+  const lx = ri(r, 150, 200), ly = 23;
+  head.rect(lx - 2, 38, 7, 3, '#0c1224');
+  for (let y = 24; y < 38; y++) head.rect(lx, y, 3, 1, Math.floor((y - 24) / 3) % 2 ? '#7a2f3a' : '#c8c8d4');
+  head.rect(lx - 1, 21, 5, 1, '#2a2a34'); head.rect(lx, 22, 3, 2, '#fff2b0'); head.rect(lx, 20, 3, 1, '#2a2a34');
+  const beam = d => `<path d="M${lx + 1.5} ${ly}L${lx + 1.5 + d * 120} ${ly - 9}L${lx + 1.5 + d * 120} ${ly + 7}z" fill="#fff2b0" opacity=".14"/>`;
+  const sea = canvas(), sw = W(len, 0.2), w1 = canvas(), w2 = canvas();
+  sea.rect(0, 41, sw, VH - 41, '#081530'); sea.rect(0, 41, sw, 1, '#1a2a50');
+  for (let i = 0; i < sw * 0.8; i++) (r() < 0.5 ? w1 : w2).rect(ri(r, 0, sw), ri(r, 43, VH - 1), ri(r, 2, 6), 1, '#2a4a80|0.6');
+  const boats = canvas(), bw = W(len, 0.3);
+  for (let x = ri(r, 20, 80); x < bw; x += ri(r, 90, 150)) {
+    const y = ri(r, 47, 51);
+    boats.rect(x, y, 10, 2, '#140f14'); boats.rect(x + 1, y + 2, 8, 1, '#140f14');
+    boats.rect(x + 4, y - 8, 1, 8, '#2a2630');
+    for (let k = 0; k < 6; k++) boats.rect(x + 5, y - 7 + k, Math.ceil(k / 1.5), 1, '#3a3446');
+    boats.px(x + 4, y - 9, '#ffcf73');
+  }
+  // The harbour wall she walks on, with lamp posts.
+  const w = W(len, 1), cv = canvas(), glow = canvas();
+  cv.rect(0, GY, w, 1, '#62667a'); cv.rect(0, GY + 1, w, 2, '#454959'); cv.rect(0, GY + 3, w, 1, '#15171e');
+  cv.rect(0, GY + 4, w, VH - GY - 4, '#262a36');
+  for (let y = GY + 8; y < VH; y += 5) cv.rect(0, y, w, 1, '#1c1f28');
+  for (let y = GY + 4; y < VH; y += 5) for (let x = Math.floor(y / 5) % 2 ? 0 : 6; x < w; x += 12) cv.rect(x, y, 1, 4, '#1c1f28');
+  for (let i = 0; i < w * 0.5; i++) cv.px(ri(r, 0, w), GY + ri(r, 4, 7), pick(r, ['#1f3a2a', '#2a4a34']));
+  for (let x = ri(r, 50, 100); x < w; x += ri(r, 130, 190)) {
+    glow.disc(x + 1, GY - 21, 9, '#ffd27a|0.1');
+    cv.rect(x, GY - 20, 2, 20, '#2a2c36'); cv.rect(x - 1, GY - 23, 4, 3, '#ffe3a1'); cv.rect(x - 1, GY - 24, 4, 1, '#2a2c36');
+    cv.rect(x + 14, GY - 3, 4, 3, '#2a2c36'); cv.rect(x + 14, GY - 3, 4, 1, '#3a3d4a');
+  }
+  return {
+    kind: 'ledge',
+    css: GL_CSS + LG_CSS + '.lhA{animation:lh 6s ease-in-out infinite}.lhB{animation:lh 6s ease-in-out -3s infinite}@keyframes lh{0%,60%,100%{opacity:0}30%{opacity:1}}'
+      + '.bb{animation:bb 2.4s ease-in-out infinite alternate}@keyframes bb{to{transform:translateY(1px)}}',
+    layers: [[0.05, head.svg() + `<g class="lhA">${beam(-1)}</g><g class="lhB">${beam(1)}</g>`],
+      [0.2, sea.svg() + `<g class="gl1">${w1.svg()}</g><g class="gl2">${w2.svg()}</g>`], [null, glitter(r, 42, GY)],
+      [0.3, `<g class="bb">${boats.svg()}</g>`], [1, `<g class="lg">${glow.svg()}</g>` + cv.svg()]],
+    fg: [],
+  };
 }
 
 function meadow(r, len) {
@@ -219,15 +403,14 @@ function meadow(r, len) {
     const x = ri(r, 0, w), base = GY + ri(r, 5, 12);
     for (let k = 0; k < 5; k++) { const h = ri(r, 3, 7); fg.rect(x + k, base - h, 1, h, pick(r, ['#0b140d', '#101c12', '#0e1810'])); }
   }
-  // Fireflies drift and blink in front of everything.
-  const ff = Array.from({ length: 9 }, (_, i) =>
-    `<rect class="ff" x="${ri(r, 10, VW - 10)}" y="${ri(r, 30, GY + 6)}" width="1" height="1" fill="#e8ff8a" style="animation-delay:-${(i * 0.9).toFixed(1)}s;animation-duration:${(4 + r() * 4).toFixed(1)}s"/>`).join('');
   return {
-    kind: 'ground', layers: [[0.04, far], [0.12, mid], [0.35, hills], [1, cv.svg()]], fg: [[1, fg.svg()]], fixedFg: `<g transform="scale(3)">${ff}</g>`,
-    css: '.ff{animation:ff 6s ease-in-out infinite}@keyframes ff{0%,100%{opacity:0;transform:translate(0,0)}30%{opacity:1}50%{opacity:.2;transform:translate(5px,-4px)}70%{opacity:1;transform:translate(9px,1px)}}',
+    kind: 'ground', layers: [[0.04, far], [0.12, mid], [0.35, hills], [1, cv.svg()]], fg: [[1, fg.svg()]], fixedFg: `<g transform="scale(3)">${fireflies(r, 9, 30, GY + 6)}</g>`,
+    css: FF_CSS,
   };
 }
 
-const SCENES = { rooftop, balcony, windowLedge, meadow };
+const SCENES = { rooftop, balcony, meadow, lake, sakura, snowfield, seaside };
+// Ledges get a hanging tail when she lies down; ground gets a loaf.
+const KIND = { rooftop: 'ledge', balcony: 'ledge', seaside: 'ledge', meadow: 'ground', lake: 'ground', sakura: 'ground', snowfield: 'ground' };
 
-module.exports = { VW, VH, GY, SCENES, sky, rng, pick, ri };
+module.exports = { VW, VH, GY, SCENES, KIND, sky, rng, pick, ri };
