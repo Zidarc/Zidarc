@@ -9,8 +9,35 @@ const CELL = 3;
 const WALK_T = 1.1; // seconds per stride cycle (an unhurried stroll)
 const SPEED = M.STRIDE / (M.DUTY * WALK_T); // cells per second, so planted paws don't slide
 const STEP = 0.12; // seconds per in-between frame
-const FADE = 1.8; // scene crossfade, always while she's walking
+const FADE = 3.2; // scene crossfade, eased, always while she's walking
 const PER_WALK = 4; // scenes visited per loop
+
+// Things she says. Picked by what she's doing, where she is and how she feels.
+const LINES = {
+  sit: ['meow.', 'meow~', 'mrrp?', 'mew!', 'meow meow', 'mrow.', 'nya~', 'prrrt?', '...', '*stares*', '*slow blink*', 'hi there ♥', 'pet me?', 'mrrrow!', 'what u lookin at', 'i am very cute'],
+  walk: ['♪', 'trot trot', 'where to next?', '♪ la la la', 'adventure!', 'tip tap tip tap', 'follow me!'],
+  lie: ['purr~', 'prrrrr…', 'so comfy', '*kneads*', 'purr purr', 'mmm…'],
+  snooze: ['zzz…', 'z z z', '*snore*', 'mrr… zzz'],
+  yawn: ['*yaaawn*'],
+  scene: {
+    rooftop: ['my city.', 'so many lights', 'up high ♪'],
+    balcony: ['nice view~', 'pretty lights!', 'hello city'],
+    meadow: ['fireflies!', 'soft grass', 'smells like flowers'],
+    lake: ['fishies…?', 'shiny moon', 'is it cold?'],
+    sakura: ['petals!', 'so pretty ✿', '*chases petal*'],
+    snowfield: ['cold paws!', 'snow!!', 'brrr…', 'ooh, lights in the sky'],
+    seaside: ['smells like fish', 'big water…', 'boats!', 'the light goes round'],
+  },
+  mood: {
+    hungry: ['feed me!!', 'is that tuna?', 'hungry…', 'food pls', 'my bowl is empty'],
+    happy: ['purr~ ♥', '♥', 'love you!', 'best day'],
+    bored: ['play with me?', 'so bored…', 'yarn?', 'entertain me'],
+    sleepy: ['sleepy…', 'so tired'],
+    normal: [],
+  },
+};
+// Where her head is in each pose, for placing the speech bubble.
+const HEADS = { walk: M.STAND.head, sit: M.SIT.head, ledge: M.LEDGE.head, loaf: M.LOAF.head };
 
 const WEIGHTS = {
   normal: { sit: 3, lie: 2, yawn: 0.7 },
@@ -20,9 +47,16 @@ const WEIGHTS = {
   sleepy: { sit: 1, lie: 4, yawn: 1.5 },
 };
 
-function choreograph(r, mood, kinds) {
-  const vis = {}, scenes = [];
-  let t = 0, state = 'walk';
+function choreograph(r, mood, names) {
+  const vis = {}, scenes = [], says = [];
+  let t = 0, state = 'walk', quietUntil = 0;
+  const say = (pool, at, d, pose) => {
+    if (at < quietUntil || !pool.length) return;
+    let text = pool[Math.floor(r() * pool.length)];
+    if (pool.length > 1 && text === says[says.length - 1]?.text) text = pool[(pool.indexOf(text) + 1) % pool.length];
+    says.push({ text, t: at, d, pose });
+    quietUntil = at + d + 1;
+  };
   const show = (el, d) => { (vis[el] ||= []).push([t, t + d]); };
   const hold = (el, d, tailEl) => { show(el, d); if (tailEl) show(tailEl, d); t += d; };
   const seq = els => els.forEach(el => hold(el, STEP));
@@ -34,13 +68,18 @@ function choreograph(r, mood, kinds) {
     return 'sit';
   };
 
-  kinds.forEach((kind, i) => {
-    const ledge = kind === 'ledge';
+  names.forEach((name, i) => {
+    const ledge = S.KIND[name] === 'ledge';
     const sc = { start: i ? t - FADE : -FADE, walks: [] };
     scenes.push(sc);
     const sitTail = ledge ? 'tailH' : 'tailG', up = ledge ? ['sh3', 'sh2', 'sh1'] : ['ss3', 'ss2', 'ss1'];
+    const chatter = () => {
+      const k = r();
+      return k < 0.35 && LINES.mood[mood]?.length ? LINES.mood[mood] : k < 0.6 ? LINES.scene[name] : LINES.sit;
+    };
     const walk = d => {
       if (state === 'sit') seq(up);
+      if (d > 2.5 && r() < 0.55) say(LINES.walk, t + 0.6, 2.2, 'walk');
       sc.walks.push([t, t + d]); show('walk', d); t += d; state = 'walk';
     };
     const sitDown = () => { if (state === 'walk') seq(up.slice().reverse()); state = 'sit'; };
@@ -48,11 +87,15 @@ function choreograph(r, mood, kinds) {
       sitDown();
       const end = t + d;
       let front = r() < 0.5;
-      while (t < end - 0.01) { hold(front ? 'sitFront' : 'sit', Math.min(end - t, rand(2.5, 5)), sitTail); front = !front; }
+      while (t < end - 0.01) {
+        const dd = Math.min(end - t, rand(2.5, 5));
+        if (dd > 2.2 && r() < 0.85) say(chatter(), t + 0.4, Math.min(2.8, dd - 0.6), 'sit');
+        hold(front ? 'sitFront' : 'sit', dd, sitTail); front = !front;
+      }
     };
     const actions = {
       sit: () => sitIdle(rand(6, 11)),
-      yawn: () => { sitIdle(rand(2.5, 4)); hold('yawn', 1.4, sitTail); sitIdle(rand(3, 5)); },
+      yawn: () => { sitIdle(rand(2.5, 4)); quietUntil = 0; say(LINES.yawn, t, 1.4, 'sit'); hold('yawn', 1.4, sitTail); sitIdle(rand(3, 5)); },
       lie: () => {
         sitIdle(rand(2, 3.5));
         const down = ledge ? ['sl1', 'sl2', 'sl3'] : ['sf1', 'sf2', 'sf3'];
@@ -61,7 +104,9 @@ function choreograph(r, mood, kinds) {
         let k = 0;
         while (t < end - 0.01) {
           const el = ledge ? (k % 2 ? 'ledgeFront' : 'ledge') : (k % 2 ? 'loafSnooze' : 'loaf');
-          hold(el, Math.min(end - t, rand(3, 6)), ledge ? 'tailL' : 'tailF');
+          const dd = Math.min(end - t, rand(3, 6));
+          if (dd > 2.2 && r() < 0.7) say(el === 'loafSnooze' ? LINES.snooze : LINES.lie, t + 0.5, Math.min(2.6, dd - 0.7), ledge ? 'ledge' : 'loaf');
+          hold(el, dd, ledge ? 'tailL' : 'tailF');
           k++;
         }
         seq(down.slice().reverse());
@@ -76,10 +121,10 @@ function choreograph(r, mood, kinds) {
       actions[a]();
       if (k < n - 1) walk(rand(2, 3.5));
     }
-    walk(rand(3.5, 4.5));
+    walk(rand(4.5, 5.5));
     sc.end = t;
   });
-  return { L: t, vis, scenes };
+  return { L: t, vis, scenes, says };
 }
 
 // ---------- keyframes ----------
@@ -99,6 +144,9 @@ function visKeyframes(name, wins, L) {
   }
   return `@keyframes ${name}{${kf.join('')}}.${name}{animation:${name} ${L.toFixed(2)}s steps(1,end) infinite}`;
 }
+const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+// Smoothstep from a to b over FADE seconds starting at t, as keyframe points.
+const ease = (t, a, b) => [0, 0.2, 0.4, 0.6, 0.8, 1].map(u => [t + u * FADE, a + (b - a) * u * u * (3 - 2 * u)]);
 // A linear keyframe track from [time, value] points (two points at the same time make a jump).
 function track(name, pts, L, fmt) {
   const kf = pts.map(([t, v]) => `${pct(t, L)}{${fmt(v)}}`);
@@ -161,13 +209,12 @@ function cycle(cls, frames, period, weights) {
 }
 
 // x, y: top-left of the viewport in the card. Returns { svg, css }.
-function renderStage({ x: VX, y: VY, seed, mood, bubble }) {
+function renderStage({ x: VX, y: VY, seed, mood, moodColor }) {
   const r = S.rng(seed);
   const all = Object.keys(S.SCENES);
   for (let i = all.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [all[i], all[j]] = [all[j], all[i]]; }
   const names = all.slice(0, PER_WALK);
-  const kinds = names.map(n => S.KIND[n]);
-  const plan = choreograph(r, mood, kinds);
+  const plan = choreograph(r, mood, names);
   const { L } = plan;
   const W = S.VW * CELL, H = S.VH * CELL;
   const sky = S.sky(r);
@@ -183,9 +230,9 @@ function renderStage({ x: VX, y: VY, seed, mood, bubble }) {
     const ops = i === 0
       ? [[0, 1], [sc.end, 1], [sc.end + 1e-3, 0], [L - FADE - 1e-3, 0], [L - FADE, 1], [L, 1]]
       : i === names.length - 1
-        ? [[0, 0], [sc.start, 0], [sc.start + FADE, 1], [L - FADE, 1], [L, 0]]
-        : [[0, 0], [sc.start, 0], [sc.start + FADE, 1], [sc.end, 1], [sc.end + 1e-3, 0], [L, 0]];
-    css += track(`sc${i}`, ops, L, v => `opacity:${v}`);
+        ? [[0, 0], ...ease(sc.start, 0, 1), ...ease(L - FADE, 1, 0)]
+        : [[0, 0], ...ease(sc.start, 0, 1), [sc.end, 1], [sc.end + 1e-3, 0], [L, 0]];
+    css += track(`sc${i}`, ops, L, v => `opacity:${+v.toFixed(3)}`);
     const layer = ([f, svg], k) => {
       if (f === null) return `<g transform="scale(${CELL})">${svg}</g>`;
       css += track(`c${i}_${k}`, cam.pts, L, x => `transform:translateX(${(-x * f * CELL).toFixed(1)}px)`);
@@ -229,12 +276,18 @@ function renderStage({ x: VX, y: VY, seed, mood, bubble }) {
       `<text class="zz" x="${catX + M.OX * CELL + 44 + i * 10}" y="${sy + 50 - i * 6}" font-size="${s}" font-weight="700" fill="#e8ecf8" style="animation-delay:${d}s">z</text>`).join('')}</g>`;
     css += '.zz{opacity:0;animation:zz 3.6s ease-out infinite}@keyframes zz{0%{opacity:0;transform:none}20%{opacity:.9}100%{opacity:0;transform:translate(14px,-22px)}}';
   }
-  if (bubble) {
-    const bw = [...bubble.text].length * 8 + 20, bx = catX + M.OX * CELL - bw / 2 + 20, byy = sy - 4;
-    extra += `<g class="bob"><rect x="${bx}" y="${byy}" width="${bw}" height="24" rx="8" fill="#16050d" fill-opacity=".85" stroke="${bubble.color}"/>
-<path d="M${bx + bw / 2 - 6} ${byy + 24} l6 8 l6 -8z" fill="${bubble.color}"/>
-<text x="${bx + bw / 2}" y="${byy + 16}" font-size="13" text-anchor="middle" fill="${bubble.color}">${bubble.text}</text></g>`;
-  }
+  // Speech bubbles pop up over her head, one line at a time.
+  plan.says.forEach((s, k) => {
+    const col = LINES.mood[mood]?.includes(s.text) ? moodColor : '#ffe0e8';
+    const [hx, hy] = HEADS[s.pose];
+    const cx = catX + (M.OX + hx) * CELL, by = sy + (M.TOP - hy - 10) * CELL - 34;
+    const bw = [...s.text].length * 8 + 20, bx = Math.max(6, Math.min(W - bw - 6, cx - bw / 2 + 12));
+    const end = Math.min(s.t + s.d, L - 0.01);
+    css += track(`say${k}`, [[0, 0], [s.t, 0], [s.t + 0.15, 1], [end - 0.2, 1], [end, 0], [L, 0]], L, v => `opacity:${v}`);
+    extra += `<g class="say${k}"><g class="bob"><rect x="${bx}" y="${by}" width="${bw}" height="24" rx="8" fill="#16050d" fill-opacity=".85" stroke="${col}"/>
+<path d="M${cx - 6} ${by + 24} l6 7 l6 -7z" fill="${col}"/>
+<text x="${bx + bw / 2}" y="${by + 16}" font-size="13" text-anchor="middle" fill="${col}">${esc(s.text)}</text></g></g>`;
+  });
 
   const svg = `<defs>${defs}<clipPath id="stage"><rect x="0" y="0" width="${W}" height="${H}" rx="6"/></clipPath></defs>
 <g transform="translate(${VX} ${VY})"><g clip-path="url(#stage)">

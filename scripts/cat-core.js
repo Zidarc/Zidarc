@@ -70,7 +70,7 @@ function renderCat(st, now) {
   const visits = Object.values(st.counts).reduce((a, b) => a + b, 0);
   // A new walk (scene order and choreography) every 3 hours, and whenever someone visits.
   const slot = Math.floor(now / 10800000);
-  const stage = renderStage({ x: SX, y: SY, seed: slot * 1000 + visits, mood: md, bubble: { text: esc(m.say), color: m.color } });
+  const stage = renderStage({ x: SX, y: SY, seed: slot * 1000 + visits, mood: md, moodColor: m.color });
   const row = (d, s) => `<g class="slide" style="animation-delay:${d}s">${s}</g>`;
   const key = (y, k) => `<text x="${RX}" y="${y}" fill="${C.key}" font-weight="700">${k}</text>`;
   const bar = (y, k, v, d) => key(y, k) + L.blockBar(VX, y, v, d, { n: 16 }) + `<text x="${VX + 234}" y="${y}" fill="${C.text}">${v}%</text>`;
