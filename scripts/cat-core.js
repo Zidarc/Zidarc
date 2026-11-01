@@ -68,9 +68,9 @@ function renderCat(st, now) {
   const last = st.recent[0];
   const friends = Object.keys(st.friends).length;
   const visits = Object.values(st.counts).reduce((a, b) => a + b, 0);
-  // A new scene every 3 hours; a new choreography whenever someone visits.
+  // A new walk (scene order and choreography) every 3 hours, and whenever someone visits.
   const slot = Math.floor(now / 10800000);
-  const stage = renderStage({ x: SX, y: SY, now, seed: slot * 1000 + visits, mood: md, bubble: { text: esc(m.say), color: m.color } });
+  const stage = renderStage({ x: SX, y: SY, seed: slot * 1000 + visits, mood: md, bubble: { text: esc(m.say), color: m.color } });
   const row = (d, s) => `<g class="slide" style="animation-delay:${d}s">${s}</g>`;
   const key = (y, k) => `<text x="${RX}" y="${y}" fill="${C.key}" font-weight="700">${k}</text>`;
   const bar = (y, k, v, d) => key(y, k) + L.blockBar(VX, y, v, d, { n: 16 }) + `<text x="${VX + 234}" y="${y}" fill="${C.text}">${v}%</text>`;
@@ -78,7 +78,7 @@ function renderCat(st, now) {
   const body = `
 ${T.command(70, 'cat ~/huna.status', 0.2, 0.8, 1)}
 <g class="fi" style="animation-delay:.3s">${stage.svg}</g>
-${row(1.1, `<text x="${SX}" y="362" font-weight="700" font-size="17"><tspan fill="${C.text}">${esc(st.name)}</tspan><tspan fill="${C.dim}"> · </tspan><tspan fill="${m.color}">${m.label}</tspan><tspan fill="${C.dim}" font-size="13" font-weight="400">  · ${stage.scene} · ${stage.tod}</tspan></text>`)}
+${row(1.1, `<text x="${SX}" y="362" font-weight="700" font-size="17"><tspan fill="${C.text}">${esc(st.name)}</tspan><tspan fill="${C.dim}"> · </tspan><tspan fill="${m.color}">${m.label}</tspan><tspan fill="${C.dim}" font-size="13" font-weight="400">  · out on her night walk</tspan></text>`)}
 ${row(1.2, bar(362, 'fullness', st.fullness, 1.4))}
 ${row(1.3, `<text x="${SX}" y="390" fill="${C.text}">fed ${st.counts.feed || 0}× · played ${st.counts.play || 0}× · petted ${st.counts.pet || 0}× · ${friends} friend${friends === 1 ? '' : 's'}</text>`)}
 ${row(1.3, bar(390, 'happiness', st.happiness, 1.5))}

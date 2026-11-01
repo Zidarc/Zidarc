@@ -1,93 +1,88 @@
-// Puts Huna in a scene and choreographs a loop: sit and watch, walk (the camera follows and the
-// background scrolls in parallax), lie down, groom, yawn, stretch. A seeded script is baked into CSS
-// keyframes that share one timeline, so each rebuild of the card plays a different short film.
+// Huna's night walk: she keeps walking to the right through a chain of scenes (the camera follows and the
+// background scrolls in parallax), and every so often she stops to sit, yawn or lie down. On a ledge she lies
+// with her tail hanging over the edge; on grass she curls into a loaf. While she walks, one scene crossfades
+// into the next. A seeded script is baked into CSS keyframes on one shared loop.
 const M = require('./cat-model');
 const S = require('./scenes');
 
 const CELL = 3;
-const WALK_T = 1; // seconds per stride cycle
+const WALK_T = 0.8; // seconds per stride cycle
 const SPEED = M.STRIDE / (M.DUTY * WALK_T); // cells per second, so planted paws don't slide
-const HOME = S.RANGE / 2;
 const STEP = 0.12; // seconds per in-between frame
+const FADE = 1.6; // scene crossfade, always while she's walking
 
 const WEIGHTS = {
-  normal: { idle: 4, walk: 2.2, lie: 1.2, groom: 1, yawn: 0.6, stretch: 0.6 },
-  happy: { idle: 2.5, walk: 3, lie: 0.5, groom: 1, yawn: 0.3, stretch: 1 },
-  hungry: { idle: 2, walk: 3, lie: 0.3, groom: 0.2, yawn: 0.4, stretch: 0.3 },
-  bored: { idle: 2, walk: 0.7, lie: 3, groom: 0.5, yawn: 1.2, stretch: 0.5 },
+  normal: { sit: 3, lie: 2, yawn: 0.7 },
+  happy: { sit: 3, lie: 1, yawn: 0.4 },
+  hungry: { sit: 3, lie: 0.6, yawn: 0.6 },
+  bored: { sit: 2, lie: 3, yawn: 1.2 },
+  sleepy: { sit: 1, lie: 4, yawn: 1.5 },
 };
 
-function choreograph(r, mood) {
-  const vis = {}, cam = [[0, HOME]], dir = [[0, 1]];
-  let t = 0, x = HOME, facing = 1;
+function choreograph(r, mood, kinds) {
+  const vis = {}, scenes = [];
+  let t = 0, state = 'walk';
   const show = (el, d) => { (vis[el] ||= []).push([t, t + d]); };
   const hold = (el, d, tailEl) => { show(el, d); if (tailEl) show(tailEl, d); t += d; };
   const seq = els => els.forEach(el => hold(el, STEP));
   const rand = (a, b) => a + r() * (b - a);
-
-  if (mood === 'sleepy') { hold('sleep', 14); return { L: t, vis, cam, dir }; }
-
-  const sitIdle = d => {
-    const end = t + d;
-    let front = false;
-    while (t < end - 0.01) {
-      hold(front ? 'sitFront' : 'sit', Math.min(end - t, rand(1.6, 4)), 'sitTail');
-      front = !front && r() < 0.6;
-    }
-  };
-  const turn = () => {
-    hold('sitFront', 0.45, 'sitTail');
-    facing = -facing; dir.push([t, facing]);
-    hold('sitFront', 0.6, 'sitTail');
-  };
-  const walkTo = target => {
-    if (Math.sign(target - x) !== facing) turn();
-    seq(['ss3', 'ss2', 'ss1']);
-    const d = Math.abs(target - x) / SPEED;
-    cam.push([t, x]); show('walk', d); t += d; x = target; cam.push([t, x]);
-    seq(['ss1', 'ss2', 'ss3']);
-  };
-  const actions = {
-    idle: () => sitIdle(rand(3, 7)),
-    walk: () => {
-      let target;
-      do target = Math.round(rand(0, S.RANGE)); while (Math.abs(target - x) < 25);
-      walkTo(target);
-      sitIdle(rand(1.5, 3));
-    },
-    lie: () => {
-      seq(['sl1', 'sl2', 'sl3']);
-      const end = t + rand(5, 11);
-      let front = false;
-      while (t < end - 0.01) { hold(front ? 'lieFront' : 'lie', Math.min(end - t, rand(2, 4.5)), 'lieTail'); front = !front && r() < 0.5; }
-      seq(['sl3', 'sl2', 'sl1']);
-    },
-    groom: () => hold('groom', rand(2.4, 4), 'sitTail'),
-    yawn: () => { hold('sit', 0.4, 'sitTail'); hold('yawn', 1.3, 'sitTail'); },
-    stretch: () => { seq(['st1', 'st2']); hold('stretch', 1.6); seq(['st2', 'st1']); },
-  };
   const W = WEIGHTS[mood] || WEIGHTS.normal;
   const pickAction = () => {
     let k = r() * Object.values(W).reduce((a, b) => a + b, 0);
     for (const [name, w] of Object.entries(W)) if ((k -= w) < 0) return name;
-    return 'idle';
+    return 'sit';
   };
 
-  sitIdle(rand(3, 5));
-  let last = 'idle';
-  while (t < 44) {
-    let a = pickAction();
-    if (a === last && a !== 'walk') a = pickAction();
-    actions[a](); last = a;
-  }
-  if (Math.abs(x - HOME) > 0.5) walkTo(HOME);
-  if (facing !== 1) turn();
-  sitIdle(rand(2, 3.5));
-  return { L: t, vis, cam, dir };
+  kinds.forEach((kind, i) => {
+    const ledge = kind === 'ledge';
+    const sc = { start: i ? t - FADE : -FADE, walks: [] };
+    scenes.push(sc);
+    const sitTail = ledge ? 'tailH' : 'tailG', up = ledge ? ['sh3', 'sh2', 'sh1'] : ['ss3', 'ss2', 'ss1'];
+    const walk = d => {
+      if (state === 'sit') seq(up);
+      sc.walks.push([t, t + d]); show('walk', d); t += d; state = 'walk';
+    };
+    const sitDown = () => { if (state === 'walk') seq(up.slice().reverse()); state = 'sit'; };
+    const sitIdle = d => {
+      sitDown();
+      const end = t + d;
+      let front = r() < 0.5;
+      while (t < end - 0.01) { hold(front ? 'sitFront' : 'sit', Math.min(end - t, rand(1.5, 3.5)), sitTail); front = !front; }
+    };
+    const actions = {
+      sit: () => sitIdle(rand(3, 6)),
+      yawn: () => { sitIdle(rand(1, 2)); hold('yawn', 1.3, sitTail); sitIdle(rand(1, 2)); },
+      lie: () => {
+        sitIdle(rand(1, 2));
+        const down = ledge ? ['sl1', 'sl2', 'sl3'] : ['sf1', 'sf2', 'sf3'];
+        seq(down);
+        const end = t + rand(5, mood === 'sleepy' || mood === 'bored' ? 11 : 8);
+        let k = 0;
+        while (t < end - 0.01) {
+          const el = ledge ? (k % 2 ? 'ledgeFront' : 'ledge') : (k % 2 ? 'loafSnooze' : 'loaf');
+          hold(el, Math.min(end - t, rand(2, 4)), ledge ? 'tailL' : 'tailF');
+          k++;
+        }
+        seq(down.slice().reverse());
+      },
+    };
+    walk(i ? rand(3, 5) : rand(1.5, 3));
+    const n = 1 + (r() < 0.5 ? 1 : 0);
+    for (let k = 0; k < n; k++) {
+      let a = pickAction();
+      if (k === n - 1 && !scenes.some(s => s.lay) && a !== 'lie' && r() < 0.6) a = 'lie';
+      if (a === 'lie') sc.lay = true;
+      actions[a]();
+      if (k < n - 1) walk(rand(2.5, 4));
+    }
+    walk(rand(3.5, 5));
+    sc.end = t;
+  });
+  return { L: t, vis, scenes };
 }
 
 // ---------- keyframes ----------
-const pct = (t, L) => `${+(t / L * 100).toFixed(3)}%`;
+const pct = (t, L) => `${+(Math.min(Math.max(t, 0), L) / L * 100).toFixed(3)}%`;
 function visKeyframes(name, wins, L) {
   wins = wins.slice().sort((a, b) => a[0] - b[0]);
   const merged = [];
@@ -103,38 +98,54 @@ function visKeyframes(name, wins, L) {
   }
   return `@keyframes ${name}{${kf.join('')}}.${name}{animation:${name} ${L.toFixed(2)}s steps(1,end) infinite}`;
 }
-function camKeyframes(name, cam, f, L) {
-  const kf = cam.map(([t, x]) => `${pct(t, L)}{transform:translateX(${(-x * f * CELL).toFixed(1)}px)}`);
-  kf.push(`100%{transform:translateX(${(-HOME * f * CELL).toFixed(1)}px)}`);
+// A linear keyframe track from [time, value] points (two points at the same time make a jump).
+function track(name, pts, L, fmt) {
+  const kf = pts.map(([t, v]) => `${pct(t, L)}{${fmt(v)}}`);
   return `@keyframes ${name}{${kf.join('')}}.${name}{animation:${name} ${L.toFixed(2)}s linear infinite}`;
 }
 
+// Camera position (cells travelled) of one scene over the loop. Scene 0 starts FADE seconds before the loop wraps.
+function cameraPoints(sc, L, first) {
+  const walks = sc.walks.map(([a, b]) => [a, b]);
+  if (first) walks.unshift([-FADE, 0]);
+  const pts = [];
+  let x = 0;
+  for (const [a, b] of walks) { pts.push([a, x]); x += (b - a) * SPEED; pts.push([b, x]); }
+  if (!first) return { pts: [[0, 0], ...pts, [L, x]], len: x };
+  // Shift the pre-roll to the end of the loop: hold at the far end, jump back, walk in again.
+  const shifted = pts.filter(([t]) => t >= 0);
+  return { pts: [[0, FADE * SPEED], ...shifted, [L - FADE - 1e-3, x], [L - FADE, 0], [L, FADE * SPEED]], len: x };
+}
+
 // ---------- frames ----------
-function tailVariants(base) {
+function sway(base, offs) {
+  return offs.map(o => { const p = { ...base, tail: base.tail.slice() }; p.tail[4] += o * 0.5; p.tail[6] += o; return p; });
+}
+function flick(base) {
   const b = base.tail.slice(), c = base.tail.slice();
   b[6] -= 1; b[7] += 2.2; c[6] -= 2; c[7] += 4; c[5] += 1;
-  return [base.tail, b, c].map(tail => ({ ...base, tail }));
+  return [base.tail, b, c, b].map(tail => ({ ...base, tail }));
 }
-function buildFrames(rim) {
+function buildFrames() {
   const P = M.POSES, F = {};
-  const full = (p, o) => M.frame(p, rim, o);
-  F.walk = Array.from({ length: 8 }, (_, i) => full(M.walkPose(i / 8)));
-  for (const k of ['sit', 'sitFront', 'yawn', 'lie', 'lieFront']) F[k] = full(P[k], { withTail: false });
-  F.groom = [full(P.groomA, { withTail: false }), full(P.groomB, { withTail: false })];
-  F.sleep = full(P.sleep);
-  F.stretch = full(P.stretch);
+  F.walk = Array.from({ length: 8 }, (_, i) => M.frame(M.walkPose(i / 8)));
+  for (const k of ['sit', 'sitFront', 'yawn', 'ledge', 'ledgeFront', 'loaf', 'loafSnooze']) F[k] = M.frame(P[k], { withTail: false });
   [1, 2, 3].forEach(i => {
-    F[`ss${i}`] = full(M.blend(P.stand, P.sit, i / 4));
-    F[`sl${i}`] = full(M.blend(P.sit, P.lie, i / 4));
+    F[`ss${i}`] = M.frame(M.blend(P.stand, P.sit, i / 4));
+    F[`sh${i}`] = M.frame(M.blend(P.stand, P.sitHang, i / 4));
+    F[`sl${i}`] = M.frame(M.blend(P.sitHang, P.ledge, i / 4));
+    F[`sf${i}`] = M.frame(M.blend(P.sit, P.loaf, i / 4));
   });
-  F.st1 = full(M.blend(P.sit, P.stretch, 0.33));
-  F.st2 = full(M.blend(P.sit, P.stretch, 0.66));
-  F.sitTail = tailVariants(P.sit).map(p => full(p, { tailOnly: true }));
-  F.lieTail = tailVariants(P.lie).map(p => full(p, { tailOnly: true }));
+  const tails = ps => ps.map(p => M.frame(p, { tailOnly: true }));
+  const pend = [0, 0.8, 1.5, 0.8, 0, -0.8, -1.5, -0.8];
+  F.tailG = tails(flick(P.sit));
+  F.tailH = tails(sway(P.sitHang, pend));
+  F.tailL = tails(sway(P.ledge, pend));
+  F.tailF = tails(flick(P.loaf));
   return F;
 }
 
-// Cycles a set of child frames on its own short loop (walk cycle, grooming licks, tail flicks).
+// Cycles child frames on their own short loop (walk cycle, tail sway and flicks).
 function cycle(cls, frames, period, weights) {
   const total = weights ? weights.reduce((a, b) => a + b, 0) : frames.length;
   let acc = 0, css = '';
@@ -148,87 +159,89 @@ function cycle(cls, frames, period, weights) {
   return { body, css };
 }
 
-function blinkWrap(f) {
-  return f.body + (f.blink ? `<g class="hb">${f.blink}</g>` : '');
-}
-
 // x, y: top-left of the viewport in the card. Returns { svg, css }.
-function renderStage({ x: VX, y: VY, now, seed, mood, bubble }) {
-  const tod = S.todOf(now);
+function renderStage({ x: VX, y: VY, seed, mood, bubble }) {
   const r = S.rng(seed);
-  const sceneName = S.pickScene(tod, S.rng(Math.floor(now / 10800000)));
-  const sc = S.SCENES[sceneName](tod, S.rng(Math.floor(now / 10800000) * 31 + 7));
-  const plan = choreograph(r, mood);
+  const names = Object.keys(S.SCENES);
+  for (let i = names.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [names[i], names[j]] = [names[j], names[i]]; }
+  const kinds = names.map(n => (n === 'meadow' ? 'ground' : 'ledge'));
+  const plan = choreograph(r, mood, kinds);
   const { L } = plan;
   const W = S.VW * CELL, H = S.VH * CELL;
-  let css = sc.css;
+  const sky = S.sky(r);
+  let css = sky.css, defs = sky.defs;
 
-  const layer = ([f, svg, raw], i) => {
-    if (raw) return svg;
-    css += camKeyframes(`cm${i}`, plan.cam, f, L);
-    return `<g class="cm${i}"><g transform="scale(${CELL})">${svg}</g></g>`;
-  };
-  const back = sc.layers.map(layer).join('\n');
-  const front = sc.fg.map((l, i) => layer(l, 100 + i)).join('\n');
+  // Scenes stack in order. Each fades in over the previous one while she walks; the last one fades out to reveal the first.
+  const scenesSvg = names.map((name, i) => {
+    const sc = plan.scenes[i];
+    const cam = cameraPoints(sc, L, i === 0);
+    const built = S.SCENES[name](r, cam.len);
+    css += built.css || '';
+    const ops = i === 0
+      ? [[0, 1], [sc.end, 1], [sc.end + 1e-3, 0], [L - FADE - 1e-3, 0], [L - FADE, 1], [L, 1]]
+      : i === names.length - 1
+        ? [[0, 0], [sc.start, 0], [sc.start + FADE, 1], [L - FADE, 1], [L, 0]]
+        : [[0, 0], [sc.start, 0], [sc.start + FADE, 1], [sc.end, 1], [sc.end + 1e-3, 0], [L, 0]];
+    css += track(`sc${i}`, ops, L, v => `opacity:${v}`);
+    const layer = ([f, svg], k) => {
+      css += track(`c${i}_${k}`, cam.pts, L, x => `transform:translateX(${(-x * f * CELL).toFixed(1)}px)`);
+      return `<g class="c${i}_${k}"><g transform="scale(${CELL})">${svg}</g></g>`;
+    };
+    const back = built.layers.map(layer).join('');
+    const front = built.fg.map((l, k) => layer(l, 10 + k)).join('') + (built.fixedFg || '');
+    return { back: `<g class="sc${i}">${back}</g>`, front: front && `<g class="sc${i}">${front}</g>` };
+  });
 
-  // Hungry: an empty bowl waits in front of her usual spot.
-  let bowl = '';
-  if (mood === 'hungry') {
-    const bx = (HOME + 40) * CELL + 150, by = sc.GY * CELL;
-    bowl = `<g class="cm${sc.layers.length - 1}"><ellipse cx="${bx}" cy="${by - 4}" rx="16" ry="5" fill="#2f5d8c"/><rect x="${bx - 16}" y="${by - 9}" width="32" height="5" fill="#3b6ea8"/><ellipse cx="${bx}" cy="${by - 9}" rx="16" ry="3" fill="#1d3550"/></g>`;
-  }
-
-  const F = buildFrames(S.RIM[tod]);
+  const F = buildFrames();
   const parts = [];
   const vis = (name, inner) => { css += visKeyframes(`v${name}`, plan.vis[name] || [], L); parts.push(`<g class="v${name}">${inner}</g>`); };
   const walk = cycle('wc', F.walk, WALK_T);
-  css += walk.css;
-  const groom = cycle('gr', F.groom.map(f => ({ body: f.body })), 0.9);
-  css += groom.css;
-  // Tail flicks: rest, lift, flick, lift.
-  const flick = ([a, b, c]) => [a, b, c, b];
-  const sitTail = cycle('tsa', flick(F.sitTail), 5.2, [16, 1, 2, 1]);
-  const lieTail = cycle('tla', flick(F.lieTail), 3.4, [9, 1, 2, 1]);
-  css += sitTail.css + lieTail.css;
-  if (plan.vis.walk) vis('walk', walk.body);
-  if (plan.vis.groom) vis('groom', groom.body);
-  for (const k of ['sit', 'sitFront', 'yawn', 'lie', 'lieFront', 'sleep', 'stretch', 'ss1', 'ss2', 'ss3', 'sl1', 'sl2', 'sl3', 'st1', 'st2'])
-    if (plan.vis[k]) vis(k, blinkWrap(F[k]));
-  if (plan.vis.sitTail) vis('sitTail', sitTail.body);
-  if (plan.vis.lieTail) vis('lieTail', lieTail.body);
-
-  const catX = 300, sy = sc.GY * CELL - M.ROWS * CELL;
-  const pivot = catX + M.OX * CELL;
-  css += `@keyframes face{${plan.dir.map(([t, d]) => `${pct(t, L)}{transform:scaleX(${d})}`).join('')}}.face{transform-origin:${pivot}px 0;animation:face ${L.toFixed(2)}s steps(1,end) infinite}`;
+  const pendW = [1, 1, 1, 1, 1, 1, 1, 1];
+  const tails = {
+    tailG: cycle('tg', F.tailG, 5.2, [16, 1, 2, 1]),
+    tailH: cycle('th', F.tailH, 3.6, pendW),
+    tailL: cycle('tl', F.tailL, 4.4, pendW),
+    tailF: cycle('tf', F.tailF, 4.6, [14, 1, 2, 1]),
+  };
+  css += walk.css + Object.values(tails).map(c => c.css).join('');
+  vis('walk', walk.body);
+  const withBlink = f => f.body + (f.blink ? `<g class="hb">${f.blink}</g>` : '');
+  for (const k of ['sit', 'sitFront', 'yawn', 'ledge', 'ledgeFront', 'loaf', 'loafSnooze',
+    'ss1', 'ss2', 'ss3', 'sh1', 'sh2', 'sh3', 'sl1', 'sl2', 'sl3', 'sf1', 'sf2', 'sf3'])
+    if (plan.vis[k]) vis(k, withBlink(F[k]));
+  for (const [k, c] of Object.entries(tails)) if (plan.vis[k]) vis(k, c.body);
   css += '.hb{opacity:0;animation:hb 4.7s steps(1,end) infinite}@keyframes hb{0%{opacity:0}91%{opacity:1}94%{opacity:0}}';
 
-  const shadow = `<ellipse cx="${catX + M.OX * CELL - 6}" cy="${sc.GY * CELL + 1}" rx="54" ry="4" fill="#000" opacity=".28"/>`;
-  const cat = `<g class="face"><g transform="translate(${catX} ${sy}) scale(${CELL})" shape-rendering="crispEdges">${parts.join('\n')}</g></g>`;
+  const catX = 300, sy = S.GY * CELL - M.TOP * CELL;
+  const shadow = `<ellipse cx="${catX + M.OX * CELL - 6}" cy="${S.GY * CELL + 1}" rx="42" ry="3" fill="#000" opacity=".35"/>`;
+  const cat = `<g transform="translate(${catX} ${sy}) scale(${CELL})" shape-rendering="crispEdges">${parts.join('\n')}</g>`;
 
+  // Z's float up whenever she's lying down and sleepy.
   let extra = '';
   if (mood === 'sleepy') {
-    extra = [[11, 0], [14, 1.2], [17, 2.4]].map(([s, d], i) =>
-      `<text class="zz" x="${catX + M.OX * CELL + 50 + i * 10}" y="${sy + 50 - i * 6}" font-size="${s}" font-weight="700" fill="#e8ecf8" style="animation-delay:${d}s">z</text>`).join('');
+    const lying = ['ledge', 'ledgeFront', 'loaf', 'loafSnooze'].flatMap(k => plan.vis[k] || []);
+    css += visKeyframes('vzz', lying, L);
+    extra += `<g class="vzz">${[[11, 0], [14, 1.2], [17, 2.4]].map(([s, d], i) =>
+      `<text class="zz" x="${catX + M.OX * CELL + 44 + i * 10}" y="${sy + 50 - i * 6}" font-size="${s}" font-weight="700" fill="#e8ecf8" style="animation-delay:${d}s">z</text>`).join('')}</g>`;
     css += '.zz{opacity:0;animation:zz 3.6s ease-out infinite}@keyframes zz{0%{opacity:0;transform:none}20%{opacity:.9}100%{opacity:0;transform:translate(14px,-22px)}}';
   }
   if (bubble) {
-    const bw = [...bubble.text].length * 8 + 20, bx = catX + M.OX * CELL - bw / 2 + 20, byy = sy - 6;
+    const bw = [...bubble.text].length * 8 + 20, bx = catX + M.OX * CELL - bw / 2 + 20, byy = sy - 4;
     extra += `<g class="bob"><rect x="${bx}" y="${byy}" width="${bw}" height="24" rx="8" fill="#16050d" fill-opacity=".85" stroke="${bubble.color}"/>
 <path d="M${bx + bw / 2 - 6} ${byy + 24} l6 8 l6 -8z" fill="${bubble.color}"/>
 <text x="${bx + bw / 2}" y="${byy + 16}" font-size="13" text-anchor="middle" fill="${bubble.color}">${bubble.text}</text></g>`;
   }
 
-  const svg = `<defs>${sc.defs}<clipPath id="stage"><rect x="0" y="0" width="${W}" height="${H}" rx="6"/></clipPath></defs>
+  const svg = `<defs>${defs}<clipPath id="stage"><rect x="0" y="0" width="${W}" height="${H}" rx="6"/></clipPath></defs>
 <g transform="translate(${VX} ${VY})"><g clip-path="url(#stage)">
-${sc.back}
-${back}
-${bowl}
+${sky.svg}
+${scenesSvg.map(s => s.back).join('\n')}
 ${shadow}
 ${cat}
-${front}
+${scenesSvg.map(s => s.front).join('\n')}
 ${extra}
 </g><rect x=".5" y=".5" width="${W - 1}" height="${H - 1}" rx="6" fill="none" stroke="#ff2266" stroke-opacity=".45"/></g>`;
-  return { svg, css, scene: sceneName, tod, L };
+  return { svg, css, L };
 }
 
 module.exports = { renderStage };
