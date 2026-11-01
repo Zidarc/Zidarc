@@ -90,7 +90,8 @@ const CAT = [
   '.OFFOFFFFOFFO.',
   '.OOOOOOOOOOOO.',
 ];
-const CAT_COL = { O: C.key, F: C.fur, E: C.fur, P: C.pink, N: C.pink, W: C.chest };
+// Black fur with a cool grey rim so she still reads on the dark terminal.
+const CAT_COL = { O: '#4a4d60', F: '#141419', E: '#141419', P: '#5a2f3c', N: '#6a3646', W: '#1e1e26' };
 // Two tail frames (columns 12..18, rows 11..17) swapped for a pixel-art swish.
 const TAIL_A = ['....O..', '...OFO.', '...OFO.', '..OFFO.', '.OFFO..', 'OFFO...', 'OOO....'];
 const TAIL_B = ['.......', '.....OO', '....OFO', '...OFO.', '.OOFFO.', 'OFFFO..', 'OOOO...'];

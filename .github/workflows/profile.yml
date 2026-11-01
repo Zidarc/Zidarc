@@ -1,8 +1,8 @@
-# Refreshes stats, activity feed, quote of the day and Huna's mood every 6 hours.
+# Refreshes stats, activity feed, quote of the day, Huna's mood and her scene every 3 hours.
 name: refresh profile
 on:
   schedule:
-    - cron: '17 */6 * * *'
+    - cron: '17 */3 * * *'
   workflow_dispatch:
   push:
     paths: ['scripts/**', '.github/workflows/profile.yml']
