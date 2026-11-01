@@ -103,9 +103,14 @@ function catSprite({ x, y, P, mood = 'normal', revealAt = null }) {
   const tx = x + 12 * P, ty = y + 11 * P;
   const tail = `<g class="fa">${pixels(TAIL_A, tx, ty, P, CAT_COL)}</g><g class="fb">${pixels(TAIL_B, tx, ty, P, CAT_COL)}</g>`;
   const wt = Math.max(2, Math.round(P / 4));
-  const whiskers = [8, 9].map(r =>
+  const whiskers = '<g class="wh">' + [8, 9].map(r =>
     `<rect x="${x - 2 * P}" y="${y + r * P + (P - wt) / 2}" width="${2 * P}" height="${wt}" fill="${C.dim}"/>` +
-    `<rect x="${x + 14 * P}" y="${y + r * P + (P - wt) / 2}" width="${2 * P}" height="${wt}" fill="${C.dim}"/>`).join('');
+    `<rect x="${x + 14 * P}" y="${y + r * P + (P - wt) / 2}" width="${2 * P}" height="${wt}" fill="${C.dim}"/>`).join('') + '</g>';
+  // Ears (rows 0..2) get their own groups so a card can twitch them; the rest is drawn as one grid.
+  const half = left => CAT.slice(0, 3).map(row => [...row].map((ch, c) => (c < 7) === left ? ch : '.').join(''));
+  const ears = [['earL', true], ['earR', false]].map(([cls, left]) =>
+    `<g class="${cls}">${pixels(half(left), x, y, P, CAT_COL, (s, r) => wrap(r, s))}</g>`).join('\n');
+  const head = pixels(CAT.slice(3), x, y + 3 * P, P, CAT_COL, (s, r) => wrap(r + 3, s));
   let eyes;
   switch (mood) {
     case 'happy': eyes = px(3, 6, 2, 1, C.gold) + px(9, 6, 2, 1, C.gold) + px(2, 8, 1, 1, C.pink) + px(11, 8, 1, 1, C.pink); break;
@@ -114,7 +119,8 @@ function catSprite({ x, y, P, mood = 'normal', revealAt = null }) {
     default: eyes = `<g class="blink">${px(3, 6, 2, 2, C.gold)}${px(9, 6, 2, 2, C.gold)}<g class="look">${px(4, 6, 1, 2, C.bg)}${px(10, 6, 1, 2, C.bg)}</g></g>`;
   }
   return `<g shape-rendering="crispEdges">${wrap(11, tail)}
-${pixels(CAT, x, y, P, CAT_COL, (s, r) => wrap(r, s))}
+${ears}
+${head}
 ${wrap(8, whiskers)}${wrap(6, eyes)}</g>`;
 }
 

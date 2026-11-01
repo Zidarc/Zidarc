@@ -58,9 +58,26 @@ const MOODS = {
   sleepy: { label: 'asleep', say: 'zzz…', color: C.dim },
 };
 
+const FISH = ['..XXX...X', '.XXXXX.XX', 'XOXXXXXXX', '.XXXXX.XX', '..XXX...X'];
+
+// Mood-specific props drawn around the sprite (sprite at x=70, y=104, 14×18 cells of 8px).
+function moodFx(md) {
+  switch (md) {
+    case 'happy': return [[36, 0], [106, 0.9], [134, 1.8]].map(([x, d]) =>
+      `<g class="float" style="animation-delay:${(2 + d).toFixed(1)}s">${L.pixels(L.HEART, x, 98, 3, { X: C.key })}</g>`).join('\n');
+    case 'sleepy': return [[11, 0], [14, 1.2], [17, 2.4]].map(([s, d], i) =>
+      `<text class="zz" x="${30 + i * 10}" y="${116 - i * 6}" font-size="${s}" font-weight="700" fill="${C.text}" style="animation-delay:${(2 + d).toFixed(1)}s">z</text>`).join('\n');
+    case 'hungry': return `<g class="flop">${L.pixels(FISH, 246, 136, 3, { X: C.gold, O: C.bg })}</g>`;
+    case 'bored': return `<g class="roll"><circle cx="262" cy="238" r="10" fill="${C.pink}"/>
+<path d="M254 232 q8 6 16 0 M253 240 q9 6 18 0 M258 229 q-4 9 2 18" stroke="${C.bg}" stroke-width="1.5" fill="none"/></g>`;
+    default: return '';
+  }
+}
+
 function renderCat(st, now) {
   const W = 900, H = 290, P = 8;
-  const m = MOODS[mood(st, now)];
+  const md = mood(st, now), m = MOODS[md];
+  const motion = { happy: 'hop', hungry: 'growl' }[md] || '';
   const T = L.typer();
   const IX = 360, VX = IX + 11 * CW;
   const last = st.recent[0];
@@ -71,7 +88,11 @@ function renderCat(st, now) {
 
   const body = `
 ${T.command(74, 'cat ~/huna.status', 0.2, 0.8, 1)}
-<g class="fi" style="animation-delay:1s">${L.catSprite({ x: 70, y: 104, P, mood: mood(st, now) })}</g>
+<g class="fi" style="animation-delay:1s">
+  <ellipse class="shadow" cx="126" cy="252" rx="62" ry="5" fill="${C.key}" opacity=".18"/>
+  <g class="${motion}"><g class="breathe${md === 'sleepy' ? ' slow' : ''}">${L.catSprite({ x: 70, y: 104, P, mood: md })}</g></g>
+</g>
+${moodFx(md)}
 <g class="fi bob" style="animation-delay:1.3s">
   <rect x="200" y="96" width="${bubbleW}" height="26" rx="8" fill="${C.bar}" stroke="${m.color}"/>
   <path d="M200 112 l-10 6 l10 -1z" fill="${m.color}"/>
@@ -87,6 +108,30 @@ ${row(262, 1.6, `<text x="${IX}" y="262" fill="${C.pink}">↓ press a button · 
   const css = L.catCss(P, 2) + `
 .bob{animation:fadein .2s 1.3s ease-out both, bob 2.4s 1.5s ease-in-out infinite}
 @keyframes bob{50%{transform:translateY(-3px)}}
+.breathe{transform-box:fill-box;transform-origin:50% 100%;animation:breathe 2.6s ease-in-out infinite}
+.breathe.slow{animation-duration:4.2s}
+@keyframes breathe{50%{transform:scale(1.015,1.035)}}
+.earL,.earR{transform-box:fill-box;transform-origin:50% 100%}
+.earL{animation:earL 5.2s 2.2s infinite}
+.earR{animation:earR 6.7s 3.4s infinite}
+@keyframes earL{0%,88%,100%{transform:none}91%{transform:rotate(-14deg)}94%{transform:rotate(4deg)}}
+@keyframes earR{0%,90%,100%{transform:none}93%{transform:rotate(14deg)}96%{transform:rotate(-4deg)}}
+.wh{animation:wh 3.8s 2s infinite}
+@keyframes wh{0%,84%,100%{transform:none}87%{transform:translateY(-2px)}90%{transform:translateY(1px)}}
+.hop{animation:hop 3.2s 2s ease-in-out infinite}
+@keyframes hop{0%,62%,100%{transform:none}70%{transform:translateY(3px)}80%{transform:translateY(-14px)}90%{transform:translateY(1px)}}
+.shadow{transform-box:fill-box;transform-origin:center}
+${md === 'happy' ? '.shadow{animation:squash 3.2s 2s ease-in-out infinite}\n@keyframes squash{0%,62%,100%{transform:none}80%{transform:scale(.7);opacity:.08}}' : ''}
+.growl{animation:growl 3s 2s infinite}
+@keyframes growl{0%,84%,100%{transform:none}86%,90%,94%{transform:translateX(-2px)}88%,92%,96%{transform:translateX(2px)}}
+.float{opacity:0;animation:float 2.7s ease-out infinite}
+@keyframes float{0%{opacity:0;transform:none}15%{opacity:1}100%{opacity:0;transform:translate(6px,-14px)}}
+.zz{opacity:0;animation:zz 3.6s ease-out infinite}
+@keyframes zz{0%{opacity:0;transform:none}20%{opacity:.9}100%{opacity:0;transform:translate(14px,-22px)}}
+.flop{transform-box:fill-box;transform-origin:center;animation:flop 1.6s 2s ease-in-out infinite}
+@keyframes flop{0%,100%{transform:translateY(0) rotate(-12deg)}50%{transform:translateY(-6px) rotate(12deg)}}
+.roll{transform-box:fill-box;transform-origin:center;animation:roll 4s 2s ease-in-out infinite alternate}
+@keyframes roll{from{transform:translateX(0) rotate(0)}to{transform:translateX(64px) rotate(400deg)}}
 ${T.css()}`;
   return L.chrome({ w: W, h: H, title: `${st.name.toLowerCase()}.exe — status`, body, css, emberCount: 8, seed: 41, label: 'cat' });
 }
