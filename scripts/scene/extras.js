@@ -94,7 +94,7 @@ function weatherFx(r, kind, day) {
     const a = S.fall('wsA', r, 120, ['#ffffff|0.8', '#dfe8ff|0.6'], 11, -14);
     fx.front = a.svg; fx.defs = a.defs; fx.css = a.css;
   } else if (kind === 'fog') {
-    fx.front = [0, 1, 2].map(i => `<rect class="fog fog${i}" x="-${W}" y="${60 + i * 46}" width="${W * 3}" height="${36 + i * 10}" fill="${day ? '#ffffff' : '#aab4cc'}" opacity="${0.13 + i * 0.04}"/>`).join('') + `<rect width="${W}" height="${H}" fill="${day ? '#eef2f6' : '#8890a8'}" opacity="${day ? 0.16 : 0.08}"/>`;
+    fx.front = [0, 1, 2].map(i => `<rect class="fog fog${i}" x="-${W}" y="${60 + i * 46}" width="${W * 3}" height="${36 + i * 10}" fill="${day ? '#ffffff' : '#8a94b0'}" opacity="${(day ? 0.05 : 0.06) + i * (day ? 0.02 : 0.025)}"/>`).join('') + `<rect width="${W}" height="${H}" fill="${day ? '#eef2f6' : '#6a7290'}" opacity="${day ? 0.03 : 0.04}"/>`;
     fx.css = '.fog{animation:fog 40s ease-in-out infinite alternate}.fog1{animation-duration:55s}.fog2{animation-duration:33s}@keyframes fog{to{transform:translateX(220px)}}';
   } else if (kind === 'cloudy') {
     fx.back = dim(day ? 0.25 : 0.2);
