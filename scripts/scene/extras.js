@@ -110,7 +110,7 @@ function season(now, birthday) {
   if (md >= '12-31' || md <= '01-02') return { id: 'newyear', hat: 'party', label: '✨ happy new year' };
   if (EID.some(e => { const dd = (new Date(ymd) - new Date(e)) / 86400000; return dd >= -1 && dd <= 2; })) return { id: 'eid', hat: 'cap', label: '☪ eid mubarak' };
   if (md >= '08-13' && md <= '08-15') return { id: 'azadi', hat: null, label: '♥ jashn-e-azadi' };
-  if (md >= '10-15' && md <= '11-05') return { id: 'halloween', hat: 'witch', label: '🎃 spooky season' };
+  if (md >= '10-15' && md <= '10-31') return { id: 'halloween', hat: 'witch', label: '🎃 spooky season' };
   if (md >= '12-01') return { id: 'winter', hat: md >= '12-15' ? 'santa' : null, label: '❄ winter' };
   return null;
 }
