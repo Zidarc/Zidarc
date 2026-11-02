@@ -42,11 +42,8 @@ function renderHero() {
   const blocks = L.RAMP.map((c, i) =>
     `<rect class="fi" style="animation-delay:${(blocksT + i * 0.06).toFixed(2)}s" x="${IX + i * 28}" y="${blockY}" width="26" height="16" fill="${c}"/>`).join('');
 
-  const barX = X0 + 22 * CW;
   const output = `
-${L.show(PET_T, `<text x="${X0}" y="${L3}" textLength="${20 * CW}" lengthAdjust="spacing" xml:space="preserve"><tspan fill="${C.key}">♥</tspan><tspan fill="${C.text}"> purrrr~  happiness</tspan></text>`)}
-${L.blockBar(barX, L3, 100, PET_T + 0.1, { n: 10, w: 9, gap: 3, h: 11 })}
-${L.show(PET_T + 0.85, `<text x="${barX + 128}" y="${L3}" fill="${C.text}" font-weight="700">100%</text>`)}
+${L.show(PET_T, `<text x="${X0}" y="${L3}" xml:space="preserve"><tspan fill="${C.key}">♥</tspan><tspan fill="${C.text}"> purrrr~</tspan></text>`)}
 ${L.show(PET_T + 1.1, `<text x="${X0}" y="${L4}" fill="${C.dim}">welcome to my profile. scroll down, the cat insists.</text>`)}
 ${L.show(PET_T + 1.4, L.prompt(L5) + L.cursor(X0 + PROMPT_W, L5))}`;
 
