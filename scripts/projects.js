@@ -2,11 +2,12 @@
 const L = require('./lib');
 const { C, CW, X0, esc, wrap } = L;
 
+// Matches the pinned repos on github.com/Zidarc.
 const PROJECTS = [
-  ['recursion-hell', 'Competitive puzzle platform with a Stranger Things aesthetic. Graph-based puzzles, a live leaderboard on Supabase Realtime, ember particles and glassmorphism UI.', ['Node.js', 'TypeScript', 'React', 'Supabase']],
-  ['bmp-editor', '24-bit BMP image processor in C with a Raylib GUI. Binary file I/O, manual memory management and image processing, no image libraries.', ['C', 'Raylib', 'Binary I/O']],
-  ['synergy', 'Real-time stock exchange simulator with sub-second updates across 300+ transactions. Admin dashboard cut oversight by 40%, schemas cut data errors by 30%.', ['React', 'Supabase', 'WebSockets']],
-  ['pixel-town', 'Top-down pixel art RPG built from scratch in C++ and Raylib. NPC dialogue system, mini-game state machine and hand-made world assets.', ['C++', 'Raylib', 'Pixel Art']],
+  ['cyber-loop', "Real-time team puzzle game made for DevDay'26. Teams race through graph-based puzzles on a live Supabase Realtime leaderboard, with ember particles and a glassmorphism UI.", ['React', 'Vite', 'TypeScript', 'Express', 'Supabase']],
+  ['portfolio', 'Personal portfolio site showcasing my projects and skills. Built for the ICT project at FAST NUCES Karachi.', ['TypeScript', 'React', 'CSS']],
+  ['ishara', 'AI campus accessibility app for visually and hearing-impaired students: real-time AR wayfinding and adaptive safety alerts where static, single-sense infrastructure fails.', ['Python', 'AI', 'C#', 'AR']],
+  ['zidarc', 'This profile. Pixel-art cards rebuilt by GitHub Actions every 3 hours, and Huna, a cat you can feed by opening an issue. No server: the repo is her database.', ['Node.js', 'SVG', 'GitHub Actions']],
 ];
 
 function renderProjects() {

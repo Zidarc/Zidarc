@@ -12,7 +12,9 @@
 
 <img src="./assets/h-projects.svg" alt="Projects" width="100%" />
 
-<img src="./assets/projects.svg" alt="ls -l ~/projects: Recursion Hell, BMP Image Editor, Synergy, Pixel Town" width="100%" />
+<img src="./assets/projects.svg" alt="ls -l ~/projects: Cyber-Loop, Portfolio, Ishara, Zidarc" width="100%" />
+
+<sub><a href="https://github.com/Zidarc/Cyber-Loop">cyber-loop</a> · <a href="https://github.com/Zidarc/Portfolio">portfolio</a> · <a href="https://github.com/Zidarc/Ishara">ishara</a> · <a href="https://github.com/Zidarc/Zidarc">zidarc</a></sub>
 
 </div>
 
