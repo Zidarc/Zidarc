@@ -223,7 +223,23 @@ function walkPose(ph) {
   return p;
 }
 
-function draw(p, { shut = false, withTail = true, tailOnly = false } = {}) {
+// Hats for parties and holidays, top row first; the bottom row sits on top of her head between the ears.
+const HATS = {
+  party: ['...y...', '..yYy..', '...k...', '..kkk..', '..ccc..', '.kkkkk.', '.ccccc.', 'kkkkkkk'],
+  witch: ['.......VV....', '......vV.....', '.....vvV.....', '....vvvV.....', '....vvvvV....', '....ooooo....', '...vvvvvvV...', 'VvvvvvvvvvvvV'],
+  santa: ['........WW', '......rRWW', '....rrrR..', '...rrrrr..', '..rrrrrr..', '.WWWWWWWW.', 'WWWWWWWWWW'],
+  cap: ['...WWW...', '.WYWYWYW.', 'YyyyyyyyY'],
+};
+function hatOn(R, [hx, hy], mode, name) {
+  const rows = HATS[name];
+  if (!rows) return;
+  const cx = isFront(mode) ? Math.floor(hx) + 0.5 : hx + 0.3, base = hy + 4.6;
+  rows.forEach((row, i) => [...row].forEach((ch, j) => {
+    if (ch !== '.') R.dot(cx - (row.length - 1) / 2 + j, base + (rows.length - 1 - i), ch);
+  }));
+}
+
+function draw(p, { shut = false, withTail = true, tailOnly = false, hat = null } = {}) {
   const R = raster();
   if (tailOnly) { tail(R, p.tail, p.tailR); R.rim(); return { g: R.g, whiskers: [] }; }
   hindLeg(R, p.hF, true);
@@ -239,6 +255,7 @@ function draw(p, { shut = false, withTail = true, tailOnly = false } = {}) {
   if (withTail && p.tailFront) tail(R, p.tail, p.tailR);
   R.rim();
   const whiskers = face(R, p.head, p.mode, shut);
+  if (hat) hatOn(R, p.head, p.mode, hat);
   return { g: R.g, whiskers };
 }
 
@@ -246,9 +263,11 @@ function draw(p, { shut = false, withTail = true, tailOnly = false } = {}) {
 const PAL = {
   0: '#0a0a10', 1: '#13131b', 2: '#1c1c27', 3: '#292a38', 4: '#6a72a6',
   i: '#c9708a', n: '#e08a9e', e: '#f4c34f', E: '#d6942c', w: '#ffffff', p: '#140c08', m: '#b5475f', b: '#6e3046',
+  // hats
+  r: '#d8344c', R: '#962033', y: '#ffd34d', Y: '#d89a26', v: '#5b3a8c', V: '#36214f', o: '#ff8a2a', W: '#eef0f6', k: '#ff6fa8', c: '#59d0e8',
 };
 
-function paths(g, only = null) {
+function paths(g, only = null, pal = PAL) {
   const by = {};
   g.forEach((row, r) => {
     let c = 0;
@@ -260,7 +279,7 @@ function paths(g, only = null) {
       (by[ch] ||= []).push(`M${s} ${r}h${c - s}v1h${s - c}z`);
     }
   });
-  return Object.entries(by).map(([ch, d]) => `<path fill="${PAL[ch]}" d="${d.join('')}"/>`).join('');
+  return Object.entries(by).map(([ch, d]) => `<path fill="${pal[ch] || PAL[ch]}" d="${d.join('')}"/>`).join('');
 }
 
 // One frame: body, plus an eyelid overlay that a blink animation can flash on top.
@@ -269,13 +288,13 @@ function frame(pose, opts = {}) {
   let blink = '';
   if (!opts.tailOnly && (pose.mode === 'profile' || pose.mode === 'front')) {
     const shut = draw(pose, { ...opts, shut: true });
-    blink = paths(shut.g, (r, c) => shut.g[r][c] !== open.g[r][c]);
+    blink = paths(shut.g, (r, c) => shut.g[r][c] !== open.g[r][c], opts.pal);
   }
   const wh = open.whiskers.map(([a, b, c, d]) => `M${(a + OX).toFixed(1)} ${(TOP - b).toFixed(1)}L${(c + OX).toFixed(1)} ${(TOP - d).toFixed(1)}`).join('');
   return {
-    body: paths(open.g) + (wh ? `<path d="${wh}" stroke="#b8bccc" stroke-width=".3" opacity=".5" fill="none"/>` : ''),
+    body: paths(open.g, null, opts.pal) + (wh ? `<path d="${wh}" stroke="#b8bccc" stroke-width=".3" opacity=".5" fill="none"/>` : ''),
     blink,
   };
 }
 
-module.exports = { OX, TOP, ROWS, COLS, POSES, STAND, SIT, LEDGE, LOAF, HANG, STRIDE, DUTY, blend, walkPose, frame };
+module.exports = { OX, TOP, ROWS, COLS, PAL, HATS, draw, POSES, STAND, SIT, LEDGE, LOAF, HANG, STRIDE, DUTY, blend, walkPose, frame };

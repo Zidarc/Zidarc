@@ -1,8 +1,8 @@
 {
   "name": "Huna",
-  "fullness": 24,
-  "happiness": 69,
-  "updated": "2026-11-02T21:45:22.945Z",
+  "fullness": 22,
+  "happiness": 67,
+  "updated": "2026-11-02T23:21:15.033Z",
   "lastInteraction": "2026-11-01T14:26:47.810Z",
   "counts": {
     "feed": 18,
@@ -45,5 +45,42 @@
       "action": "feed",
       "at": "2026-11-01T11:09:17.104Z"
     }
-  ]
+  ],
+  "ids": {
+    "Zidarc": 1,
+    "Syed-Muhammad-Abbas-7": 2,
+    "HunaBuilds": 3
+  },
+  "joined": {
+    "Zidarc": "2026-11-01T11:09:17.104Z",
+    "Syed-Muhammad-Abbas-7": "2026-11-02T21:45:22.945Z",
+    "HunaBuilds": "2026-11-01T14:26:30.394Z"
+  },
+  "badges": {
+    "Zidarc": [
+      "og"
+    ],
+    "Syed-Muhammad-Abbas-7": [
+      "og"
+    ],
+    "HunaBuilds": [
+      "og"
+    ]
+  },
+  "streaks": {},
+  "daily": {
+    "day": null,
+    "n": 0
+  },
+  "code": {
+    "credited": {},
+    "lastDay": null
+  },
+  "birthday": "",
+  "weather": {
+    "code": 45,
+    "temp": 23.5,
+    "isDay": false,
+    "at": "2026-11-02T23:21:15.033Z"
+  }
 }

@@ -20,13 +20,16 @@
 
 <img src="./assets/h-huna.svg" alt="Say hi to Huna" width="100%" />
 
-<img src="./assets/cat.svg" alt="Huna the cat's live status" width="100%" />
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="./assets/cat-day.svg" />
+  <img src="./assets/cat.svg" alt="Huna the cat's live status" width="100%" />
+</picture>
 
 <a href="https://github.com/Zidarc/Zidarc/issues/new?title=cat%7Cfeed&body=Just%20press%20%22Create%22%20and%20Huna%20gets%20a%20fish%20%F0%9F%90%9F"><img src="./assets/btn-feed.svg" alt="feed()" height="48" /></a>
 <a href="https://github.com/Zidarc/Zidarc/issues/new?title=cat%7Cplay&body=Just%20press%20%22Create%22%20and%20Huna%20gets%20a%20yarn%20ball%20%F0%9F%A7%B6"><img src="./assets/btn-play.svg" alt="play()" height="48" /></a>
 <a href="https://github.com/Zidarc/Zidarc/issues/new?title=cat%7Cpet&body=Just%20press%20%22Create%22%20and%20Huna%20gets%20pets%20%F0%9F%90%BE"><img src="./assets/btn-pet.svg" alt="pet()" height="48" /></a>
 
-<sub>Huna gets hungry and bored over time and sleeps at night (PKT). Her mood is real: she lives in <code>cat/state.json</code>.</sub>
+<sub>Huna gets hungry and bored over time and sleeps at night (PKT). My commits feed her too. When it rains in Karachi it rains on her walk, and if 10 people visit in a day she throws a party. Every visitor gets a pixel avatar on her wall and a sticker of their own. Her mood is real: she lives in <code>cat/state.json</code>. Rumour has it she knows a couple of secret words… 👀</sub>
 
 <img src="./assets/visitors.svg" alt="Huna's visitor log and best friends" width="100%" />
 

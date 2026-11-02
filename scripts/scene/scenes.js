@@ -20,6 +20,7 @@ const toHex = a => '#' + a.map(v => Math.max(0, Math.min(255, Math.round(v))).to
 const mix = (a, b, t) => { const B = hex(b); return toHex(hex(a).map((v, i) => v + (B[i] - v) * t)); };
 
 const SKY = ['#04050c', '#070a17', '#0b1022', '#10172e', '#161f3b'];
+const DAY_SKY = ['#4f98dc', '#62a6e4', '#78b5ea', '#90c4ef', '#aad3f2'];
 const HORIZON = SKY[4];
 const LIGHTS = ['#ffcf73', '#ffe3a1', '#f2b257', '#fff0cc'];
 
@@ -50,35 +51,41 @@ function canvas() {
 }
 
 // Night sky shared by every scene: dithered bands, stars, a moon and slow clouds.
-function sky(r) {
-  const cv = canvas(), H = [14, 14, 16, 18, 18];
+// The day version (for light-mode viewers) swaps in blue bands, a sun and white clouds but uses the same random draws.
+function sky(r, day = false) {
+  const cv = canvas(), H = [14, 14, 16, 18, 18], BANDS = day ? DAY_SKY : SKY;
   let defs = '', y = 0;
-  SKY.forEach((c, i) => {
+  BANDS.forEach((c, i) => {
     cv.rect(0, y, VW, H[i], c);
     if (i) {
-      defs += `<pattern id="dz${i}" width="2" height="2" patternUnits="userSpaceOnUse"><rect width="2" height="2" fill="${SKY[i - 1]}"/><rect width="1" height="1" fill="${c}"/><rect x="1" y="1" width="1" height="1" fill="${c}"/></pattern>`;
+      defs += `<pattern id="dz${i}" width="2" height="2" patternUnits="userSpaceOnUse"><rect width="2" height="2" fill="${BANDS[i - 1]}"/><rect width="1" height="1" fill="${c}"/><rect x="1" y="1" width="1" height="1" fill="${c}"/></pattern>`;
       cv.rect(0, y - 1, VW, 1, `url(#dz${i})`);
     }
     y += H[i];
   });
-  for (let i = 0; i < 80; i++) cv.px(ri(r, 0, VW - 1), ri(r, 0, 44), `#ffffff|${(0.2 + r() * 0.6).toFixed(2)}`);
-  const tw = canvas();
+  const stars = canvas(), tw = canvas();
+  for (let i = 0; i < 80; i++) stars.px(ri(r, 0, VW - 1), ri(r, 0, 44), `#ffffff|${(0.2 + r() * 0.6).toFixed(2)}`);
   for (let i = 0; i < 12; i++) tw.px(ri(r, 0, VW - 1), ri(r, 0, 30), '#fff6e0');
-  cv.disc(226, 13, 9, '#dfe8ff|0.07'); cv.disc(226, 13, 6, '#dfe8ff|0.08');
-  cv.disc(226, 13, 4, '#eef2fa'); cv.px(225, 12, '#d5dbe8'); cv.px(227, 14, '#d5dbe8'); cv.px(224, 14, '#dde3ef');
+  if (day) {
+    cv.disc(226, 13, 11, '#fff6c8|0.18'); cv.disc(226, 13, 8, '#fff6c8|0.25');
+    cv.disc(226, 13, 5, '#ffe680'); cv.disc(226, 13, 3, '#fff6c8');
+  } else {
+    cv.disc(226, 13, 9, '#dfe8ff|0.07'); cv.disc(226, 13, 6, '#dfe8ff|0.08');
+    cv.disc(226, 13, 4, '#eef2fa'); cv.px(225, 12, '#d5dbe8'); cv.px(227, 14, '#d5dbe8'); cv.px(224, 14, '#dde3ef');
+  }
   const cl = canvas();
   for (let i = 0; i < 4; i++) {
     const cx = ri(r, 0, VW - 1), cy = ri(r, 8, 28), w = ri(r, 16, 30);
     const puffs = Array.from({ length: Math.ceil(w / 6) }, (_, k) => [cx - w / 2 + k * 6 + 3, cy - ri(r, 0, 2), ri(r, 3, 4)]);
     for (let yy = cy - 7; yy <= cy + 1; yy++) for (let xx = cx - w / 2 - 5; xx < cx + w / 2 + 5; xx++) {
       if (!puffs.some(([px, py, pr]) => (xx - px) ** 2 + ((yy - py) * 1.4) ** 2 <= pr * pr)) continue;
-      cl.px(((xx % VW) + VW) % VW, yy, yy >= cy - 1 ? '#1a2034|0.9' : '#2a3150|0.9');
+      cl.px(((xx % VW) + VW) % VW, yy, day ? (yy >= cy - 1 ? '#d8e6f4|0.95' : '#ffffff|0.95') : yy >= cy - 1 ? '#1a2034|0.9' : '#2a3150|0.9');
     }
   }
   defs += `<g id="clouds">${cl.svg()}</g>`;
   const css = '.tw{animation:tw 3.3s ease-in-out infinite}@keyframes tw{50%{opacity:.1}}'
     + `.clouds{animation:clouds 300s linear infinite}@keyframes clouds{to{transform:translateX(-${VW * 3}px)}}`;
-  const svg = `<g transform="scale(3)">${cv.svg()}<g class="tw">${tw.svg()}</g></g>
+  const svg = `<g transform="scale(3)">${cv.svg()}${day ? '' : stars.svg() + `<g class="tw">${tw.svg()}</g>`}</g>
 <g class="clouds"><g transform="scale(3)"><use href="#clouds"/><use href="#clouds" x="${VW}"/></g></g>`;
   return { defs, svg, css };
 }
@@ -413,4 +420,4 @@ const SCENES = { rooftop, balcony, meadow, lake, sakura, snowfield, seaside };
 // Ledges get a hanging tail when she lies down; ground gets a loaf.
 const KIND = { rooftop: 'ledge', balcony: 'ledge', seaside: 'ledge', meadow: 'ground', lake: 'ground', sakura: 'ground', snowfield: 'ground' };
 
-module.exports = { VW, VH, GY, SCENES, KIND, sky, rng, pick, ri };
+module.exports = { VW, VH, GY, SCENES, KIND, sky, rng, pick, ri, canvas, fall, mix, hex, toHex };

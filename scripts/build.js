@@ -1,5 +1,8 @@
-// Scheduled refresh: hero, headings, projects, stats, activity, quote of the day, and the cat's mood.
+// Scheduled refresh: hero, headings, projects, stats, activity, quote of the day, and the cat's mood,
+// plus Karachi's weather and Ali's latest commits (which feed her), and the bot's reaction GIFs.
 // Locally without a token it renders everything except the GitHub data (DEMO=1 fills in sample stats and activity).
+const fs = require('fs');
+const path = require('path');
 const L = require('./lib');
 const renderHero = require('./hero');
 const renderProjects = require('./projects');
@@ -7,6 +10,19 @@ const renderHeadings = require('./headings');
 const { fetchStats, renderStats, fetchActivity, renderActivity } = require('./stats');
 const { renderQuote } = require('./quote');
 const cat = require('./cat-core');
+const { REACTIONS, render: renderReaction } = require('./reactions');
+
+// Karachi right now, from Open-Meteo (no key needed). Rain there means rain in her scene.
+async function fetchWeather(now) {
+  try {
+    const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=24.86&longitude=67.01&current=temperature_2m,weather_code,is_day&timezone=Asia%2FKarachi');
+    const { current: c } = await res.json();
+    return { code: c.weather_code, temp: c.temperature_2m, isDay: !!c.is_day, at: now.toISOString() };
+  } catch (e) {
+    console.log('weather unavailable:', e.message);
+    return null;
+  }
+}
 
 const LOGIN = process.env.LOGIN || 'Zidarc';
 const TOKEN = process.env.GITHUB_TOKEN;
@@ -32,10 +48,12 @@ const DEMO_ACTIVITY = [
 
   const st = cat.load();
   cat.decay(st, now);
-  cat.writeAll(st, now);
+  st.weather = (await fetchWeather(now)) || st.weather;
 
   if (TOKEN) {
-    L.write('assets/stats.svg', renderStats(await fetchStats(LOGIN, TOKEN), LOGIN));
+    const stats = await fetchStats(LOGIN, TOKEN);
+    cat.feedFromCode(st, stats.calendar, now);
+    L.write('assets/stats.svg', renderStats(stats, LOGIN));
     L.write('assets/activity.svg', renderActivity(await fetchActivity(LOGIN, TOKEN)));
   } else if (process.env.DEMO) {
     L.write('assets/stats.svg', renderStats(DEMO, LOGIN));
@@ -43,5 +61,8 @@ const DEMO_ACTIVITY = [
   } else {
     console.log('No GITHUB_TOKEN: skipped stats and activity.');
   }
+  cat.writeAll(st, now);
+  fs.mkdirSync(path.join(L.ROOT, 'assets', 'reactions'), { recursive: true });
+  for (const name of REACTIONS) fs.writeFileSync(path.join(L.ROOT, 'assets', 'reactions', `${name}.gif`), renderReaction(name));
   console.log('profile rebuilt');
 })().catch(e => { console.error(e); process.exit(1); });

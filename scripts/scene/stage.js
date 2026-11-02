@@ -4,6 +4,7 @@
 // into the next. A seeded script is baked into CSS keyframes on one shared loop.
 const M = require('./cat-model');
 const S = require('./scenes');
+const X = require('./extras');
 
 const CELL = 3;
 const WALK_T = 1.1; // seconds per stride cycle (an unhurried stroll)
@@ -14,7 +15,8 @@ const PER_WALK = 4; // scenes visited per loop
 
 // Things she says. Picked by what she's doing, where she is and how she feels.
 const LINES = {
-  sit: ['meow.', 'meow~', 'mrrp?', 'mew!', 'meow meow', 'mrow.', 'nya~', 'prrrt?', '...', '*stares*', '*slow blink*', 'hi there ♥', 'pet me?', 'mrrrow!', 'what u lookin at', 'i am very cute'],
+  sit: ['meow.', 'meow~', 'mrrp?', 'mew!', 'meow meow', 'mrow.', 'nya~', 'prrrt?', '...', '*stares*', '*slow blink*', 'hi there ♥', 'pet me?', 'mrrrow!', 'what u lookin at', 'i am very cute',
+    'i dream of catnip…', 'where did the red dot go?'],
   walk: ['♪', 'trot trot', 'where to next?', '♪ la la la', 'adventure!', 'tip tap tip tap', 'follow me!'],
   lie: ['purr~', 'prrrrr…', 'so comfy', '*kneads*', 'purr purr', 'mmm…'],
   snooze: ['zzz…', 'z z z', '*snore*', 'mrr… zzz'],
@@ -47,7 +49,7 @@ const WEIGHTS = {
   sleepy: { sit: 1, lie: 4, yawn: 1.5 },
 };
 
-function choreograph(r, mood, names) {
+function choreograph(r, mood, names, extra = []) {
   const vis = {}, scenes = [], says = [];
   let t = 0, state = 'walk', quietUntil = 0;
   const say = (pool, at, d, pose) => {
@@ -75,7 +77,9 @@ function choreograph(r, mood, names) {
     const sitTail = ledge ? 'tailH' : 'tailG', up = ledge ? ['sh3', 'sh2', 'sh1'] : ['ss3', 'ss2', 'ss1'];
     const chatter = () => {
       const k = r();
-      return k < 0.35 && LINES.mood[mood]?.length ? LINES.mood[mood] : k < 0.6 ? LINES.scene[name] : LINES.sit;
+      if (k < 0.3 && LINES.mood[mood]?.length) return LINES.mood[mood];
+      if (k < 0.58 && extra.length) return extra;
+      return k < 0.76 ? LINES.scene[name] : LINES.sit;
     };
     const walk = d => {
       if (state === 'sit') seq(up);
@@ -175,15 +179,15 @@ function flick(base) {
   b[6] -= 1; b[7] += 2.2; c[6] -= 2; c[7] += 4; c[5] += 1;
   return [base.tail, b, c, b].map(tail => ({ ...base, tail }));
 }
-function buildFrames() {
+function buildFrames(hat) {
   const P = M.POSES, F = {};
-  F.walk = Array.from({ length: 8 }, (_, i) => M.frame(M.walkPose(i / 8)));
-  for (const k of ['sit', 'sitFront', 'yawn', 'ledge', 'ledgeFront', 'loaf', 'loafSnooze']) F[k] = M.frame(P[k], { withTail: false });
+  F.walk = Array.from({ length: 8 }, (_, i) => M.frame(M.walkPose(i / 8), { hat }));
+  for (const k of ['sit', 'sitFront', 'yawn', 'ledge', 'ledgeFront', 'loaf', 'loafSnooze']) F[k] = M.frame(P[k], { withTail: false, hat });
   [1, 2, 3].forEach(i => {
-    F[`ss${i}`] = M.frame(M.blend(P.stand, P.sit, i / 4));
-    F[`sh${i}`] = M.frame(M.blend(P.stand, P.sitHang, i / 4));
-    F[`sl${i}`] = M.frame(M.blend(P.sitHang, P.ledge, i / 4));
-    F[`sf${i}`] = M.frame(M.blend(P.sit, P.loaf, i / 4));
+    F[`ss${i}`] = M.frame(M.blend(P.stand, P.sit, i / 4), { hat });
+    F[`sh${i}`] = M.frame(M.blend(P.stand, P.sitHang, i / 4), { hat });
+    F[`sl${i}`] = M.frame(M.blend(P.sitHang, P.ledge, i / 4), { hat });
+    F[`sf${i}`] = M.frame(M.blend(P.sit, P.loaf, i / 4), { hat });
   });
   const tails = ps => ps.map(p => M.frame(p, { tailOnly: true }));
   const pend = [0, 0.8, 1.5, 0.8, 0, -0.8, -1.5, -0.8];
@@ -209,16 +213,19 @@ function cycle(cls, frames, period, weights) {
 }
 
 // x, y: top-left of the viewport in the card. Returns { svg, css }.
-function renderStage({ x: VX, y: VY, seed, mood, moodColor }) {
+// day relights everything for light-mode viewers; hat goes on her head; fx are extra layers from scene/extras.js
+// ({ back, front, css, defs, lines }); hang draws the string across the top that polaroids and bunting hang from.
+function renderStage({ x: VX, y: VY, seed, mood, moodColor, day = false, hat = null, fx = [], hang = false }) {
   const r = S.rng(seed);
   const all = Object.keys(S.SCENES);
   for (let i = all.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [all[i], all[j]] = [all[j], all[i]]; }
   const names = all.slice(0, PER_WALK);
-  const plan = choreograph(r, mood, names);
+  const plan = choreograph(r, mood, names, fx.flatMap(f => f.lines || []));
   const { L } = plan;
   const W = S.VW * CELL, H = S.VH * CELL;
-  const sky = S.sky(r);
-  let css = sky.css, defs = sky.defs;
+  const sky = S.sky(r, day);
+  let css = sky.css + fx.map(f => f.css || '').join('') + (day ? X.DAY_CSS : ''), defs = sky.defs + fx.map(f => f.defs || '').join('');
+  const relight = day ? X.dayify : s => s;
 
   // Scenes stack in order. Each fades in over the previous one while she walks; the last one fades out to reveal the first.
   const scenesSvg = names.map((name, i) => {
@@ -226,7 +233,7 @@ function renderStage({ x: VX, y: VY, seed, mood, moodColor }) {
     const cam = cameraPoints(sc, L, i === 0);
     const built = S.SCENES[name](r, cam.len);
     css += built.css || '';
-    defs += built.defs || '';
+    defs += relight(built.defs || '');
     const ops = i === 0
       ? [[0, 1], [sc.end, 1], [sc.end + 1e-3, 0], [L - FADE - 1e-3, 0], [L - FADE, 1], [L, 1]]
       : i === names.length - 1
@@ -234,16 +241,17 @@ function renderStage({ x: VX, y: VY, seed, mood, moodColor }) {
         : [[0, 0], ...ease(sc.start, 0, 1), [sc.end, 1], [sc.end + 1e-3, 0], [L, 0]];
     css += track(`sc${i}`, ops, L, v => `opacity:${+v.toFixed(3)}`);
     const layer = ([f, svg], k) => {
+      svg = relight(svg);
       if (f === null) return `<g transform="scale(${CELL})">${svg}</g>`;
       css += track(`c${i}_${k}`, cam.pts, L, x => `transform:translateX(${(-x * f * CELL).toFixed(1)}px)`);
       return `<g class="c${i}_${k}"><g transform="scale(${CELL})">${svg}</g></g>`;
     };
     const back = built.layers.map(layer).join('');
-    const front = built.fg.map((l, k) => layer(l, 10 + k)).join('') + (built.fixedFg || '');
+    const front = built.fg.map((l, k) => layer(l, 10 + k)).join('') + relight(built.fixedFg || '');
     return { back: `<g class="sc${i}">${back}</g>`, front: front && `<g class="sc${i}">${front}</g>` };
   });
 
-  const F = buildFrames();
+  const F = buildFrames(hat);
   const parts = [];
   const vis = (name, inner) => { css += visKeyframes(`v${name}`, plan.vis[name] || [], L); parts.push(`<g class="v${name}">${inner}</g>`); };
   const walk = cycle('wc', F.walk, WALK_T);
@@ -290,12 +298,14 @@ function renderStage({ x: VX, y: VY, seed, mood, moodColor }) {
   });
 
   const svg = `<defs>${defs}<clipPath id="stage"><rect x="0" y="0" width="${W}" height="${H}" rx="6"/></clipPath></defs>
-<g transform="translate(${VX} ${VY})"><g clip-path="url(#stage)">
+<g transform="translate(${VX} ${VY})"${day ? ' class="dayst"' : ''}><g clip-path="url(#stage)">
 ${sky.svg}
+${fx.map(f => f.back || '').join('')}
 ${scenesSvg.map(s => s.back).join('\n')}
 ${shadow}
 ${cat}
 ${scenesSvg.map(s => s.front).join('\n')}
+${hang ? X.STRING : ''}${fx.map(f => f.front || '').join('')}
 ${extra}
 </g><rect x=".5" y=".5" width="${W - 1}" height="${H - 1}" rx="6" fill="none" stroke="#ff2266" stroke-opacity=".45"/></g>`;
   return { svg, css, L, scenes: names };

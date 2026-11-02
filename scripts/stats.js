@@ -29,7 +29,8 @@ async function fetchStats(login, token) {
   const langs = Object.entries(sizes).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([name, s]) => ({ name, pct: (s / total) * 100 }));
 
   const cc = u.contributionsCollection;
-  const days = cc.contributionCalendar.weeks.flatMap(w => w.contributionDays).map(d => d.contributionCount);
+  const cal = cc.contributionCalendar.weeks.flatMap(w => w.contributionDays);
+  const days = cal.map(d => d.contributionCount);
   // Today may not have contributions yet; don't let that break the streak.
   const forStreak = days[days.length - 1] === 0 ? days.slice(0, -1) : days;
   let current = 0;
@@ -52,6 +53,7 @@ async function fetchStats(login, token) {
     load: [avg(7), avg(30), avg(365)],
     uptime: `${Math.floor(age / 365)}y ${Math.floor((age % 365) / 30)}m`,
     spark: days.slice(-60),
+    calendar: cal.slice(-14).map(d => ({ date: d.date, count: d.contributionCount })),
   };
 }
 
