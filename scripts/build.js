@@ -34,9 +34,9 @@ const DEMO = {
 };
 
 const DEMO_ACTIVITY = [
-  ['2026-10-24', 'push', '4 commits → Zidarc/recursion-hell'], ['2026-10-23', 'pr', 'merged #12 in Zidarc/synergy'],
-  ['2026-10-21', 'star', 'starred raysan5/raylib'], ['2026-10-20', 'new', 'created Zidarc/pixel-town'],
-  ['2026-10-18', 'release', 'v1.2.0 in Zidarc/bmp-editor'], ['2026-10-15', 'fork', 'forked Platane/snk'],
+  ['2026-10-24', 'push', '4 commits → Zidarc/Cyber-Loop'], ['2026-10-23', 'pr', 'merged #12 in Zidarc/Ishara'],
+  ['2026-10-21', 'star', 'starred raysan5/raylib'], ['2026-10-20', 'new', 'created Zidarc/Portfolio'],
+  ['2026-10-18', 'release', 'v1.2.0 in Zidarc/Cyber-Loop'], ['2026-10-15', 'fork', 'forked Platane/snk'],
 ].map(([date, kind, text]) => ({ date, kind, text }));
 
 (async () => {
