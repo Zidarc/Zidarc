@@ -17,6 +17,7 @@ const now = new Date();
     cat.writeSticker(st, user);
   }
   cat.writeAll(st, now);
+  require('./lib').stampReadme();
   fs.writeFileSync(process.env.REPLY_FILE || 'reply.md', reply);
   console.log(reply);
 })().catch(e => { console.error(e); process.exit(1); });

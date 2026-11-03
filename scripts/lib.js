@@ -193,7 +193,19 @@ function chrome({ w, h, title, body, css = '', emberCount = 10, seed = 11, label
 
 const fmtDate = d => new Date(d).toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
 
+// GitHub serves README images with a 5-minute cache, so an updated card at the same URL shows up late.
+// Tag every ./assets link with a hash of the file: a changed card gets a new URL and appears immediately.
+function stampReadme() {
+  const crypto = require('crypto');
+  const file = path.join(ROOT, 'README.md');
+  const src = fs.readFileSync(file, 'utf8');
+  const out = src.replace(/(\.\/assets\/[\w./-]+?\.(?:svg|gif|png))(\?v=[0-9a-f]+)?(?=["'\s)])/g, (m, p) => {
+    try { return `${p}?v=${crypto.createHash('sha1').update(fs.readFileSync(path.join(ROOT, p))).digest('hex').slice(0, 8)}`; } catch { return m; }
+  });
+  if (out !== src) fs.writeFileSync(file, out);
+}
+
 module.exports = {
   ROOT, HOST, CW, C, RAMP, X0, PROMPT_W, esc, write, wrap, prompt, show, cursor, typer,
-  pixels, catSprite, catCss, HEART, blockBar, chrome, fmtDate,
+  pixels, catSprite, catCss, HEART, blockBar, chrome, fmtDate, stampReadme,
 };

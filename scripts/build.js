@@ -64,5 +64,6 @@ const DEMO_ACTIVITY = [
   cat.writeAll(st, now);
   fs.mkdirSync(path.join(L.ROOT, 'assets', 'reactions'), { recursive: true });
   for (const name of REACTIONS) fs.writeFileSync(path.join(L.ROOT, 'assets', 'reactions', `${name}.gif`), renderReaction(name));
+  L.stampReadme();
   console.log('profile rebuilt');
 })().catch(e => { console.error(e); process.exit(1); });

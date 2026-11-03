@@ -153,13 +153,16 @@ function apply(st, action, user, now) {
   else out.push(`Today's goal: **${st.daily.n}/${GOAL}** visits until Huna gets a party 🎉`, '');
   for (const id of fresh) out.push(`🏅 **New badge:** ${BADGES[id].icon} ${BADGES[id].name} (${BADGES[id].desc})`);
   if (fresh.length) out.push('');
-  out.push(
+  // Stickers only exist for normal logins (bots like "name[bot]" don't get a file).
+  if (safeUser(user)) out.push(
     `You're friend **#${st.ids[user]}** of Huna. Here's your sticker:`, '',
     `<img src="${sticker}?v=${v}" width="420" alt="friend of Huna sticker" />`, '',
     'Put it on your own profile README (it updates as you visit):', '',
     '```md', `[![friend of Huna](${sticker})](https://github.com/${PROFILE})`, '```', '',
-    `Your face is on her wall now too. This issue closes itself. Thanks for visiting! ♥`,
+    'Your face is on her wall now too.',
   );
+  else out.push(`You're friend **#${st.ids[user]}** of Huna.`);
+  out.push('', 'This issue closes itself. Thanks for visiting! ♥');
   return out.join('\n');
 }
 
@@ -256,7 +259,7 @@ ${row(1.3, bar(390, 'happiness', st.happiness, 1.5))}
 ${row(1.4, `<text x="${SX}" y="418" fill="${C.dim}">${last ? `last: @${esc(last.user.length > 16 ? last.user.slice(0, 15) + '…' : last.user)} ${ALL[last.action].past} her · ${L.fmtDate(last.at).slice(5, 16)}` : 'no visitors yet. be the first!'}</text>`)}
 ${row(1.5, goal)}
 ${row(1.6, cn ? `<text x="${SX}" y="446" fill="${cn.col}">${esc(cn.text)}</text>` : '')}
-${row(1.6, sky ? key(446, 'karachi') + `<text x="${VX}" y="446" fill="${C.text}">${esc(sky)}</text>` : '')}
+${row(1.6, sky ? key(446, 'Karachi') + `<text x="${VX}" y="446" fill="${C.text}">${esc(sky)}</text>` : '')}
 ${row(1.7, extras ? `<text x="${SX}" y="474" fill="${C.gold}">${esc(extras)}</text>` : '')}
 ${row(1.8, `<text x="${SX}" y="${extras ? 508 : 480}" fill="${C.pink}">↓ press a button · it opens an issue · Huna reacts in ~30s · you get a sticker</text>`)}`;
 
