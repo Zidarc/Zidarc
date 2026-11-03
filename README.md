@@ -23,8 +23,8 @@
 <img src="./assets/h-huna.svg?v=27684891" alt="Say hi to Huna" width="100%" />
 
 <picture>
-  <source media="(prefers-color-scheme: light)" srcset="./assets/cat-day.svg?v=b8d7d683" />
-  <img src="./assets/cat.svg?v=50474f80" alt="Huna the cat's live status" width="100%" />
+  <source media="(prefers-color-scheme: light)" srcset="./assets/cat-day.svg?v=461a96f9" />
+  <img src="./assets/cat.svg?v=1305bef8" alt="Huna the cat's live status" width="100%" />
 </picture>
 
 <a href="https://github.com/Zidarc/Zidarc/issues/new?title=cat%7Cfeed&body=Just%20press%20%22Create%22%20and%20Huna%20gets%20a%20fish%20%F0%9F%90%9F"><img src="./assets/btn-feed.svg?v=cab57fd1" alt="feed()" height="48" /></a>
@@ -41,7 +41,7 @@
 
 <img src="./assets/h-stats.svg?v=d94aa874" alt="Stats" width="100%" />
 
-<img src="./assets/stats.svg?v=0602561e" alt="htop-style GitHub stats" width="100%" />
+<img src="./assets/stats.svg?v=df04d154" alt="htop-style GitHub stats" width="100%" />
 
 <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/output/snake.svg" alt="contribution snake eating the commit grid" width="100%" />
 
@@ -51,7 +51,7 @@
 
 <img src="./assets/h-activity.svg?v=f400219f" alt="Recent activity" width="100%" />
 
-<a href="https://github.com/Zidarc?tab=overview"><img src="./assets/activity.svg?v=dbbab262" alt="recent public GitHub activity" width="100%" /></a>
+<a href="https://github.com/Zidarc?tab=overview"><img src="./assets/activity.svg?v=25bc4797" alt="recent public GitHub activity" width="100%" /></a>
 
 </div>
 
