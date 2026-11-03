@@ -170,13 +170,12 @@ function chrome({ w, h, title, body, css = '', emberCount = 10, seed = 11, label
 <style>${baseCss}${css}</style>
 <defs>
   <clipPath id="win"><rect x="10" y="10" width="${w - 20}" height="${h - 20}" rx="12"/></clipPath>
-  <filter id="glow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="5"/></filter>
-  <radialGradient id="vign" cx="20%" cy="45%" r="70%"><stop offset="0" stop-color="${C.key}" stop-opacity=".09"/><stop offset="1" stop-color="${C.key}" stop-opacity="0"/></radialGradient>
-  <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#fff" opacity=".025"/></pattern>
+  <radialGradient id="vign" cx="20%" cy="45%" r="70%"><stop offset="0" stop-color="#230310"/><stop offset="1" stop-color="${C.bg}"/></radialGradient>
 </defs>
-<rect x="10" y="10" width="${w - 20}" height="${h - 20}" rx="12" fill="none" stroke="${C.key}" stroke-width="3" opacity=".45" filter="url(#glow)"/>
+<!-- Outer glow as stacked soft strokes: a blur filter here would be re-run on every animation frame. -->
+<g fill="none" stroke="${C.key}">${[[14, 0.035], [10, 0.05], [6, 0.08], [3, 0.14]].map(([sw, o]) => `<rect x="10" y="10" width="${w - 20}" height="${h - 20}" rx="12" stroke-width="${sw}" stroke-opacity="${o}"/>`).join('')}</g>
 <g clip-path="url(#win)">
-  <rect x="10" y="10" width="${w - 20}" height="${h - 20}" fill="${C.bg}"/>
+  <rect x="10" y="10" width="${w - 20}" height="${h - 20}" fill="url(#vign)"/>
   ${embers(emberCount, w, h, seed)}
   <rect x="10" y="10" width="${w - 20}" height="34" fill="${C.bar}"/>
   <rect x="10" y="44" width="${w - 20}" height="1" fill="${C.key}" opacity=".35"/>
@@ -186,8 +185,6 @@ function chrome({ w, h, title, body, css = '', emberCount = 10, seed = 11, label
   <circle cx="${w - 31}" cy="27" r="8" fill="${C.key}"/>
   <g stroke="${C.bg}" stroke-width="2"><line x1="${w - 34.5}" y1="23.5" x2="${w - 27.5}" y2="30.5"/><line x1="${w - 27.5}" y1="23.5" x2="${w - 34.5}" y2="30.5"/></g>
   ${body}
-  <rect x="10" y="10" width="${w - 20}" height="${h - 20}" fill="url(#vign)"/>
-  <rect x="10" y="10" width="${w - 20}" height="${h - 20}" fill="url(#scan)"/>
 </g>
 <rect x="10.5" y="10.5" width="${w - 21}" height="${h - 21}" rx="12" fill="none" stroke="${C.key}" stroke-opacity=".7"/>
 </svg>

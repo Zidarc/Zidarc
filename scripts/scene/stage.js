@@ -141,16 +141,18 @@ function visKeyframes(name, wins, L) {
     if (p && w[0] <= p[1] + 1e-6) p[1] = Math.max(p[1], w[1]); else merged.push([...w]);
   }
   const on0 = merged.some(([a, b]) => a <= 1e-6 && b > 0);
-  const kf = [`0%{opacity:${on0 ? 1 : 0}}`];
+  const kf = [`0%{visibility:${on0 ? 'visible' : 'hidden'}}`];
   for (const [a, b] of merged) {
-    if (a > 1e-6) kf.push(`${pct(a, L)}{opacity:1}`);
-    if (b < L - 1e-6) kf.push(`${pct(b, L)}{opacity:0}`);
+    if (a > 1e-6) kf.push(`${pct(a, L)}{visibility:visible}`);
+    if (b < L - 1e-6) kf.push(`${pct(b, L)}{visibility:hidden}`);
   }
   return `@keyframes ${name}{${kf.join('')}}.${name}{animation:${name} ${L.toFixed(2)}s steps(1,end) infinite}`;
 }
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 // Smoothstep from a to b over FADE seconds starting at t, as keyframe points.
 const ease = (t, a, b) => [0, 0.2, 0.4, 0.6, 0.8, 1].map(u => [t + u * FADE, a + (b - a) * u * u * (3 - 2 * u)]);
+// Opacity that also hides the element while fully transparent, so the browser skips painting it.
+const fade = v => `opacity:${+v.toFixed(3)};visibility:${v > 0 ? 'visible' : 'hidden'}`;
 // A linear keyframe track from [time, value] points (two points at the same time make a jump).
 function track(name, pts, L, fmt) {
   const kf = pts.map(([t, v]) => `${pct(t, L)}{${fmt(v)}}`);
@@ -239,7 +241,7 @@ function renderStage({ x: VX, y: VY, seed, mood, moodColor, day = false, hat = n
       : i === names.length - 1
         ? [[0, 0], ...ease(sc.start, 0, 1), ...ease(L - FADE, 1, 0)]
         : [[0, 0], ...ease(sc.start, 0, 1), [sc.end, 1], [sc.end + 1e-3, 0], [L, 0]];
-    css += track(`sc${i}`, ops, L, v => `opacity:${+v.toFixed(3)}`);
+    css += track(`sc${i}`, ops, L, fade);
     const layer = ([f, svg], k) => {
       svg = relight(svg);
       if (f === null) return `<g transform="scale(${CELL})">${svg}</g>`;
@@ -291,14 +293,14 @@ function renderStage({ x: VX, y: VY, seed, mood, moodColor, day = false, hat = n
     const cx = catX + (M.OX + hx) * CELL, by = sy + (M.TOP - hy - 10) * CELL - 34;
     const bw = [...s.text].length * 8 + 20, bx = Math.max(6, Math.min(W - bw - 6, cx - bw / 2 + 12));
     const end = Math.min(s.t + s.d, L - 0.01);
-    css += track(`say${k}`, [[0, 0], [s.t, 0], [s.t + 0.15, 1], [end - 0.2, 1], [end, 0], [L, 0]], L, v => `opacity:${v}`);
+    css += track(`say${k}`, [[0, 0], [s.t, 0], [s.t + 0.15, 1], [end - 0.2, 1], [end, 0], [L, 0]], L, fade);
     extra += `<g class="say${k}"><g class="bob"><rect x="${bx}" y="${by}" width="${bw}" height="24" rx="8" fill="#16050d" fill-opacity=".85" stroke="${col}"/>
 <path d="M${cx - 6} ${by + 24} l6 7 l6 -7z" fill="${col}"/>
 <text x="${bx + bw / 2}" y="${by + 16}" font-size="13" text-anchor="middle" fill="${col}">${esc(s.text)}</text></g></g>`;
   });
 
   const svg = `<defs>${defs}<clipPath id="stage"><rect x="0" y="0" width="${W}" height="${H}" rx="6"/></clipPath></defs>
-<g transform="translate(${VX} ${VY})"${day ? ' class="dayst"' : ''}><g clip-path="url(#stage)">
+<g transform="translate(${VX} ${VY})"${day ? ' class="dayst"' : ''}><g shape-rendering="crispEdges" clip-path="url(#stage)">
 ${sky.svg}
 ${fx.map(f => f.back || '').join('')}
 ${scenesSvg.map(s => s.back).join('\n')}
@@ -306,7 +308,7 @@ ${shadow}
 ${cat}
 ${scenesSvg.map(s => s.front).join('\n')}
 ${hang ? X.STRING : ''}${fx.map(f => f.front || '').join('')}
-${extra}
+<g shape-rendering="auto">${extra}</g>
 </g><rect x=".5" y=".5" width="${W - 1}" height="${H - 1}" rx="6" fill="none" stroke="#ff2266" stroke-opacity=".45"/></g>`;
   return { svg, css, L, scenes: names };
 }

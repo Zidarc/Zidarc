@@ -14,13 +14,12 @@
 @keyframes rise{0%{opacity:0;transform:translate(0,0)}15%{opacity:.6}100%{opacity:0;transform:translate(18px,-278px)}}@keyframes ty1{to{transform:translateX(216px)}}</style>
 <defs>
   <clipPath id="win"><rect x="10" y="10" width="880" height="298" rx="12"/></clipPath>
-  <filter id="glow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="5"/></filter>
-  <radialGradient id="vign" cx="20%" cy="45%" r="70%"><stop offset="0" stop-color="#ff2266" stop-opacity=".09"/><stop offset="1" stop-color="#ff2266" stop-opacity="0"/></radialGradient>
-  <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#fff" opacity=".025"/></pattern>
+  <radialGradient id="vign" cx="20%" cy="45%" r="70%"><stop offset="0" stop-color="#230310"/><stop offset="1" stop-color="#0d0008"/></radialGradient>
 </defs>
-<rect x="10" y="10" width="880" height="298" rx="12" fill="none" stroke="#ff2266" stroke-width="3" opacity=".45" filter="url(#glow)"/>
+<!-- Outer glow as stacked soft strokes: a blur filter here would be re-run on every animation frame. -->
+<g fill="none" stroke="#ff2266"><rect x="10" y="10" width="880" height="298" rx="12" stroke-width="14" stroke-opacity="0.035"/><rect x="10" y="10" width="880" height="298" rx="12" stroke-width="10" stroke-opacity="0.05"/><rect x="10" y="10" width="880" height="298" rx="12" stroke-width="6" stroke-opacity="0.08"/><rect x="10" y="10" width="880" height="298" rx="12" stroke-width="3" stroke-opacity="0.14"/></g>
 <g clip-path="url(#win)">
-  <rect x="10" y="10" width="880" height="298" fill="#0d0008"/>
+  <rect x="10" y="10" width="880" height="298" fill="url(#vign)"/>
   <rect class="ember" x="60" y="298" width="2" height="2" fill="#ff6f91" style="animation-duration:13.8s;animation-delay:-3.3s"/>
 <rect class="ember" x="863" y="298" width="3" height="3" fill="#ff6f91" style="animation-duration:10.5s;animation-delay:-5.6s"/>
 <rect class="ember" x="55" y="298" width="2" height="2" fill="#ff2266" style="animation-duration:10.7s;animation-delay:-8.9s"/>
@@ -89,8 +88,6 @@
 <rect x="761" y="161" width="20.0" height="12" fill="#ff6f91"/>
 <text x="870" y="172" fill="#ffe0e8" text-anchor="end">×5</text></g>
 <g class="show" style="animation-delay:1.6s"><text x="30" y="296" font-size="12" fill="#7a3a4c">badges: 🥇 OG  ·  🔥 7-day streak  ·  🦉 night owl  ·  🎉 party starter  ·  🔮 secret finder  ·  💯 regular</text></g>
-  <rect x="10" y="10" width="880" height="298" fill="url(#vign)"/>
-  <rect x="10" y="10" width="880" height="298" fill="url(#scan)"/>
 </g>
 <rect x="10.5" y="10.5" width="879" height="297" rx="12" fill="none" stroke="#ff2266" stroke-opacity=".7"/>
 </svg>

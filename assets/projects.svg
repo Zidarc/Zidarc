@@ -14,13 +14,12 @@
 @keyframes rise{0%{opacity:0;transform:translate(0,0)}15%{opacity:.6}100%{opacity:0;transform:translate(18px,-432px)}}@keyframes ty1{to{transform:translateX(144px)}}</style>
 <defs>
   <clipPath id="win"><rect x="10" y="10" width="880" height="452" rx="12"/></clipPath>
-  <filter id="glow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="5"/></filter>
-  <radialGradient id="vign" cx="20%" cy="45%" r="70%"><stop offset="0" stop-color="#ff2266" stop-opacity=".09"/><stop offset="1" stop-color="#ff2266" stop-opacity="0"/></radialGradient>
-  <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#fff" opacity=".025"/></pattern>
+  <radialGradient id="vign" cx="20%" cy="45%" r="70%"><stop offset="0" stop-color="#230310"/><stop offset="1" stop-color="#0d0008"/></radialGradient>
 </defs>
-<rect x="10" y="10" width="880" height="452" rx="12" fill="none" stroke="#ff2266" stroke-width="3" opacity=".45" filter="url(#glow)"/>
+<!-- Outer glow as stacked soft strokes: a blur filter here would be re-run on every animation frame. -->
+<g fill="none" stroke="#ff2266"><rect x="10" y="10" width="880" height="452" rx="12" stroke-width="14" stroke-opacity="0.035"/><rect x="10" y="10" width="880" height="452" rx="12" stroke-width="10" stroke-opacity="0.05"/><rect x="10" y="10" width="880" height="452" rx="12" stroke-width="6" stroke-opacity="0.08"/><rect x="10" y="10" width="880" height="452" rx="12" stroke-width="3" stroke-opacity="0.14"/></g>
 <g clip-path="url(#win)">
-  <rect x="10" y="10" width="880" height="452" fill="#0d0008"/>
+  <rect x="10" y="10" width="880" height="452" fill="url(#vign)"/>
   <rect class="ember" x="384" y="452" width="2" height="2" fill="#ff6f91" style="animation-duration:7.5s;animation-delay:-3.9s"/>
 <rect class="ember" x="59" y="452" width="3" height="3" fill="#ff6f91" style="animation-duration:10.2s;animation-delay:-10.0s"/>
 <rect class="ember" x="674" y="452" width="3" height="3" fill="#ff6f91" style="animation-duration:7.7s;animation-delay:-5.1s"/>
@@ -44,8 +43,6 @@
 <g class="slide" style="animation-delay:1.50s"><text x="30" y="282" font-weight="700"><tspan fill="#7a3a4c">drwxr-xr-x </tspan><tspan fill="#ff2266">ishara/</tspan></text><text x="48" y="308" fill="#ffe0e8">AI campus accessibility app for visually</text><text x="48" y="328" fill="#ffe0e8">and hearing-impaired students: real-time</text><text x="48" y="348" fill="#ffe0e8">AR wayfinding and adaptive safety alerts</text><text x="48" y="368" fill="#ffe0e8">where static, single-sense infrastructure</text><text x="48" y="388" fill="#ffe0e8">fails.</text><rect x="48" y="401" width="57.2" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".6"/><text x="55" y="415" font-size="12" fill="#ff6f91" textLength="43.2" lengthAdjust="spacing">Python</text><rect x="113.2" y="401" width="28.4" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".6"/><text x="120.2" y="415" font-size="12" fill="#ff6f91" textLength="14.4" lengthAdjust="spacing">AI</text><rect x="149.6" y="401" width="28.4" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".6"/><text x="156.6" y="415" font-size="12" fill="#ff6f91" textLength="14.4" lengthAdjust="spacing">C#</text><rect x="186" y="401" width="28.4" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".6"/><text x="193" y="415" font-size="12" fill="#ff6f91" textLength="14.4" lengthAdjust="spacing">AR</text></g>
 <g class="slide" style="animation-delay:1.75s"><text x="465" y="282" font-weight="700"><tspan fill="#7a3a4c">drwxr-xr-x </tspan><tspan fill="#ff2266">zidarc/</tspan></text><text x="483" y="308" fill="#ffe0e8">This profile. Pixel-art cards rebuilt by</text><text x="483" y="328" fill="#ffe0e8">GitHub Actions every 3 hours, and Huna, a</text><text x="483" y="348" fill="#ffe0e8">cat you can feed by opening an issue. No</text><text x="483" y="368" fill="#ffe0e8">server: the repo is her database.</text><rect x="483" y="381" width="64.4" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".6"/><text x="490" y="395" font-size="12" fill="#ff6f91" textLength="50.4" lengthAdjust="spacing">Node.js</text><rect x="555.4" y="381" width="35.6" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".6"/><text x="562.4" y="395" font-size="12" fill="#ff6f91" textLength="21.6" lengthAdjust="spacing">SVG</text><rect x="599" y="381" width="114.8" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".6"/><text x="606" y="395" font-size="12" fill="#ff6f91" textLength="100.8" lengthAdjust="spacing">GitHub Actions</text></g>
 
-  <rect x="10" y="10" width="880" height="452" fill="url(#vign)"/>
-  <rect x="10" y="10" width="880" height="452" fill="url(#scan)"/>
 </g>
 <rect x="10.5" y="10.5" width="879" height="451" rx="12" fill="none" stroke="#ff2266" stroke-opacity=".7"/>
 </svg>

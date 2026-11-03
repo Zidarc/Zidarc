@@ -207,7 +207,7 @@ function polaroids(friends) {
     const pic = f.avatar
       ? f.avatar(-15, 6, 3)
       : `<rect x="-15" y="6" width="30" height="30" fill="#3a2a40"/><rect x="-5" y="11" width="10" height="10" fill="#7a6a90"/><rect x="-10" y="24" width="20" height="12" fill="#7a6a90"/>`;
-    return `<g transform="translate(${x} ${y.toFixed(1)})"><g class="pol" style="animation-delay:-${(i * 0.7).toFixed(1)}s">
+    return `<g transform="translate(${x} ${y.toFixed(1)})" shape-rendering="auto"><g class="pol" style="animation-delay:-${(i * 0.7).toFixed(1)}s">
 <rect x="-18" y="3" width="36" height="44" fill="#f3efe6"/><rect x="-18" y="45" width="36" height="2" fill="#cfc8b8"/>${pic}
 <text x="0" y="43" font-size="6.5" text-anchor="middle" fill="#4a3a44">@${esc(name)}</text><rect x="-2" y="-1" width="4" height="6" fill="#ff2266"/></g></g>`;
   }).join('');
