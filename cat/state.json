@@ -1,8 +1,8 @@
 {
   "name": "Huna",
-  "fullness": 100,
-  "happiness": 100,
-  "updated": "2026-11-03T06:55:17.291Z",
+  "fullness": 85,
+  "happiness": 90,
+  "updated": "2026-11-03T17:08:03.905Z",
   "lastInteraction": "2026-11-03T06:49:58.780Z",
   "counts": {
     "feed": 21,
@@ -100,8 +100,8 @@
   "birthday": "",
   "weather": {
     "code": 0,
-    "temp": 33.3,
-    "isDay": true,
-    "at": "2026-11-03T06:55:17.291Z"
+    "temp": 26.1,
+    "isDay": false,
+    "at": "2026-11-03T17:08:03.905Z"
   }
 }
