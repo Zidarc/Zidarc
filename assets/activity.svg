@@ -14,13 +14,12 @@
 @keyframes rise{0%{opacity:0;transform:translate(0,0)}15%{opacity:.6}100%{opacity:0;transform:translate(18px,-244px)}}@keyframes ty1{to{transform:translateX(315px)}}</style>
 <defs>
   <clipPath id="win"><rect x="10" y="10" width="880" height="264" rx="12"/></clipPath>
-  <filter id="glow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="5"/></filter>
-  <radialGradient id="vign" cx="20%" cy="45%" r="70%"><stop offset="0" stop-color="#ff2266" stop-opacity=".09"/><stop offset="1" stop-color="#ff2266" stop-opacity="0"/></radialGradient>
-  <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#fff" opacity=".025"/></pattern>
+  <radialGradient id="vign" cx="20%" cy="45%" r="70%"><stop offset="0" stop-color="#230310"/><stop offset="1" stop-color="#0d0008"/></radialGradient>
 </defs>
-<rect x="10" y="10" width="880" height="264" rx="12" fill="none" stroke="#ff2266" stroke-width="3" opacity=".45" filter="url(#glow)"/>
+<!-- Outer glow as stacked soft strokes: a blur filter here would be re-run on every animation frame. -->
+<g fill="none" stroke="#ff2266"><rect x="10" y="10" width="880" height="264" rx="12" stroke-width="14" stroke-opacity="0.035"/><rect x="10" y="10" width="880" height="264" rx="12" stroke-width="10" stroke-opacity="0.05"/><rect x="10" y="10" width="880" height="264" rx="12" stroke-width="6" stroke-opacity="0.08"/><rect x="10" y="10" width="880" height="264" rx="12" stroke-width="3" stroke-opacity="0.14"/></g>
 <g clip-path="url(#win)">
-  <rect x="10" y="10" width="880" height="264" fill="#0d0008"/>
+  <rect x="10" y="10" width="880" height="264" fill="url(#vign)"/>
   <rect class="ember" x="747" y="264" width="2" height="2" fill="#ff2266" style="animation-duration:8.7s;animation-delay:-0.5s"/>
 <rect class="ember" x="485" y="264" width="3" height="3" fill="#ff2266" style="animation-duration:12.6s;animation-delay:-11.2s"/>
 <rect class="ember" x="129" y="264" width="3" height="3" fill="#ff2266" style="animation-duration:12.8s;animation-delay:-11.6s"/>
@@ -68,8 +67,6 @@
 <rect x="168" y="234" width="78" height="19" rx="3" fill="#24060f" stroke="#ff2266" stroke-opacity=".7"/>
 <text x="207" y="248" font-size="12" font-weight="700" text-anchor="middle" fill="#ff2266">PUSH</text>
 <text x="262" y="248" fill="#ffe0e8">commits → mukhtar-x/GrandDebatePortal</text></g>
-  <rect x="10" y="10" width="880" height="264" fill="url(#vign)"/>
-  <rect x="10" y="10" width="880" height="264" fill="url(#scan)"/>
 </g>
 <rect x="10.5" y="10.5" width="879" height="263" rx="12" fill="none" stroke="#ff2266" stroke-opacity=".7"/>
 </svg>
