@@ -1,21 +1,26 @@
 {
   "name": "Billo",
-  "fullness": 1,
+  "fullness": 0,
   "happiness": 100,
-  "updated": "2026-11-05T20:46:46.966Z",
-  "lastInteraction": "2026-11-05T20:46:46.966Z",
+  "updated": "2026-11-05T20:46:52.572Z",
+  "lastInteraction": "2026-11-05T20:46:52.572Z",
   "counts": {
     "feed": 21,
-    "play": 20,
+    "play": 21,
     "pet": 7
   },
   "friends": {
     "Zidarc": 18,
-    "Syed-Muhammad-Abbas-7": 17,
+    "Syed-Muhammad-Abbas-7": 18,
     "HunaBuilds": 11,
     "Mujju1214": 2
   },
   "recent": [
+    {
+      "user": "Syed-Muhammad-Abbas-7",
+      "action": "play",
+      "at": "2026-11-05T20:46:52.572Z"
+    },
     {
       "user": "Syed-Muhammad-Abbas-7",
       "action": "play",
@@ -40,11 +45,6 @@
       "user": "Syed-Muhammad-Abbas-7",
       "action": "play",
       "at": "2026-11-05T20:46:25.851Z"
-    },
-    {
-      "user": "Syed-Muhammad-Abbas-7",
-      "action": "play",
-      "at": "2026-11-05T20:46:18.779Z"
     }
   ],
   "ids": {
@@ -91,7 +91,7 @@
   },
   "daily": {
     "day": "2026-11-06",
-    "n": 7
+    "n": 8
   },
   "code": {
     "credited": {
