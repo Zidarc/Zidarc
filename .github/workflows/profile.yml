@@ -10,8 +10,9 @@ on:
 permissions:
   contents: write
 
+# Its own group: a duplicate pending refresh can be dropped safely (visits use a separate, uncancelled workflow).
 concurrency:
-  group: profile-write
+  group: profile-refresh
   cancel-in-progress: false
 
 jobs:
@@ -23,16 +24,23 @@ jobs:
         with:
           node-version: 22
       - run: npm ci --no-audit --no-fund
-      - run: node scripts/build.js
+      - name: build and commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Same race-safe loop as the cat workflow: rebuild on top of the latest state if a visit landed meanwhile.
+          for i in $(seq 1 6); do
+            git fetch -q origin main && git reset -q --hard origin/main
+            node scripts/build.js
+            git add -A
+            git diff --cached --quiet && exit 0
+            git commit -q -m "chore: refresh profile"
+            git push -q origin HEAD:main && exit 0
+            echo "push lost a race (attempt $i), retrying"
+            sleep $((RANDOM % 6 + 2))
+          done
+          exit 1
         env:
           # Add a PROFILE_TOKEN secret (classic PAT, read:user) to include private contributions.
           GITHUB_TOKEN: ${{ secrets.PROFILE_TOKEN || secrets.GITHUB_TOKEN }}
           LOGIN: ${{ github.repository_owner }}
-      - name: commit
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git diff --cached --quiet && exit 0
-          git commit -m "chore: refresh profile"
-          git pull --rebase && git push

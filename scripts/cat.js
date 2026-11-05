@@ -3,7 +3,9 @@ const fs = require('fs');
 const cat = require('./cat-core');
 const { fetchAvatar } = require('./avatar');
 
-const action = (process.env.ISSUE_TITLE || '').split('|')[1]?.trim().toLowerCase();
+// "cat|feed" from the buttons, or just "feed" when someone types the title by hand.
+const title = (process.env.ISSUE_TITLE || '').trim().toLowerCase();
+const action = (title.startsWith('cat|') ? title.slice(4) : title).trim();
 const user = process.env.ISSUE_USER;
 const now = new Date();
 

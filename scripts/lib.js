@@ -194,13 +194,19 @@ function chrome({ w, h, title, body, css = '', emberCount = 10, seed = 11, label
 const fmtDate = d => new Date(d).toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
 
 // GitHub serves README images with a 5-minute cache, so an updated card at the same URL shows up late.
-// Tag every ./assets link with a hash of the file: a changed card gets a new URL and appears immediately.
+// Relative links don't help: github.com/<repo>/raw/... redirects to raw.githubusercontent.com and drops any
+// query string. So README images point straight at raw.githubusercontent.com (GitHub uses those as-is) with
+// ?v=<hash of the file>: a changed card gets a URL no cache has seen, and shows up as soon as it's committed.
 function stampReadme() {
   const crypto = require('crypto');
+  const repo = process.env.GITHUB_REPOSITORY || 'Zidarc/Zidarc';
+  const raw = `https://raw.githubusercontent.com/${repo}/main/`;
   const file = path.join(ROOT, 'README.md');
   const src = fs.readFileSync(file, 'utf8');
-  const out = src.replace(/(\.\/assets\/[\w./-]+?\.(?:svg|gif|png))(\?v=[0-9a-f]+)?(?=["'\s)])/g, (m, p) => {
-    try { return `${p}?v=${crypto.createHash('sha1').update(fs.readFileSync(path.join(ROOT, p))).digest('hex').slice(0, 8)}`; } catch { return m; }
+  const esc = s => s.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&');
+  const re = new RegExp(`(?:\\./|${esc(raw)})(assets/[\\w./-]+?\\.(?:svg|gif|png))(\\?v=[0-9a-f]+)?(?=["'\\s)])`, 'g');
+  const out = src.replace(re, (m, p) => {
+    try { return `${raw}${p}?v=${crypto.createHash('sha1').update(fs.readFileSync(path.join(ROOT, p))).digest('hex').slice(0, 8)}`; } catch { return m; }
   });
   if (out !== src) fs.writeFileSync(file, out);
 }

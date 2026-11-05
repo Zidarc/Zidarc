@@ -1,4 +1,7 @@
-# Feed-the-cat game: buttons in the README open "cat|feed" / "cat|play" / "cat|pet" issues.
+# Feed-the-cat game: buttons in the README open "cat|feed" / "cat|play" / "cat|pet" issues (bare "feed" etc. work too).
+# No concurrency group on purpose: GitHub keeps only one pending run per group and cancels the rest, which dropped
+# visits when people clicked several times. Runs go in parallel instead; one that loses the push race throws its
+# work away, starts again from the latest state and retries.
 name: huna the cat
 on:
   issues:
@@ -8,13 +11,9 @@ permissions:
   contents: write
   issues: write
 
-concurrency:
-  group: profile-write
-  cancel-in-progress: false
-
 jobs:
   react:
-    if: startsWith(github.event.issue.title, 'cat|')
+    if: startsWith(github.event.issue.title, 'cat|') || contains(fromJSON('["feed","play","pet"]'), github.event.issue.title)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,20 +21,24 @@ jobs:
         with:
           node-version: 22
       - run: npm ci --no-audit --no-fund
-      - run: node scripts/cat.js
+      - name: react and commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for i in $(seq 1 10); do
+            git fetch -q origin main && git reset -q --hard origin/main
+            node scripts/cat.js
+            git add -A
+            git commit -q -m "🐈‍⬛ huna: ${ISSUE_USER} visited" || exit 0
+            git push -q origin HEAD:main && exit 0
+            echo "push lost a race (attempt $i), retrying from the latest state"
+            sleep $((RANDOM % 6 + 2))
+          done
+          exit 1
         env:
           ISSUE_TITLE: ${{ github.event.issue.title }}
           ISSUE_USER: ${{ github.event.issue.user.login }}
           REPLY_FILE: ${{ runner.temp }}/reply.md
-      - name: commit
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "🐈‍⬛ huna: ${ISSUE_USER} visited" || exit 0
-          for i in 1 2 3; do git pull --rebase && git push && break; sleep 3; done
-        env:
-          ISSUE_USER: ${{ github.event.issue.user.login }}
       - name: reply and close
         run: |
           gh issue comment "$NUMBER" --body-file "$RUNNER_TEMP/reply.md"
