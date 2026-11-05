@@ -23,8 +23,8 @@
 <img src="./assets/h-huna.svg?v=27684891" alt="Say hi to Huna" width="100%" />
 
 <picture>
-  <source media="(prefers-color-scheme: light)" srcset="./assets/cat-day.svg?v=cd28e8a7" />
-  <img src="./assets/cat.svg?v=d088c6f7" alt="Huna the cat's live status" width="100%" />
+  <source media="(prefers-color-scheme: light)" srcset="./assets/cat-day.svg?v=fa355f09" />
+  <img src="./assets/cat.svg?v=a00d89ad" alt="Huna the cat's live status" width="100%" />
 </picture>
 
 <a href="https://github.com/Zidarc/Zidarc/issues/new?title=cat%7Cfeed&body=Just%20press%20%22Create%22%20and%20Huna%20gets%20a%20fish%20%F0%9F%90%9F"><img src="./assets/btn-feed.svg?v=cab57fd1" alt="feed()" height="48" /></a>
