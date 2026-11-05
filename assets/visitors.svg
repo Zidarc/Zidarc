@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="318" viewBox="0 0 900 318" font-family="'JetBrains Mono','Fira Code','Cascadia Code',Consolas,'DejaVu Sans Mono',Menlo,monospace" font-size="15">
-<title>visitors.log — huna</title>
+<title>visitors.log — billo</title>
 <style>
 .show{opacity:0;animation:show .01s linear forwards}
 .fi{animation:fadein .2s ease-out both}
@@ -11,7 +11,7 @@
 @keyframes fadein{from{opacity:0}to{opacity:1}}
 @keyframes slide{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
 @keyframes blink{50%{opacity:0}}
-@keyframes rise{0%{opacity:0;transform:translate(0,0)}15%{opacity:.6}100%{opacity:0;transform:translate(18px,-278px)}}@keyframes ty1{to{transform:translateX(216px)}}</style>
+@keyframes rise{0%{opacity:0;transform:translate(0,0)}15%{opacity:.6}100%{opacity:0;transform:translate(18px,-278px)}}@keyframes ty1{to{transform:translateX(225px)}}</style>
 <defs>
   <clipPath id="win"><rect x="10" y="10" width="880" height="298" rx="12"/></clipPath>
   <radialGradient id="vign" cx="20%" cy="45%" r="70%"><stop offset="0" stop-color="#230310"/><stop offset="1" stop-color="#0d0008"/></radialGradient>
@@ -27,14 +27,14 @@
 <rect class="ember" x="206" y="298" width="2" height="2" fill="#ff6f91" style="animation-duration:9.8s;animation-delay:-8.3s"/>
   <rect x="10" y="10" width="880" height="34" fill="#16050d"/>
   <rect x="10" y="44" width="880" height="1" fill="#ff2266" opacity=".35"/>
-  <text x="450" y="32" text-anchor="middle" font-size="13" fill="#ffe0e8" opacity=".75">visitors.log — huna</text>
+  <text x="450" y="32" text-anchor="middle" font-size="13" fill="#ffe0e8" opacity=".75">visitors.log — billo</text>
   <text x="26" y="32" font-size="12" fill="#7a3a4c">▸_ cat</text>
   <g stroke="#ffe0e8" stroke-width="1.6" fill="none" opacity=".7"><line x1="808" y1="28" x2="820" y2="28"/><rect x="836" y="21" width="11" height="11"/></g>
   <circle cx="869" cy="27" r="8" fill="#ff2266"/>
   <g stroke="#0d0008" stroke-width="2"><line x1="865.5" y1="23.5" x2="872.5" y2="30.5"/><line x1="872.5" y1="23.5" x2="865.5" y2="30.5"/></g>
   
-<text x="30" y="64" textLength="126" lengthAdjust="spacing" xml:space="preserve"><tspan fill="#ff2266" font-weight="700">ali@zidarc</tspan><tspan fill="#ff6f91"> ~ </tspan><tspan fill="#ffe0e8">$</tspan></text><text x="165" y="64" textLength="216" lengthAdjust="spacing" fill="#ffe0e8">tail ~/huna/visitors.log</text>
-<g style="animation:ty1 0.8s steps(24) 0.2s forwards, hide .01s linear 1s forwards"><rect x="174" y="49" width="234" height="21" fill="#0d0008"/><rect class="cur" x="165" y="51" width="9" height="17" fill="#ff2266"/></g>
+<text x="30" y="64" textLength="126" lengthAdjust="spacing" xml:space="preserve"><tspan fill="#ff2266" font-weight="700">ali@zidarc</tspan><tspan fill="#ff6f91"> ~ </tspan><tspan fill="#ffe0e8">$</tspan></text><text x="165" y="64" textLength="225" lengthAdjust="spacing" fill="#ffe0e8">tail ~/billo/visitors.log</text>
+<g style="animation:ty1 0.8s steps(25) 0.2s forwards, hide .01s linear 1s forwards"><rect x="174" y="49" width="243" height="21" fill="#0d0008"/><rect class="cur" x="165" y="51" width="9" height="17" fill="#ff2266"/></g>
 <g class="show" style="animation-delay:0.9s"><text x="30" y="90" font-size="13" fill="#ff2266" font-weight="700">── recent visits ──</text><text x="500" y="90" font-size="13" fill="#ff2266" font-weight="700">── best friends ──</text><rect x="478" y="76" width="1" height="188" fill="#7a3a4c" opacity=".6"/></g>
 <g class="slide" style="animation-delay:1.00s">
 <text x="30" y="116" fill="#7a3a4c">11-05 12:35</text>

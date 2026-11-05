@@ -7,7 +7,7 @@ const PROJECTS = [
   ['cyber-loop', "Real-time team puzzle game made for DevDay'26. Teams race through graph-based puzzles on a live Supabase Realtime leaderboard, with ember particles and a glassmorphism UI.", ['React', 'Vite', 'TypeScript', 'Express', 'Supabase']],
   ['portfolio', 'Personal portfolio site showcasing my projects and skills. Built for the ICT project at FAST NUCES Karachi.', ['TypeScript', 'React', 'CSS']],
   ['ishara', 'AI campus accessibility app for visually and hearing-impaired students: real-time AR wayfinding and adaptive safety alerts where static, single-sense infrastructure fails.', ['Python', 'AI', 'C#', 'AR']],
-  ['zidarc', 'This profile. Pixel-art cards rebuilt by GitHub Actions every 3 hours, and Huna, a cat you can feed by opening an issue. No server: the repo is her database.', ['Node.js', 'SVG', 'GitHub Actions']],
+  ['zidarc', 'This profile. Pixel-art cards rebuilt by GitHub Actions every 3 hours, and Billo, a cat you can feed by opening an issue. No server: the repo is her database.', ['Node.js', 'SVG', 'GitHub Actions']],
 ];
 
 function renderProjects() {

@@ -1,4 +1,4 @@
-// Huna the cat: state in cat/state.json, rendered to assets/cat.svg (+ cat-day.svg for light mode), the visitor log,
+// Billo the cat: state in cat/state.json, rendered to assets/cat.svg (+ cat-day.svg for light mode), the visitor log,
 // per-visitor stickers and the bot's replies.
 const fs = require('fs');
 const path = require('path');
@@ -137,37 +137,37 @@ function apply(st, action, user, now) {
   if (st.friends[user] >= 50) award(st, user, 'regular', fresh);
 
   const lines = {
-    feed: `${a.emoji} *nom nom nom*, thank you @${user}! Huna's belly is now **${st.fullness}%** full. (=^･ω･^=)`,
-    play: `${a.emoji} Huna chased the yarn ball all over the ledge. Happiness: **${st.happiness}%**. ฅ^•ﻌ•^ฅ`,
-    pet: `${a.emoji} *purrrr~* Huna leans into your hand, @${user}. Happiness: **${st.happiness}%**.`,
-    catnip: `${a.emoji} ✧ CATNIP ✧ You found a secret, @${user}! Huna has the zoomies for the next ${SPECIAL_HOURS} hours: go look at the profile.`,
-    laser: `${a.emoji} A red dot appears… Huna is OBSESSED. You found a secret, @${user}! The dot stays on the profile for ${SPECIAL_HOURS} hours.`,
+    feed: `${a.emoji} *nom nom nom*, thank you @${user}! Billo's belly is now **${st.fullness}%** full. (=^･ω･^=)`,
+    play: `${a.emoji} Billo chased the yarn ball all over the ledge. Happiness: **${st.happiness}%**. ฅ^•ﻌ•^ฅ`,
+    pet: `${a.emoji} *purrrr~* Billo leans into your hand, @${user}. Happiness: **${st.happiness}%**.`,
+    catnip: `${a.emoji} ✧ CATNIP ✧ You found a secret, @${user}! Billo has the zoomies for the next ${SPECIAL_HOURS} hours: go look at the profile.`,
+    laser: `${a.emoji} A red dot appears… Billo is OBSESSED. You found a secret, @${user}! The dot stays on the profile for ${SPECIAL_HOURS} hours.`,
   };
   const v = Object.values(st.counts).reduce((x, y) => x + y, 0);
   const sticker = `${RAW}/assets/stickers/${user}.svg`;
   const out = [
     lines[action], '',
-    `<img src="${RAW}/assets/reactions/${action}.gif?v=${v}" width="288" alt="Huna reacting" />`, '',
+    `<img src="${RAW}/assets/reactions/${action}.gif?v=${v}" width="288" alt="Billo reacting" />`, '',
   ];
-  if (partyNow) out.push(`🎉 **That was visit ${GOAL} today: you threw Huna a party!** She's wearing a party hat on the profile for 24 hours.`, '');
-  else out.push(`Today's goal: **${st.daily.n}/${GOAL}** visits until Huna gets a party 🎉`, '');
+  if (partyNow) out.push(`🎉 **That was visit ${GOAL} today: you threw Billo a party!** She's wearing a party hat on the profile for 24 hours.`, '');
+  else out.push(`Today's goal: **${st.daily.n}/${GOAL}** visits until Billo gets a party 🎉`, '');
   for (const id of fresh) out.push(`🏅 **New badge:** ${BADGES[id].icon} ${BADGES[id].name} (${BADGES[id].desc})`);
   if (fresh.length) out.push('');
   // Stickers only exist for normal logins (bots like "name[bot]" don't get a file).
   if (safeUser(user)) out.push(
-    `You're friend **#${st.ids[user]}** of Huna. Here's your sticker:`, '',
-    `<img src="${sticker}?v=${v}" width="420" alt="friend of Huna sticker" />`, '',
+    `You're friend **#${st.ids[user]}** of Billo. Here's your sticker:`, '',
+    `<img src="${sticker}?v=${v}" width="420" alt="friend of Billo sticker" />`, '',
     'Put it on your own profile README (it updates as you visit):', '',
-    '```md', `[![friend of Huna](${sticker})](https://github.com/${PROFILE})`, '```', '',
+    '```md', `[![friend of Billo](${sticker})](https://github.com/${PROFILE})`, '```', '',
     'Your face is on her wall now too.',
   );
-  else out.push(`You're friend **#${st.ids[user]}** of Huna.`);
+  else out.push(`You're friend **#${st.ids[user]}** of Billo.`);
   out.push('', 'This issue closes itself. Thanks for visiting! ♥');
   return out.join('\n');
 }
 
 function unknownReply() {
-  return 'Huna tilts her head. She knows `feed`, `play` and `pet`… and a couple of secrets she sometimes mumbles about 👀 Try a button on the profile!';
+  return 'Billo tilts her head. She knows `feed`, `play` and `pet`… and a couple of secrets she sometimes mumbles about 👀 Try a button on the profile!';
 }
 
 function mood(st, now) {
@@ -223,7 +223,7 @@ function stageFx(st, now, day) {
   return { fx, hat: party ? 'party' : sz?.hat || null, hang: friends.length > 0 || !!sz, sz, w, party, special };
 }
 
-// Scene strip on top (Huna living her life, see scene/stage.js), stats underneath.
+// Scene strip on top (Billo living her life, see scene/stage.js), stats underneath.
 function renderCat(st, now, day = false) {
   const W = 900, H = 500, SX = 30, SY = 88;
   const md = mood(st, now), m = MOODS[md];
@@ -250,7 +250,7 @@ function renderCat(st, now, day = false) {
   const where = day ? 'out on her afternoon walk' : 'out on her night walk';
 
   const body = `
-${T.command(70, 'cat ~/huna.status', 0.2, 0.8, 1)}
+${T.command(70, 'cat ~/billo.status', 0.2, 0.8, 1)}
 <g class="fi" style="animation-delay:.3s">${stage.svg}</g>
 ${row(1.1, `<text x="${SX}" y="362" font-weight="700" font-size="17"><tspan fill="${C.text}">${esc(st.name)}</tspan><tspan fill="${C.dim}"> · </tspan><tspan fill="${m.color}">${m.label}</tspan><tspan fill="${C.dim}" font-size="13" font-weight="400">  · ${where}</tspan></text>`)}
 ${row(1.2, bar(362, 'fullness', st.fullness, 1.4))}
@@ -261,7 +261,7 @@ ${row(1.5, goal)}
 ${row(1.6, cn ? `<text x="${SX}" y="446" fill="${cn.col}">${esc(cn.text)}</text>` : '')}
 ${row(1.6, sky ? key(446, 'Karachi') + `<text x="${VX}" y="446" fill="${C.text}">${esc(sky)}</text>` : '')}
 ${row(1.7, extras ? `<text x="${SX}" y="474" fill="${C.gold}">${esc(extras)}</text>` : '')}
-${row(1.8, `<text x="${SX}" y="${extras ? 508 : 480}" fill="${C.pink}">↓ press a button · it opens an issue · Huna reacts in ~30s · you get a sticker</text>`)}`;
+${row(1.8, `<text x="${SX}" y="${extras ? 508 : 480}" fill="${C.pink}">↓ press a button · it opens an issue · Billo reacts in ~30s · you get a sticker</text>`)}`;
 
   const css = `
 .bob{animation:bob 2.4s ease-in-out infinite}
@@ -315,12 +315,12 @@ function renderVisitors(st) {
   const legendY = TOP + (n - 1) * LH + 40;
   const legend = Object.values(BADGES).map(b => `${b.icon} ${b.name}`).join('  ·  ');
   const body = `
-${T.command(64, 'tail ~/huna/visitors.log', 0.2, 0.8, 1)}
+${T.command(64, 'tail ~/billo/visitors.log', 0.2, 0.8, 1)}
 ${L.show(0.9, head(L.X0, '── recent visits ──') + head(RX, '── best friends ──') + `<rect x="${RX - 22}" y="${TOP - 40}" width="1" height="${n * LH + 20}" fill="${C.dim}" opacity=".6"/>`)}
 ${st.recent.length ? recent : L.show(1, `<text x="${L.X0}" y="${TOP}" fill="${C.dim}">no visitors yet. be the first!</text>`)}
 ${friends || L.show(1.2, `<text x="${RX}" y="${TOP}" fill="${C.dim}">still waiting for a friend…</text>`)}
 ${L.show(1.6, `<text x="${L.X0}" y="${legendY}" font-size="12" fill="${C.dim}">badges: ${esc(legend)}</text>`)}`;
-  return L.chrome({ w: 900, h: legendY + 22, title: 'visitors.log — huna', body, css: T.css(), emberCount: 5, seed: 53, label: 'cat' });
+  return L.chrome({ w: 900, h: legendY + 22, title: 'visitors.log — billo', body, css: T.css(), emberCount: 5, seed: 53, label: 'cat' });
 }
 
 function writeSticker(st, user) {

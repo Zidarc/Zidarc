@@ -1,4 +1,4 @@
-// Huna as a cute pixel black cat: big round head, big shiny eyes, short legs and a fluffy tail.
+// Billo as a cute pixel black cat: big round head, big shiny eyes, short legs and a fluffy tail.
 // She's built from rounded shapes and shaded per cell, so poses can be blended into in-between frames.
 // Units are cells; x points where she faces, y is up from the surface she stands on (negative = below a ledge).
 const OX = 30, TOP = 34, BELOW = 16, ROWS = TOP + BELOW, COLS = 56;

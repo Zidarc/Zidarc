@@ -1,4 +1,4 @@
-// Things layered onto Huna's walk from the real world: the viewer's theme (day/night), Karachi's weather, the season,
+// Things layered onto Billo's walk from the real world: the viewer's theme (day/night), Karachi's weather, the season,
 // the friends who visited (polaroids on a string), secret-command effects and party confetti.
 // Each effect returns { back, front, css, defs, lines }: back sits over the sky, front over everything but her speech.
 const S = require('./scenes');

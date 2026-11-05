@@ -4,7 +4,7 @@ const { C, CW, esc } = L;
 
 const HEADINGS = [
   ['projects', 'projects', 'things i built'],
-  ['huna', 'say hi to huna', 'the resident cat'],
+  ['billo', 'say hi to billo', 'the resident cat'],
   ['stats', 'stats', 'refreshed every 3h'],
   ['activity', 'recent activity', 'public events'],
   ['fortune', "today's fortune", 'new one daily'],

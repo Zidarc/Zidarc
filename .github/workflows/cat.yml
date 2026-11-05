@@ -2,7 +2,7 @@
 # No concurrency group on purpose: GitHub keeps only one pending run per group and cancels the rest, which dropped
 # visits when people clicked several times. Runs go in parallel instead; one that loses the push race throws its
 # work away, starts again from the latest state and retries.
-name: huna the cat
+name: billo the cat
 on:
   issues:
     types: [opened]
@@ -29,7 +29,7 @@ jobs:
             git fetch -q origin main && git reset -q --hard origin/main
             node scripts/cat.js
             git add -A
-            git commit -q -m "🐈‍⬛ huna: ${ISSUE_USER} visited" || exit 0
+            git commit -q -m "🐈‍⬛ billo: ${ISSUE_USER} visited" || exit 0
             git push -q origin HEAD:main && exit 0
             echo "push lost a race (attempt $i), retrying from the latest state"
             sleep $((RANDOM % 6 + 2))

@@ -1,4 +1,4 @@
-// Huna's night walk: she keeps walking to the right through a chain of scenes (the camera follows and the
+// Billo's night walk: she keeps walking to the right through a chain of scenes (the camera follows and the
 // background scrolls in parallax), and every so often she stops to sit, yawn or lie down. On a ledge she lies
 // with her tail hanging over the edge; on grass she curls into a loaf. While she walks, one scene crossfades
 // into the next. A seeded script is baked into CSS keyframes on one shared loop.

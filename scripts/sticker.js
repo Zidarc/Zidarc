@@ -1,4 +1,4 @@
-// assets/stickers/<login>.svg: a "friend of Huna" card for each visitor, with a cat coloured from their username.
+// assets/stickers/<login>.svg: a "friend of Billo" card for each visitor, with a cat coloured from their username.
 // Visitors paste it into their own README; it links back to this profile.
 const M = require('./scene/cat-model');
 const { C, esc } = require('./lib');
@@ -41,7 +41,7 @@ function renderSticker({ user, no, visits, since, badges, avatar, profile }) {
 <g class="bob"><g transform="translate(-21 28) scale(3)" shape-rendering="crispEdges">${f.body}<g class="hb">${f.blink}</g></g></g>
 <rect x="341" y="19" width="56" height="56" fill="none" stroke="${accent}" stroke-opacity=".6"/>${pic}
 <text x="150" y="40" font-size="20" font-weight="700" fill="${C.text}">@${esc(user.length > 15 ? user.slice(0, 14) + '…' : user)}</text>
-<text x="150" y="66" font-size="14" fill="${accent}" font-weight="700">friend of Huna #${no}</text>
+<text x="150" y="66" font-size="14" fill="${accent}" font-weight="700">friend of Billo #${no}</text>
 <text x="150" y="88" font-size="12" fill="${C.text}" opacity=".8">${visits} visit${visits === 1 ? '' : 's'} · since ${since.slice(0, 10)}</text>
 <text x="150" y="112" font-size="16">${badges.join(' ')}</text>
 <text x="150" y="134" font-size="11" fill="${C.pink}">feed her too → github.com/${esc(profile)}</text>

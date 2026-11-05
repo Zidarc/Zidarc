@@ -1,4 +1,4 @@
-# Refreshes stats, activity feed, quote of the day, Huna's mood and her scene every 3 hours.
+# Refreshes stats, activity feed, quote of the day, Billo's mood and her scene every 3 hours.
 name: refresh profile
 on:
   schedule:
@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 # Its own group: a duplicate pending refresh can be dropped safely (visits use a separate, uncancelled workflow).
 concurrency:
@@ -24,6 +25,29 @@ jobs:
         with:
           node-version: 22
       - run: npm ci --no-audit --no-fund
+      # Catch-up: visits whose issue is still open 10+ minutes later (e.g. a run failed) get replayed, answered and closed.
+      - name: replay missed visits
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          gh issue list --state open --limit 100 --json number,title,author,createdAt \
+            --jq '.[] | select((now - (.createdAt | fromdateiso8601)) > 600) | [.number, .title, .author.login] | @tsv' |
+          sort -n | while IFS=$'\t' read -r num title user; do
+            action=$(printf '%s' "$title" | tr '[:upper:]' '[:lower:]' | sed 's/^cat|//' | xargs)
+            case "$action" in feed|play|pet|catnip|laser) ;; *) continue ;; esac
+            for i in $(seq 1 6); do
+              git fetch -q origin main && git reset -q --hard origin/main
+              ISSUE_TITLE="$title" ISSUE_USER="$user" REPLY_FILE="$RUNNER_TEMP/reply.md" node scripts/cat.js > /dev/null
+              git add -A
+              git commit -q -m "🐈‍⬛ billo: ${user} visited" || break
+              git push -q origin HEAD:main && break
+              sleep $((RANDOM % 6 + 2))
+            done
+            gh issue comment "$num" --body-file "$RUNNER_TEMP/reply.md" && gh issue close "$num"
+          done
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
       - name: build and commit
         run: |
           git config user.name "github-actions[bot]"

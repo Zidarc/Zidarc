@@ -1,7 +1,7 @@
 {
   "name": "zidarc-profile",
   "private": true,
-  "description": "Generators for the Zidarc GitHub profile README and Huna the cat",
+  "description": "Generators for the Zidarc GitHub profile README and Billo the cat",
   "scripts": {
     "build": "node scripts/build.js"
   },

@@ -1,4 +1,4 @@
-// Night-time pixel backdrops for Huna's walk: a shared sky, then scenes she walks through one after another
+// Night-time pixel backdrops for Billo's walk: a shared sky, then scenes she walks through one after another
 // (rooftop, balcony railing, meadow, lake, cherry blossoms, snow, seaside wall). Each scene is split into parallax layers.
 // Everything is drawn in 3px cells. The surface she walks on is always row GY so she never jumps between scenes.
 const VW = 280, VH = 80, GY = 56;
