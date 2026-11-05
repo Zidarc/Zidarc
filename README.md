@@ -23,8 +23,8 @@
 <img src="./assets/h-huna.svg?v=27684891" alt="Say hi to Huna" width="100%" />
 
 <picture>
-  <source media="(prefers-color-scheme: light)" srcset="./assets/cat-day.svg?v=db1901ab" />
-  <img src="./assets/cat.svg?v=8d40c34f" alt="Huna the cat's live status" width="100%" />
+  <source media="(prefers-color-scheme: light)" srcset="./assets/cat-day.svg?v=ba7b5b78" />
+  <img src="./assets/cat.svg?v=a5e80a51" alt="Huna the cat's live status" width="100%" />
 </picture>
 
 <a href="https://github.com/Zidarc/Zidarc/issues/new?title=cat%7Cfeed&body=Just%20press%20%22Create%22%20and%20Huna%20gets%20a%20fish%20%F0%9F%90%9F"><img src="./assets/btn-feed.svg?v=cab57fd1" alt="feed()" height="48" /></a>
@@ -41,7 +41,7 @@
 
 <img src="./assets/h-stats.svg?v=d94aa874" alt="Stats" width="100%" />
 
-<img src="./assets/stats.svg?v=47e65dc8" alt="htop-style GitHub stats" width="100%" />
+<img src="./assets/stats.svg?v=bb47d2cd" alt="htop-style GitHub stats" width="100%" />
 
 <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/output/snake.svg" alt="contribution snake eating the commit grid" width="100%" />
 
@@ -59,7 +59,7 @@
 
 <img src="./assets/h-fortune.svg?v=1c5c6b86" alt="Today's fortune" width="100%" />
 
-<img src="./assets/quote.svg?v=92080177" alt="fortune | catsay: quote of the day" width="100%" />
+<img src="./assets/quote.svg?v=d422f935" alt="fortune | catsay: quote of the day" width="100%" />
 
 </div>
 
