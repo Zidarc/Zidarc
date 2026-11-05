@@ -1,20 +1,26 @@
 {
   "name": "Huna",
-  "fullness": 61,
-  "happiness": 69,
-  "updated": "2026-11-05T06:56:09.327Z",
-  "lastInteraction": "2026-11-03T06:49:58.780Z",
+  "fullness": 53,
+  "happiness": 75,
+  "updated": "2026-11-05T12:33:57.674Z",
+  "lastInteraction": "2026-11-05T12:33:57.674Z",
   "counts": {
     "feed": 21,
     "play": 12,
-    "pet": 6
+    "pet": 7
   },
   "friends": {
     "Zidarc": 18,
     "Syed-Muhammad-Abbas-7": 10,
-    "HunaBuilds": 11
+    "HunaBuilds": 11,
+    "Mujju1214": 1
   },
   "recent": [
+    {
+      "user": "Mujju1214",
+      "action": "pet",
+      "at": "2026-11-05T12:33:57.674Z"
+    },
     {
       "user": "Zidarc",
       "action": "feed",
@@ -39,22 +45,19 @@
       "user": "Syed-Muhammad-Abbas-7",
       "action": "pet",
       "at": "2026-11-03T04:12:10.082Z"
-    },
-    {
-      "user": "Syed-Muhammad-Abbas-7",
-      "action": "feed",
-      "at": "2026-11-03T04:11:24.407Z"
     }
   ],
   "ids": {
     "Zidarc": 1,
     "Syed-Muhammad-Abbas-7": 2,
-    "HunaBuilds": 3
+    "HunaBuilds": 3,
+    "Mujju1214": 4
   },
   "joined": {
     "Zidarc": "2026-11-01T11:09:17.104Z",
     "Syed-Muhammad-Abbas-7": "2026-11-02T21:45:22.945Z",
-    "HunaBuilds": "2026-11-01T14:26:30.394Z"
+    "HunaBuilds": "2026-11-01T14:26:30.394Z",
+    "Mujju1214": "2026-11-05T12:33:57.674Z"
   },
   "badges": {
     "Zidarc": [
@@ -66,6 +69,9 @@
     ],
     "HunaBuilds": [
       "og"
+    ],
+    "Mujju1214": [
+      "og"
     ]
   },
   "streaks": {
@@ -76,11 +82,15 @@
     "Syed-Muhammad-Abbas-7": {
       "day": "2026-11-03",
       "n": 1
+    },
+    "Mujju1214": {
+      "day": "2026-11-05",
+      "n": 1
     }
   },
   "daily": {
-    "day": "2026-11-03",
-    "n": 7
+    "day": "2026-11-05",
+    "n": 1
   },
   "code": {
     "credited": {
