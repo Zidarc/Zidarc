@@ -17,6 +17,7 @@ const RAW = `https://raw.githubusercontent.com/${REPO}/main`;
 const STATE = path.join(L.ROOT, 'cat', 'state.json');
 const AVATARS = path.join(L.ROOT, 'cat', 'avatars');
 const GOAL = 10; // visits in one (Pakistan) day for a party
+const RATE = { n: 5, mins: 10 }; // spam limit: counted visits per person per window
 const ACTIONS = {
   feed: { fullness: 30, happiness: 5, emoji: '🐟', past: 'fed' },
   play: { fullness: -5, happiness: 25, emoji: '🧶', past: 'played with' },
@@ -49,7 +50,7 @@ const safeUser = u => /^[A-Za-z0-9-]{1,39}$/.test(u || '');
 // Fills in fields added after the first version of state.json.
 function norm(st) {
   st.counts ||= {}; st.friends ||= {}; st.recent ||= [];
-  st.ids ||= {}; st.joined ||= {}; st.badges ||= {}; st.streaks ||= {};
+  st.ids ||= {}; st.joined ||= {}; st.badges ||= {}; st.streaks ||= {}; st.rate ||= {};
   let n = Math.max(0, ...Object.values(st.ids));
   for (const u of Object.keys(st.friends)) if (!st.ids[u]) st.ids[u] = ++n;
   for (const [u, id] of Object.entries(st.ids)) {
@@ -108,6 +109,18 @@ function award(st, user, id, fresh) {
 }
 
 function apply(st, action, user, now) {
+  // Spam limit, generous on purpose: the same person counts at most RATE.n times per RATE.mins minutes.
+  // Extra visits still get a friendly reply but don't change her stats or the leaderboard.
+  const recentVisits = (st.rate[user] || []).filter(t => now - new Date(t) < RATE.mins * 60000);
+  for (const u of Object.keys(st.rate)) if (!st.rate[u].some(t => now - new Date(t) < RATE.mins * 60000)) delete st.rate[u];
+  if (recentVisits.length >= RATE.n) {
+    st.rate[user] = recentVisits;
+    return [
+      `😽 Billo is still purring from your last ${RATE.n} visits, @${user}! Each person counts up to ${RATE.n} times every ${RATE.mins} minutes, so this one didn't change her stats.`, '',
+      'Come back in a few minutes and she\'ll be just as happy to see you. This issue closes itself. ♥',
+    ].join('\n');
+  }
+  st.rate[user] = [...recentVisits, now.toISOString()];
   const a = ALL[action];
   const asleep = mood(st, now) === 'sleepy';
   const today = pktDay(now), fresh = [];
@@ -147,6 +160,7 @@ function apply(st, action, user, now) {
   const sticker = `${RAW}/assets/stickers/${user}.svg`;
   const out = [
     lines[action], '',
+    "🔄 **Refresh my profile to see your visit.** It's already live by the time you read this.", '',
     `<img src="${RAW}/assets/reactions/${action}.gif?v=${v}" width="288" alt="Billo reacting" />`, '',
   ];
   if (partyNow) out.push(`🎉 **That was visit ${GOAL} today: you threw Billo a party!** She's wearing a party hat on the profile for 24 hours.`, '');
@@ -261,7 +275,7 @@ ${row(1.5, goal)}
 ${row(1.6, cn ? `<text x="${SX}" y="446" fill="${cn.col}">${esc(cn.text)}</text>` : '')}
 ${row(1.6, sky ? key(446, 'Karachi') + `<text x="${VX}" y="446" fill="${C.text}">${esc(sky)}</text>` : '')}
 ${row(1.7, extras ? `<text x="${SX}" y="474" fill="${C.gold}">${esc(extras)}</text>` : '')}
-${row(1.8, `<text x="${SX}" y="${extras ? 508 : 480}" fill="${C.pink}">↓ press a button · it opens an issue · Billo reacts in ~30s · you get a sticker</text>`)}`;
+${row(1.8, `<text x="${SX}" y="${extras ? 508 : 480}" fill="${C.pink}">↓ press a button · refresh this page ~30s later to see Billo react · get a sticker</text>`)}`;
 
   const css = `
 .bob{animation:bob 2.4s ease-in-out infinite}

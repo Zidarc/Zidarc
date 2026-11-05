@@ -23,13 +23,13 @@
 <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/h-billo.svg?v=3c71ac96" alt="Say hi to Billo" width="100%" />
 
 <picture>
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/cat-day.svg?v=355d65c7" />
-  <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/cat.svg?v=1ec10237" alt="Billo the cat's live status" width="100%" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/cat-day.svg?v=d03356d5" />
+  <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/cat.svg?v=96619781" alt="Billo the cat's live status" width="100%" />
 </picture>
 
-<a href="https://github.com/Zidarc/Zidarc/issues/new?title=cat%7Cfeed&body=Just%20press%20%22Create%22%20and%20Billo%20gets%20a%20fish%20%F0%9F%90%9F"><img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/btn-feed.svg?v=cab57fd1" alt="feed()" height="48" /></a>
-<a href="https://github.com/Zidarc/Zidarc/issues/new?title=cat%7Cplay&body=Just%20press%20%22Create%22%20and%20Billo%20gets%20a%20yarn%20ball%20%F0%9F%A7%B6"><img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/btn-play.svg?v=768d77fc" alt="play()" height="48" /></a>
-<a href="https://github.com/Zidarc/Zidarc/issues/new?title=cat%7Cpet&body=Just%20press%20%22Create%22%20and%20Billo%20gets%20pets%20%F0%9F%90%BE"><img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/btn-pet.svg?v=9b500814" alt="pet()" height="48" /></a>
+<a href="https://github.com/Zidarc/Zidarc/issues/new?title=cat%7Cfeed&body=Just%20press%20%22Create%22%20and%20Billo%20gets%20a%20fish%20%F0%9F%90%9F%0A%0AThen%20refresh%20the%20profile%20in%20about%2030%20seconds%20to%20see%20Billo%20react."><img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/btn-feed.svg?v=cab57fd1" alt="feed()" height="48" /></a>
+<a href="https://github.com/Zidarc/Zidarc/issues/new?title=cat%7Cplay&body=Just%20press%20%22Create%22%20and%20Billo%20gets%20a%20yarn%20ball%20%F0%9F%A7%B6%0A%0AThen%20refresh%20the%20profile%20in%20about%2030%20seconds%20to%20see%20Billo%20react."><img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/btn-play.svg?v=768d77fc" alt="play()" height="48" /></a>
+<a href="https://github.com/Zidarc/Zidarc/issues/new?title=cat%7Cpet&body=Just%20press%20%22Create%22%20and%20Billo%20gets%20pets%20%F0%9F%90%BE%0A%0AThen%20refresh%20the%20profile%20in%20about%2030%20seconds%20to%20see%20Billo%20react."><img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/btn-pet.svg?v=9b500814" alt="pet()" height="48" /></a>
 
 <sub>Billo gets hungry and bored over time and sleeps at night (PKT). My commits feed her too. When it rains in Karachi it rains on her walk, and if 10 people visit in a day she throws a party. Every visitor gets a pixel avatar on her wall and a sticker of their own. Her mood is real: she lives in <code>cat/state.json</code>. Rumour has it she knows a couple of secret words… 👀</sub>
 
@@ -41,7 +41,7 @@
 
 <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/h-stats.svg?v=d94aa874" alt="Stats" width="100%" />
 
-<img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/stats.svg?v=b5c074d0" alt="htop-style GitHub stats" width="100%" />
+<img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/stats.svg?v=71610d0b" alt="htop-style GitHub stats" width="100%" />
 
 <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/output/snake.svg" alt="contribution snake eating the commit grid" width="100%" />
 
@@ -51,7 +51,7 @@
 
 <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/h-activity.svg?v=f400219f" alt="Recent activity" width="100%" />
 
-<a href="https://github.com/Zidarc?tab=overview"><img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/activity.svg?v=580c91e8" alt="recent public GitHub activity" width="100%" /></a>
+<a href="https://github.com/Zidarc?tab=overview"><img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/activity.svg?v=a3f8fb81" alt="recent public GitHub activity" width="100%" /></a>
 
 </div>
 
