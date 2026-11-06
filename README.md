@@ -12,7 +12,7 @@
 
 <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/h-projects.svg?v=f9f6549c" alt="Projects" width="100%" />
 
-<img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/projects.svg?v=17a67f92" alt="ls -l ~/projects: Cyber-Loop, Portfolio, Ishara, Zidarc" width="100%" />
+<img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/projects.svg?v=10d9cc3c" alt="ls -l ~/projects: Cyber-Loop, Portfolio, Ishara, Zidarc" width="100%" />
 
 <sub><a href="https://github.com/Zidarc/Cyber-Loop">cyber-loop</a> · <a href="https://github.com/Zidarc/Portfolio">portfolio</a> · <a href="https://github.com/Zidarc/Ishara">ishara</a> · <a href="https://github.com/Zidarc/Zidarc">zidarc</a></sub>
 
