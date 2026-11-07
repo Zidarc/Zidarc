@@ -1,21 +1,26 @@
 {
   "name": "Billo",
-  "fullness": 80,
-  "happiness": 83,
-  "updated": "2026-11-07T06:07:58.545Z",
-  "lastInteraction": "2026-11-05T20:50:26.004Z",
+  "fullness": 70,
+  "happiness": 100,
+  "updated": "2026-11-07T09:26:39.825Z",
+  "lastInteraction": "2026-11-07T09:26:39.825Z",
   "counts": {
     "feed": 30,
-    "play": 23,
+    "play": 24,
     "pet": 7
   },
   "friends": {
-    "Zidarc": 19,
+    "Zidarc": 20,
     "Syed-Muhammad-Abbas-7": 28,
     "HunaBuilds": 11,
     "Mujju1214": 2
   },
   "recent": [
+    {
+      "user": "Zidarc",
+      "action": "play",
+      "at": "2026-11-07T09:26:39.825Z"
+    },
     {
       "user": "Zidarc",
       "action": "feed",
@@ -40,11 +45,6 @@
       "user": "Syed-Muhammad-Abbas-7",
       "action": "feed",
       "at": "2026-11-05T20:47:28.309Z"
-    },
-    {
-      "user": "Syed-Muhammad-Abbas-7",
-      "action": "feed",
-      "at": "2026-11-05T20:47:23.597Z"
     }
   ],
   "ids": {
@@ -78,8 +78,8 @@
   },
   "streaks": {
     "Zidarc": {
-      "day": "2026-11-06",
-      "n": 1
+      "day": "2026-11-07",
+      "n": 2
     },
     "Syed-Muhammad-Abbas-7": {
       "day": "2026-11-06",
@@ -91,8 +91,8 @@
     }
   },
   "daily": {
-    "day": "2026-11-06",
-    "n": 19
+    "day": "2026-11-07",
+    "n": 1
   },
   "code": {
     "credited": {
@@ -121,5 +121,9 @@
     "at": "2026-11-07T06:07:58.545Z"
   },
   "party": "2026-11-06T20:47:02.502Z",
-  "rate": {}
+  "rate": {
+    "Zidarc": [
+      "2026-11-07T09:26:39.825Z"
+    ]
+  }
 }
