@@ -1,12 +1,12 @@
 {
   "name": "Billo",
-  "fullness": 73,
-  "happiness": 80,
-  "updated": "2026-11-09T06:46:21.081Z",
-  "lastInteraction": "2026-11-07T12:22:31.644Z",
+  "fullness": 60,
+  "happiness": 100,
+  "updated": "2026-11-09T11:53:40.338Z",
+  "lastInteraction": "2026-11-09T11:53:40.338Z",
   "counts": {
     "feed": 30,
-    "play": 24,
+    "play": 25,
     "pet": 8
   },
   "friends": {
@@ -14,9 +14,15 @@
     "Syed-Muhammad-Abbas-7": 28,
     "HunaBuilds": 11,
     "Mujju1214": 2,
-    "AryaanTaimur-18": 1
+    "AryaanTaimur-18": 1,
+    "Hania-Shafiq": 1
   },
   "recent": [
+    {
+      "user": "Hania-Shafiq",
+      "action": "play",
+      "at": "2026-11-09T11:53:40.338Z"
+    },
     {
       "user": "AryaanTaimur-18",
       "action": "pet",
@@ -41,11 +47,6 @@
       "user": "Syed-Muhammad-Abbas-7",
       "action": "feed",
       "at": "2026-11-05T20:47:38.439Z"
-    },
-    {
-      "user": "Syed-Muhammad-Abbas-7",
-      "action": "feed",
-      "at": "2026-11-05T20:47:33.618Z"
     }
   ],
   "ids": {
@@ -53,14 +54,16 @@
     "Syed-Muhammad-Abbas-7": 2,
     "HunaBuilds": 3,
     "Mujju1214": 4,
-    "AryaanTaimur-18": 5
+    "AryaanTaimur-18": 5,
+    "Hania-Shafiq": 6
   },
   "joined": {
     "Zidarc": "2026-11-01T11:09:17.104Z",
     "Syed-Muhammad-Abbas-7": "2026-11-02T21:45:22.945Z",
     "HunaBuilds": "2026-11-01T14:26:30.394Z",
     "Mujju1214": "2026-11-05T12:33:57.674Z",
-    "AryaanTaimur-18": "2026-11-07T12:22:31.644Z"
+    "AryaanTaimur-18": "2026-11-07T12:22:31.644Z",
+    "Hania-Shafiq": "2026-11-09T11:53:40.338Z"
   },
   "badges": {
     "Zidarc": [
@@ -80,6 +83,9 @@
     ],
     "AryaanTaimur-18": [
       "og"
+    ],
+    "Hania-Shafiq": [
+      "og"
     ]
   },
   "streaks": {
@@ -98,11 +104,15 @@
     "AryaanTaimur-18": {
       "day": "2026-11-07",
       "n": 1
+    },
+    "Hania-Shafiq": {
+      "day": "2026-11-09",
+      "n": 1
     }
   },
   "daily": {
-    "day": "2026-11-07",
-    "n": 2
+    "day": "2026-11-09",
+    "n": 1
   },
   "code": {
     "credited": {
@@ -132,8 +142,8 @@
   },
   "party": "2026-11-06T20:47:02.502Z",
   "rate": {
-    "AryaanTaimur-18": [
-      "2026-11-07T12:22:31.644Z"
+    "Hania-Shafiq": [
+      "2026-11-09T11:53:40.338Z"
     ]
   }
 }
