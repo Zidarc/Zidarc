@@ -1,23 +1,28 @@
 {
   "name": "Billo",
-  "fullness": 72,
+  "fullness": 62,
   "happiness": 100,
-  "updated": "2026-11-09T19:53:33.051Z",
-  "lastInteraction": "2026-11-09T11:53:40.338Z",
+  "updated": "2026-11-09T22:56:16.234Z",
+  "lastInteraction": "2026-11-09T22:56:16.234Z",
   "counts": {
     "feed": 30,
-    "play": 25,
+    "play": 26,
     "pet": 8
   },
   "friends": {
     "Zidarc": 20,
     "Syed-Muhammad-Abbas-7": 28,
-    "HunaBuilds": 11,
+    "HunaBuilds": 12,
     "Mujju1214": 2,
     "AryaanTaimur-18": 1,
     "Hania-Shafiq": 1
   },
   "recent": [
+    {
+      "user": "HunaBuilds",
+      "action": "play",
+      "at": "2026-11-09T22:56:16.234Z"
+    },
     {
       "user": "Hania-Shafiq",
       "action": "play",
@@ -42,11 +47,6 @@
       "user": "Syed-Muhammad-Abbas-7",
       "action": "feed",
       "at": "2026-11-05T20:47:43.422Z"
-    },
-    {
-      "user": "Syed-Muhammad-Abbas-7",
-      "action": "feed",
-      "at": "2026-11-05T20:47:38.439Z"
     }
   ],
   "ids": {
@@ -76,7 +76,8 @@
       "party"
     ],
     "HunaBuilds": [
-      "og"
+      "og",
+      "owl"
     ],
     "Mujju1214": [
       "og"
@@ -108,10 +109,14 @@
     "Hania-Shafiq": {
       "day": "2026-11-09",
       "n": 1
+    },
+    "HunaBuilds": {
+      "day": "2026-11-10",
+      "n": 1
     }
   },
   "daily": {
-    "day": "2026-11-09",
+    "day": "2026-11-10",
     "n": 1
   },
   "code": {
@@ -142,8 +147,8 @@
   },
   "party": "2026-11-06T20:47:02.502Z",
   "rate": {
-    "Hania-Shafiq": [
-      "2026-11-09T11:53:40.338Z"
+    "HunaBuilds": [
+      "2026-11-09T22:56:16.234Z"
     ]
   }
 }
