@@ -23,8 +23,8 @@
 <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/h-billo.svg?v=3c71ac96" alt="Say hi to Billo" width="100%" />
 
 <picture>
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/cat-day.svg?v=6c543c0b" />
-  <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/cat.svg?v=b7794527" alt="Billo the cat's live status" width="100%" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/cat-day.svg?v=8fcddde1" />
+  <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/cat.svg?v=a7b08ced" alt="Billo the cat's live status" width="100%" />
 </picture>
 
 <a href="https://github.com/Zidarc/Zidarc/issues/new?title=cat%7Cfeed&body=Just%20press%20%22Create%22%20and%20Billo%20gets%20a%20fish%20%F0%9F%90%9F%0A%0AThen%20refresh%20the%20profile%20in%20about%2030%20seconds%20to%20see%20Billo%20react."><img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/btn-feed.svg?v=cab57fd1" alt="feed()" height="48" /></a>
@@ -51,7 +51,7 @@
 
 <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/h-activity.svg?v=f400219f" alt="Recent activity" width="100%" />
 
-<a href="https://github.com/Zidarc?tab=overview"><img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/activity.svg?v=61451d87" alt="recent public GitHub activity" width="100%" /></a>
+<a href="https://github.com/Zidarc?tab=overview"><img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/activity.svg?v=84a54560" alt="recent public GitHub activity" width="100%" /></a>
 
 </div>
 
@@ -59,7 +59,7 @@
 
 <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/h-fortune.svg?v=1c5c6b86" alt="Today's fortune" width="100%" />
 
-<img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/quote.svg?v=39ff015f" alt="fortune | catsay: quote of the day" width="100%" />
+<img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/quote.svg?v=4a1d28c2" alt="fortune | catsay: quote of the day" width="100%" />
 
 </div>
 
