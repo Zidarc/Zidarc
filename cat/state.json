@@ -1,8 +1,8 @@
 {
   "name": "Billo",
-  "fullness": 14,
-  "happiness": 39,
-  "updated": "2026-11-13T01:53:31.490Z",
+  "fullness": 0,
+  "happiness": 30,
+  "updated": "2026-11-13T11:08:57.055Z",
   "lastInteraction": "2026-11-10T03:46:15.610Z",
   "counts": {
     "feed": 32,
@@ -141,9 +141,9 @@
   "birthday": "",
   "weather": {
     "code": 2,
-    "temp": 25.5,
-    "isDay": false,
-    "at": "2026-11-13T01:53:31.490Z"
+    "temp": 29.5,
+    "isDay": true,
+    "at": "2026-11-13T11:08:57.055Z"
   },
   "party": "2026-11-06T20:47:02.502Z",
   "rate": {
