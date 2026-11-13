@@ -23,8 +23,8 @@
 <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/h-billo.svg?v=3c71ac96" alt="Say hi to Billo" width="100%" />
 
 <picture>
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/cat-day.svg?v=44cbc920" />
-  <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/cat.svg?v=8608d052" alt="Billo the cat's live status" width="100%" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/cat-day.svg?v=42bad0b4" />
+  <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/cat.svg?v=bf2b7473" alt="Billo the cat's live status" width="100%" />
 </picture>
 
 <a href="https://github.com/Zidarc/Zidarc/issues/new?title=cat%7Cfeed&body=Just%20press%20%22Create%22%20and%20Billo%20gets%20a%20fish%20%F0%9F%90%9F%0A%0AThen%20refresh%20the%20profile%20in%20about%2030%20seconds%20to%20see%20Billo%20react."><img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/btn-feed.svg?v=cab57fd1" alt="feed()" height="48" /></a>
@@ -59,7 +59,7 @@
 
 <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/h-fortune.svg?v=1c5c6b86" alt="Today's fortune" width="100%" />
 
-<img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/quote.svg?v=3d415a85" alt="fortune | catsay: quote of the day" width="100%" />
+<img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/quote.svg?v=ed50929c" alt="fortune | catsay: quote of the day" width="100%" />
 
 </div>
 
