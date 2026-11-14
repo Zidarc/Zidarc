@@ -23,8 +23,8 @@
 <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/h-billo.svg?v=3c71ac96" alt="Say hi to Billo" width="100%" />
 
 <picture>
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/cat-day.svg?v=46aceb2c" />
-  <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/cat.svg?v=0cc5d40c" alt="Billo the cat's live status" width="100%" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/cat-day.svg?v=406f1a94" />
+  <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/cat.svg?v=b24faeec" alt="Billo the cat's live status" width="100%" />
 </picture>
 
 <a href="https://github.com/Zidarc/Zidarc/issues/new?title=cat%7Cfeed&body=Just%20press%20%22Create%22%20and%20Billo%20gets%20a%20fish%20%F0%9F%90%9F%0A%0AThen%20refresh%20the%20profile%20in%20about%2030%20seconds%20to%20see%20Billo%20react."><img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/btn-feed.svg?v=cab57fd1" alt="feed()" height="48" /></a>
@@ -41,7 +41,7 @@
 
 <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/h-stats.svg?v=d94aa874" alt="Stats" width="100%" />
 
-<img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/stats.svg?v=91d640ec" alt="htop-style GitHub stats" width="100%" />
+<img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/stats.svg?v=5480a7c5" alt="htop-style GitHub stats" width="100%" />
 
 <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/output/snake.svg" alt="contribution snake eating the commit grid" width="100%" />
 
