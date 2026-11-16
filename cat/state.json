@@ -1,16 +1,16 @@
 {
   "name": "Billo",
-  "fullness": 100,
-  "happiness": 25,
-  "updated": "2026-11-16T13:52:02.528Z",
-  "lastInteraction": "2026-11-16T13:43:33.783Z",
+  "fullness": 95,
+  "happiness": 50,
+  "updated": "2026-11-16T13:52:06.491Z",
+  "lastInteraction": "2026-11-16T13:52:06.491Z",
   "counts": {
     "feed": 37,
-    "play": 27,
+    "play": 28,
     "pet": 10
   },
   "friends": {
-    "Zidarc": 25,
+    "Zidarc": 26,
     "Syed-Muhammad-Abbas-7": 28,
     "HunaBuilds": 17,
     "Mujju1214": 2,
@@ -18,6 +18,11 @@
     "Hania-Shafiq": 1
   },
   "recent": [
+    {
+      "user": "Zidarc",
+      "action": "play",
+      "at": "2026-11-16T13:52:06.491Z"
+    },
     {
       "user": "Zidarc",
       "action": "feed",
@@ -42,11 +47,6 @@
       "user": "Zidarc",
       "action": "feed",
       "at": "2026-11-16T13:42:05.278Z"
-    },
-    {
-      "user": "HunaBuilds",
-      "action": "feed",
-      "at": "2026-11-10T03:46:15.610Z"
     }
   ],
   "ids": {
@@ -117,7 +117,7 @@
   },
   "daily": {
     "day": "2026-11-16",
-    "n": 5
+    "n": 6
   },
   "code": {
     "credited": {
@@ -148,11 +148,11 @@
   "party": "2026-11-06T20:47:02.502Z",
   "rate": {
     "Zidarc": [
-      "2026-11-16T13:42:05.278Z",
       "2026-11-16T13:43:11.286Z",
       "2026-11-16T13:43:21.215Z",
       "2026-11-16T13:43:30.774Z",
-      "2026-11-16T13:43:33.783Z"
+      "2026-11-16T13:43:33.783Z",
+      "2026-11-16T13:52:06.491Z"
     ]
   }
 }
