@@ -23,8 +23,8 @@
 <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/h-billo.svg?v=3c71ac96" alt="Say hi to Billo" width="100%" />
 
 <picture>
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/cat-day.svg?v=02e9efff" />
-  <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/cat.svg?v=f3822239" alt="Billo the cat's live status" width="100%" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/cat-day.svg?v=423079d3" />
+  <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/cat.svg?v=81719c62" alt="Billo the cat's live status" width="100%" />
 </picture>
 
 <a href="https://github.com/Zidarc/Zidarc/issues/new?title=cat%7Cfeed&body=Just%20press%20%22Create%22%20and%20Billo%20gets%20a%20fish%20%F0%9F%90%9F%0A%0AThen%20refresh%20the%20profile%20in%20about%2030%20seconds%20to%20see%20Billo%20react."><img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/btn-feed.svg?v=cab57fd1" alt="feed()" height="48" /></a>
@@ -41,7 +41,7 @@
 
 <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/h-stats.svg?v=d94aa874" alt="Stats" width="100%" />
 
-<img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/stats.svg?v=26fc39cb" alt="htop-style GitHub stats" width="100%" />
+<img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/stats.svg?v=e4a59707" alt="htop-style GitHub stats" width="100%" />
 
 <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/output/snake.svg" alt="contribution snake eating the commit grid" width="100%" />
 
@@ -51,7 +51,7 @@
 
 <img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/h-activity.svg?v=f400219f" alt="Recent activity" width="100%" />
 
-<a href="https://github.com/Zidarc?tab=overview"><img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/activity.svg?v=13ba6b3f" alt="recent public GitHub activity" width="100%" /></a>
+<a href="https://github.com/Zidarc?tab=overview"><img src="https://raw.githubusercontent.com/Zidarc/Zidarc/main/assets/activity.svg?v=e48fc068" alt="recent public GitHub activity" width="100%" /></a>
 
 </div>
 
